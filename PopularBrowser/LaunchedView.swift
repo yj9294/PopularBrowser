@@ -192,7 +192,7 @@ extension LaunchedView {
                 store.dispatch(.event(.shareClick))
                 var url = ""
                 if store.state.launched.isNavigation {
-                    url = "https://itunes.apple.com/cn/app/id"
+                    url = "https://itunes.apple.com/cn/app/id6450207177"
                 } else {
                     url = store.state.launched.text
                 }

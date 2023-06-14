@@ -88,7 +88,7 @@ extension View {
 extension SettingView {
     func rate() {
         SheetKit().dismiss()
-        if let url = URL(string: "https://itunes.apple.com/cn/app/id6448264938") {
+        if let url = URL(string: "https://itunes.apple.com/cn/app/id6450207177") {
             openURL(url)
         }
     }
