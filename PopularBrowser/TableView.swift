@@ -48,6 +48,9 @@ struct TableView: View {
                 }
                 .padding(.all, 20)
             }
+            HStack{
+                NativeADView(model: store.state.root.adModel)
+            }.padding(.horizontal, 16).frame(height: 120)
             Spacer()
             ZStack {
                 HStack{
@@ -67,8 +70,10 @@ struct TableView: View {
 extension TableView {
     func viewDidAppear(){
         store.dispatch(.event(.tabShow))
+        store.dispatch(.adLoad(.native, .tab))
     }
     func back() {
+        store.dispatch(.adDisappear(.native))
         SheetKit().dismiss()
         dismissHandle?()
     }

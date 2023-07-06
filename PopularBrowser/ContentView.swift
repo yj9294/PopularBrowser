@@ -17,6 +17,8 @@ struct ContentView: View {
             willEnterForeground()
         }.onReceive(NotificationCenter.default.publisher(for: UIApplication.didEnterBackgroundNotification)) { _ in
             didEnterBackground()
+        }.onReceive(NotificationCenter.default.publisher(for: .nativeAdLoadCompletion)) { notification in
+            receiveAD(notification)
         }
     }
 }
@@ -24,15 +26,25 @@ struct ContentView: View {
 extension ContentView {
     func launched() {
         store.dispatch(.rootSelection(.launched))
+        store.dispatch(.adLoad(.interstitial))
+        store.dispatch(.adLoad(.native, .home))
     }
     
     func willEnterForeground() {
+        store.dispatch(.dismiss)
         store.dispatch(.rootSelection(.launching))
         store.dispatch(.event(.openHot))
     }
     
     func didEnterBackground() {
-        
+        store.dispatch(.dismiss)
+        store.dispatch(.rootSelection(.launching))
+    }
+    
+    func receiveAD(_ noti: Notification) {
+        if let ad = noti.object as? NativeViewModel {
+            store.dispatch(.adModel(ad))
+        }
     }
 }
 

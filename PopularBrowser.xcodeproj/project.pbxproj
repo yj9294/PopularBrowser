@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C703CA502A398D4900D95613 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C703CA4F2A398D4900D95613 /* GoogleService-Info.plist */; };
+		C703CA532A398E1500D95613 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = C703CA522A398E1500D95613 /* GoogleMobileAds */; };
+		C703CA552A398E6100D95613 /* GADUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C703CA542A398E6100D95613 /* GADUtil.swift */; };
+		C703CA572A39912700D95613 /* GADCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = C703CA562A39912700D95613 /* GADCommand.swift */; };
+		C703CA592A39922B00D95613 /* NativeADView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C703CA582A39922B00D95613 /* NativeADView.swift */; };
+		C703CA5B2A3996F600D95613 /* admob.json in Resources */ = {isa = PBXBuildFile; fileRef = C703CA5A2A3996F500D95613 /* admob.json */; };
 		C70E8ED42A331A3F0029C91C /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70E8ED32A331A3F0029C91C /* ShareView.swift */; };
 		C70E8ED62A3323E60029C91C /* CleanPopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70E8ED52A3323E60029C91C /* CleanPopView.swift */; };
 		C70E8ED82A3323EC0029C91C /* CleanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70E8ED72A3323EC0029C91C /* CleanView.swift */; };
@@ -25,7 +31,6 @@
 		C77684EE2A33077B004554E1 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77684ED2A33077B004554E1 /* SettingView.swift */; };
 		C77684F02A3312E5004554E1 /* PrivacyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77684EF2A3312E5004554E1 /* PrivacyView.swift */; };
 		C77684F22A3312EB004554E1 /* TermsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77684F12A3312EB004554E1 /* TermsView.swift */; };
-		C7B4681D2A395DA600792EB9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C7B4681C2A395DA600792EB9 /* GoogleService-Info.plist */; };
 		C7EE4A042A31B6F1006B6139 /* PopularBrowserApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EE4A032A31B6F1006B6139 /* PopularBrowserApp.swift */; };
 		C7EE4A062A31B6F1006B6139 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EE4A052A31B6F1006B6139 /* ContentView.swift */; };
 		C7EE4A082A31B6F2006B6139 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7EE4A072A31B6F2006B6139 /* Assets.xcassets */; };
@@ -40,6 +45,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C703CA4F2A398D4900D95613 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C703CA542A398E6100D95613 /* GADUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GADUtil.swift; sourceTree = "<group>"; };
+		C703CA562A39912700D95613 /* GADCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GADCommand.swift; sourceTree = "<group>"; };
+		C703CA582A39922B00D95613 /* NativeADView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeADView.swift; sourceTree = "<group>"; };
+		C703CA5A2A3996F500D95613 /* admob.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = admob.json; sourceTree = "<group>"; };
 		C70E8ED32A331A3F0029C91C /* ShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
 		C70E8ED52A3323E60029C91C /* CleanPopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleanPopView.swift; sourceTree = "<group>"; };
 		C70E8ED72A3323EC0029C91C /* CleanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleanView.swift; sourceTree = "<group>"; };
@@ -50,7 +60,6 @@
 		C77684ED2A33077B004554E1 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		C77684EF2A3312E5004554E1 /* PrivacyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyView.swift; sourceTree = "<group>"; };
 		C77684F12A3312EB004554E1 /* TermsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsView.swift; sourceTree = "<group>"; };
-		C7B4681C2A395DA600792EB9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C7D6908F2A36C6EE0070CC52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C7EE4A002A31B6F1006B6139 /* PopularBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PopularBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7EE4A032A31B6F1006B6139 /* PopularBrowserApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularBrowserApp.swift; sourceTree = "<group>"; };
@@ -74,6 +83,7 @@
 				C70E8EE92A3332CA0029C91C /* FacebookBasics in Frameworks */,
 				C70E8EE72A3332CA0029C91C /* FacebookAEM in Frameworks */,
 				C77684EA2A31F563004554E1 /* SheetKit in Frameworks */,
+				C703CA532A398E1500D95613 /* GoogleMobileAds in Frameworks */,
 				C70E8EE22A3332970029C91C /* FirebaseCrashlytics in Frameworks */,
 				C70E8EDD2A33322D0029C91C /* IQKeyboardManagerSwift in Frameworks */,
 				C70E8EE02A3332970029C91C /* FirebaseAnalytics in Frameworks */,
@@ -104,14 +114,17 @@
 		C7EE4A022A31B6F1006B6139 /* PopularBrowser */ = {
 			isa = PBXGroup;
 			children = (
-				C7B4681C2A395DA600792EB9 /* GoogleService-Info.plist */,
+				C703CA5A2A3996F500D95613 /* admob.json */,
+				C703CA4F2A398D4900D95613 /* GoogleService-Info.plist */,
 				C7D6908F2A36C6EE0070CC52 /* Info.plist */,
 				C77684E42A31EFE7004554E1 /* BrowserUtil.swift */,
 				C70E8ED92A332E3C0029C91C /* FirebaseUtil.swift */,
+				C703CA542A398E6100D95613 /* GADUtil.swift */,
 				C7EE4A112A31BEE0006B6139 /* AppStore.swift */,
 				C7EE4A132A31BEEA006B6139 /* AppState.swift */,
 				C7EE4A152A31BEF8006B6139 /* AppAction.swift */,
 				C7EE4A172A31C0BE006B6139 /* AppCommand.swift */,
+				C703CA562A39912700D95613 /* GADCommand.swift */,
 				C7EE4A032A31B6F1006B6139 /* PopularBrowserApp.swift */,
 				C7EE4A052A31B6F1006B6139 /* ContentView.swift */,
 				C7EE4A192A31C271006B6139 /* LaunchingView.swift */,
@@ -124,6 +137,7 @@
 				C77684EF2A3312E5004554E1 /* PrivacyView.swift */,
 				C77684F12A3312EB004554E1 /* TermsView.swift */,
 				C77684E62A31F2CB004554E1 /* WebView.swift */,
+				C703CA582A39922B00D95613 /* NativeADView.swift */,
 				C7EE4A1D2A31C6A1006B6139 /* Launch Screen.storyboard */,
 				C7EE4A072A31B6F2006B6139 /* Assets.xcassets */,
 				C7EE4A092A31B6F2006B6139 /* Preview Content */,
@@ -164,6 +178,7 @@
 				C70E8EE62A3332CA0029C91C /* FacebookAEM */,
 				C70E8EE82A3332CA0029C91C /* FacebookBasics */,
 				C70E8EEA2A3332CA0029C91C /* FacebookCore */,
+				C703CA522A398E1500D95613 /* GoogleMobileAds */,
 			);
 			productName = PopularBrowser;
 			productReference = C7EE4A002A31B6F1006B6139 /* PopularBrowser.app */;
@@ -198,6 +213,7 @@
 				C70E8EDB2A33322D0029C91C /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 				C70E8EDE2A3332960029C91C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				C70E8EE52A3332CA0029C91C /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
+				C703CA512A398E1500D95613 /* XCRemoteSwiftPackageReference "GoogleMobileAds" */,
 			);
 			productRefGroup = C7EE4A012A31B6F1006B6139 /* Products */;
 			projectDirPath = "";
@@ -213,8 +229,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C703CA5B2A3996F600D95613 /* admob.json in Resources */,
 				C7EE4A1E2A31C6A2006B6139 /* Launch Screen.storyboard in Resources */,
-				C7B4681D2A395DA600792EB9 /* GoogleService-Info.plist in Resources */,
+				C703CA502A398D4900D95613 /* GoogleService-Info.plist in Resources */,
 				C7EE4A0B2A31B6F2006B6139 /* Preview Assets.xcassets in Resources */,
 				C7EE4A082A31B6F2006B6139 /* Assets.xcassets in Resources */,
 			);
@@ -233,6 +250,7 @@
 				C7EE4A122A31BEE0006B6139 /* AppStore.swift in Sources */,
 				C70E8ED82A3323EC0029C91C /* CleanView.swift in Sources */,
 				C77684E72A31F2CB004554E1 /* WebView.swift in Sources */,
+				C703CA572A39912700D95613 /* GADCommand.swift in Sources */,
 				C7EE4A182A31C0BE006B6139 /* AppCommand.swift in Sources */,
 				C7EE4A062A31B6F1006B6139 /* ContentView.swift in Sources */,
 				C77684F22A3312EB004554E1 /* TermsView.swift in Sources */,
@@ -240,9 +258,11 @@
 				C70E8EDA2A332E3C0029C91C /* FirebaseUtil.swift in Sources */,
 				C7EE4A1C2A31C279006B6139 /* LaunchedView.swift in Sources */,
 				C70E8ED62A3323E60029C91C /* CleanPopView.swift in Sources */,
+				C703CA552A398E6100D95613 /* GADUtil.swift in Sources */,
 				C7EE4A042A31B6F1006B6139 /* PopularBrowserApp.swift in Sources */,
 				C7EE4A1A2A31C271006B6139 /* LaunchingView.swift in Sources */,
 				C77684EE2A33077B004554E1 /* SettingView.swift in Sources */,
+				C703CA592A39922B00D95613 /* NativeADView.swift in Sources */,
 				C7EE4A142A31BEEA006B6139 /* AppState.swift in Sources */,
 				C77684E52A31EFE7004554E1 /* BrowserUtil.swift in Sources */,
 			);
@@ -370,8 +390,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 20230706;
 				DEVELOPMENT_ASSET_PATHS = "\"PopularBrowser/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
@@ -390,7 +411,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.popularSearch.browsers.fast;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -408,8 +429,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 20230706;
 				DEVELOPMENT_ASSET_PATHS = "\"PopularBrowser/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
@@ -428,7 +450,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.popularSearch.browsers.fast;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -465,6 +487,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		C703CA512A398E1500D95613 /* XCRemoteSwiftPackageReference "GoogleMobileAds" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/quanghits/GoogleMobileAds";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		C70E8EDB2A33322D0029C91C /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
@@ -500,6 +530,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		C703CA522A398E1500D95613 /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C703CA512A398E1500D95613 /* XCRemoteSwiftPackageReference "GoogleMobileAds" */;
+			productName = GoogleMobileAds;
+		};
 		C70E8EDC2A33322D0029C91C /* IQKeyboardManagerSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C70E8EDB2A33322D0029C91C /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;

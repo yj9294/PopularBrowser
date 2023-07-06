@@ -21,8 +21,10 @@
 	<string>d52636b8ddd625d0812af5c143e998fd</string>
 	<key>FacebookDisplayName</key>
 	<string>PopularBrowser</string>
+	<key>GADApplicationIdentifier</key>
+	<string>ca-app-pub-7347099463759045~5814929576</string>
 	<key>GADIsAdManagerApp</key>
-	<false/>
+	<true/>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>

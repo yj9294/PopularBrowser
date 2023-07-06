@@ -9,6 +9,7 @@ import SwiftUI
 import SheetKit
 
 struct TermsView: View {
+    var handle:(()->Void)? = nil
     var body: some View {
         VStack{
             ZStack {
@@ -41,7 +42,7 @@ developer@cdgsgx.com.
 
 extension TermsView{
     func back() {
-        SheetKit().dismiss()
+        SheetKit().dismiss(completion: handle)
     }
 }
 

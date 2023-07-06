@@ -63,6 +63,11 @@ struct LaunchedView: View {
                                 })
                             }
                         }.padding(.horizontal, 16).padding(.top, 40)
+                        if !isTabShow {
+                            HStack{
+                                NativeADView(model: store.state.root.adModel)
+                            }.padding(.horizontal, 16).frame(height: 120)
+                        }
                     } else if !isTabShow {
                         WebView(webView: store.state.browser.browser.webView)
                     }
@@ -140,13 +145,15 @@ extension LaunchedView {
                 
                 store.dispatch(.stopLoad)
                 store.dispatch(.clean)
-                
+                store.dispatch(.browser)
+                store.dispatch(.adDisappear(.native))
                 SheetKit().present(with: .fullScreenCover) {
-                    CleanView {
+                    CleanView() {
+                        loadAD()
                         store.dispatch(.event(.cleanAnimationCompletion))
                         store.dispatch(.event(.cleanAlertShow))
                         self.alerMessage("Cleaned")
-                    }
+                    }.environmentObject(store)
                 }
             }).clearBackground()
         }
@@ -163,11 +170,18 @@ extension LaunchedView {
     
     func tab() {
         isTabShow = true
+        store.dispatch(.adDisappear(.native))
         SheetKit().present(with: .fullScreenCover) {
             TableView(dismissHandle: {
+                loadAD()
                 isTabShow = false
             }).environmentObject(store)
         }
+    }
+    
+    func loadAD() {
+        store.dispatch(.adLoad(.native, .home))
+        store.dispatch(.adLoad(.interstitial))
     }
     
     func goBack() {
@@ -181,12 +195,18 @@ extension LaunchedView {
     func setting() {
         SheetKit().present(with: .bottomSheet) {
             SettingView(privacyHandle: {
+                store.dispatch(.adDisappear(.native))
                 SheetKit().present(with: .fullScreenCover) {
-                    PrivacyView()
+                    PrivacyView {
+                        loadAD()
+                    }
                 }
             }, termsHandle: {
+                store.dispatch(.adDisappear(.native))
                 SheetKit().present(with: .fullScreenCover) {
-                    TermsView()
+                    TermsView {
+                        loadAD()
+                    }
                 }
             }, shareHandle: {
                 store.dispatch(.event(.shareClick))

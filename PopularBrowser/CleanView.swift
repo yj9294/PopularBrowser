@@ -9,8 +9,10 @@ import SwiftUI
 import SheetKit
 
 struct CleanView: View {
+    @EnvironmentObject var store: AppStore
     var dismissHandle: (()->Void)? = nil
     @State var isAnimation = false
+    @State var isShowAD = false
     var body: some View {
         VStack(spacing: 100){
             Spacer()
@@ -36,13 +38,42 @@ extension CleanView {
         withAnimation(.linear(duration: 3).repeatForever()) {
             isAnimation = !isAnimation
         }
+        let token = SubscriptionToken()
+        var progress = 0.0
+        Timer.publish(every: 0.01, on: .main, in: .common).autoconnect().sink { _ in
+            progress += 0.01 / 15
+            if isShowAD {
+                token.unseal()
+                return
+            }
+            if  store.state.root.selection == .launching {
+                token.unseal()
+                return
+            }
+            if progress > 0.3, store.state.ad.isLoaded(.interstitial), store.state.root.selection == .launched {
+                isShowAD = true
+                token.unseal()
+                store.dispatch(.adShow(.interstitial){ _ in
+                    dismiss()
+                })
+            }
+        }.seal(in: token)
         Task {
             if !Task.isCancelled {
-                try await Task.sleep(nanoseconds: 2_000_000_000)
-                SheetKit().dismiss(){
-                    self.dismissHandle?()
+                try await Task.sleep(nanoseconds: 12_000_000_000)
+                if !isShowAD, store.state.root.selection == .launched {
+                    token.unseal()
+                    isShowAD = true
+                    dismiss()
                 }
             }
+        }
+    }
+    
+    func dismiss() {
+        SheetKit().dismiss(){
+            store.dispatch(.dismiss)
+            self.dismissHandle?()
         }
     }
 }

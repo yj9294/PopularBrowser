@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import Combine
 import UniformTypeIdentifiers
+import Firebase
 
 protocol AppCommand {
     func execute(in store: AppStore)
@@ -111,3 +112,64 @@ struct BrowserDeleteItem: AppCommand {
         }
     }
 }
+
+struct RemoteConfigCommand: AppCommand {
+    func execute(in store: AppStore) {
+        // 获取本地配置
+        if store.state.ad.config == nil {
+            let path = Bundle.main.path(forResource: "admob", ofType: "json")
+            let url = URL(fileURLWithPath: path!)
+            do {
+                let data = try Data(contentsOf: url)
+                let config = try JSONDecoder().decode(GADConfig.self, from: data)
+                store.dispatch(.adUpdateConfig(config))
+                NSLog("[Config] Read local ad config success.")
+            } catch let error {
+                NSLog("[Config] Read local ad config fail.\(error.localizedDescription)")
+            }
+        }
+        
+        /// 远程配置
+        let remoteConfig = RemoteConfig.remoteConfig()
+        let settings = RemoteConfigSettings()
+        remoteConfig.configSettings = settings
+        remoteConfig.fetch { [weak remoteConfig] (status, error) -> Void in
+            if status == .success {
+                NSLog("[Config] Config fetcher! ✅")
+                remoteConfig?.activate(completion: { _, _ in
+                    let keys = remoteConfig?.allKeys(from: .remote)
+                    NSLog("[Config] config params = \(keys ?? [])")
+                    if let remoteAd = remoteConfig?.configValue(forKey: "adConfig").stringValue {
+                        // base64 的remote 需要解码
+                        let data = Data(base64Encoded: remoteAd) ?? Data()
+                        if let remoteADConfig = try? JSONDecoder().decode(GADConfig.self, from: data) {
+                            // 需要在主线程
+                            DispatchQueue.main.async {
+                                store.dispatch(.adUpdateConfig(remoteADConfig))
+                            }
+                        } else {
+                            NSLog("[Config] Config config 'ad_config' is nil or config not json.")
+                        }
+                    }
+                })
+            } else {
+                NSLog("[Config] config not fetcher, error = \(error?.localizedDescription ?? "")")
+            }
+        }
+    }
+}
+
+struct DismissCommand: AppCommand {
+    func execute(in store: AppStore) {
+        if let topController = UIApplication.shared.windows.filter({$0.isKeyWindow}).first?.rootViewController {
+            if let presentVC = topController.presentedViewController {
+                presentVC.dismiss(animated: true) {
+                    topController.dismiss(animated: true)
+                }
+            } else {
+                topController.dismiss(animated: true)
+            }
+        }
+    }
+}
+

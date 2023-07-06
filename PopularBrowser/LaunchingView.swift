@@ -8,7 +8,10 @@
 import SwiftUI
 
 struct LaunchingView: View {
-    @State var progress: Double = 0.0
+    @EnvironmentObject var store: AppStore
+    var progress: Double {
+        store.state.root.progress
+    }
     var launched: (()->Void)? = nil
     var body: some View {
         VStack{
@@ -23,23 +26,33 @@ struct LaunchingView: View {
             Spacer()
             ProgressView(value: progress, total: 1.0).accentColor(Color.white).padding(.horizontal, 90).padding(.bottom, 32)
         }.background(Image("launch_bg").resizable().ignoresSafeArea()).onAppear{
-            viewDidAppear()
+            if progress == 0.0 {
+                viewDidAppear()
+            }
         }
     }
 }
 
 extension LaunchingView {
     func viewDidAppear() {
-        let duration = 2.789
-        Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { timer in
+        var duration = 12.789
+        let token = SubscriptionToken()
+        Timer.publish(every: 0.01, on: .main, in: .common).autoconnect().sink { _ in
             let progress = self.progress + 0.01 / duration
             if progress > 1.0 {
-                timer.invalidate()
-                self.launched?()
+                token.unseal()
+                store.dispatch(.adShow(.interstitial) { _ in
+                    self.launched?()
+                })
             } else {
-                self.progress = progress
+                store.state.root.progress = progress
             }
-        }
+            if progress > 0.3, store.state.ad.isLoaded(.interstitial) {
+                duration = 0.1
+            }
+        }.seal(in: token)
+        store.dispatch(.adLoad(.interstitial))
+        store.dispatch(.adLoad(.native))
     }
 }
 

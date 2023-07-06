@@ -9,6 +9,7 @@ import SwiftUI
 import SheetKit
 
 struct PrivacyView: View {
+    var handle:(()->Void)? = nil
     var body: some View {
         VStack{
             ZStack {
@@ -93,7 +94,7 @@ developer@cdgsgx.com.
 
 extension PrivacyView{
     func back() {
-        SheetKit().dismiss()
+        SheetKit().dismiss(completion: handle)
     }
 }
 

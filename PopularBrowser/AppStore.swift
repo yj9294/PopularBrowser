@@ -17,6 +17,8 @@ class AppStore: ObservableObject {
         dispatch(.event(.open))
         dispatch(.event(.openCold))
         UITabBar.appearance().isHidden = true
+        dispatch(.remoteConfig)
+        dispatch(.adLimitRefresh)
     }
     func dispatch(_ action: AppAction) {
         debugPrint("[ACTION]: \(action)")
@@ -35,6 +37,9 @@ extension AppStore{
         var appCommand: AppCommand? = nil
         switch action {
         case .rootSelection(let index):
+            if index == .launching {
+                appState.root.progress = 0.0
+            }
             appState.root.selection = index
         case .browser:
             appCommand = BrowserCommand()
@@ -63,6 +68,33 @@ extension AppStore{
             appState.firebase.item.log(event: name, params: value)
         case .property(let name):
             appState.firebase.item.log(property: name)
+            
+        case .remoteConfig:
+            appCommand = RemoteConfigCommand()
+        case .adLimitRefresh:
+            appCommand = GADLimitRefreshCommand()
+        case .adUpdateConfig(let config):
+            appState.ad.config = config
+        case .adUpdateLimit(let state):
+            appCommand = GADUpdateLimitCommand(state)
+        case .adAppear(let position):
+            appCommand = GADAppearCommand(position)
+        case .adDisappear(let position):
+            appCommand = GADDisappearCommand(position)
+        case .adClean(let position):
+            appCommand = GADCleanCommand(position)
+        
+        case .adLoad(let position, let p):
+            appCommand = GADLoadCommand(position, p)
+        case .adShow(let position, let p, let completion):
+            appCommand = GADShowCommand(position, p, completion)
+            
+        case .adNativeImpressionDate(let p):
+            appState.ad.impressionDate[p] = Date()
+        case .adModel(let model):
+            appState.root.adModel = model
+        case .dismiss:
+            appCommand = DismissCommand()
         }
         return (appState, appCommand)
     }
