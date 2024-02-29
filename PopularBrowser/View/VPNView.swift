@@ -54,7 +54,3 @@ extension VPNView {
         VPNUtil.shared.connect(options: op)
     }
 }
-
-#Preview {
-    VPNView()
-}

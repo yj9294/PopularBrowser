@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -24,7 +24,7 @@
 		BFAB7B912B90783400BC9609 /* server.json in Resources */ = {isa = PBXBuildFile; fileRef = BFAB7B902B90783300BC9609 /* server.json */; };
 		BFAB7B942B90885D00BC9609 /* Shadowsocks_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFAB7B922B90885D00BC9609 /* Shadowsocks_iOS.framework */; };
 		BFAB7B982B908CA300BC9609 /* VPNView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAB7B972B908CA300BC9609 /* VPNView.swift */; };
-		BFAB7B9A2B909CCA00BC9609 /* PacketProcessor_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFAB7B932B90885D00BC9609 /* PacketProcessor_iOS.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		BFAB7B9A2B909CCA00BC9609 /* PacketProcessor_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFAB7B932B90885D00BC9609 /* PacketProcessor_iOS.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		BFAB7B9B2B909CCA00BC9609 /* PacketProcessor_iOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BFAB7B932B90885D00BC9609 /* PacketProcessor_iOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BFAB7B9D2B909D9000BC9609 /* PacketProcessor_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFAB7B932B90885D00BC9609 /* PacketProcessor_iOS.framework */; };
 		BFAB7B9E2B909D9000BC9609 /* Shadowsocks_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFAB7B922B90885D00BC9609 /* Shadowsocks_iOS.framework */; };
@@ -40,9 +40,6 @@
 		C70E8EE02A3332970029C91C /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = C70E8EDF2A3332970029C91C /* FirebaseAnalytics */; };
 		C70E8EE22A3332970029C91C /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = C70E8EE12A3332970029C91C /* FirebaseCrashlytics */; };
 		C70E8EE42A3332970029C91C /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = C70E8EE32A3332970029C91C /* FirebaseRemoteConfig */; };
-		C70E8EE72A3332CA0029C91C /* FacebookAEM in Frameworks */ = {isa = PBXBuildFile; productRef = C70E8EE62A3332CA0029C91C /* FacebookAEM */; };
-		C70E8EE92A3332CA0029C91C /* FacebookBasics in Frameworks */ = {isa = PBXBuildFile; productRef = C70E8EE82A3332CA0029C91C /* FacebookBasics */; };
-		C70E8EEB2A3332CA0029C91C /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = C70E8EEA2A3332CA0029C91C /* FacebookCore */; };
 		C77684E52A31EFE7004554E1 /* BrowserUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77684E42A31EFE7004554E1 /* BrowserUtil.swift */; };
 		C77684E72A31F2CB004554E1 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77684E62A31F2CB004554E1 /* WebView.swift */; };
 		C77684EA2A31F563004554E1 /* SheetKit in Frameworks */ = {isa = PBXBuildFile; productRef = C77684E92A31F563004554E1 /* SheetKit */; };
@@ -172,14 +169,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C70E8EE92A3332CA0029C91C /* FacebookBasics in Frameworks */,
-				C70E8EE72A3332CA0029C91C /* FacebookAEM in Frameworks */,
 				C77684EA2A31F563004554E1 /* SheetKit in Frameworks */,
 				C703CA532A398E1500D95613 /* GoogleMobileAds in Frameworks */,
 				C70E8EE22A3332970029C91C /* FirebaseCrashlytics in Frameworks */,
 				C70E8EE02A3332970029C91C /* FirebaseAnalytics in Frameworks */,
 				C70E8EE42A3332970029C91C /* FirebaseRemoteConfig in Frameworks */,
-				C70E8EEB2A3332CA0029C91C /* FacebookCore in Frameworks */,
 				BFAB7B942B90885D00BC9609 /* Shadowsocks_iOS.framework in Frameworks */,
 				6801C22895D6189ACE7A92FD /* Pods_PopularBrowser.framework in Frameworks */,
 				BFAB7B9A2B909CCA00BC9609 /* PacketProcessor_iOS.framework in Frameworks */,
@@ -381,9 +375,6 @@
 				C70E8EDF2A3332970029C91C /* FirebaseAnalytics */,
 				C70E8EE12A3332970029C91C /* FirebaseCrashlytics */,
 				C70E8EE32A3332970029C91C /* FirebaseRemoteConfig */,
-				C70E8EE62A3332CA0029C91C /* FacebookAEM */,
-				C70E8EE82A3332CA0029C91C /* FacebookBasics */,
-				C70E8EEA2A3332CA0029C91C /* FacebookCore */,
 				C703CA522A398E1500D95613 /* GoogleMobileAds */,
 			);
 			productName = PopularBrowser;
@@ -410,7 +401,7 @@
 				};
 			};
 			buildConfigurationList = C7EE49FB2A31B6F1006B6139 /* Build configuration list for PBXProject "PopularBrowser" */;
-			compatibilityVersion = "Xcode 14.0";
+			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -421,7 +412,6 @@
 			packageReferences = (
 				C77684E82A31F563004554E1 /* XCRemoteSwiftPackageReference "SheetKit" */,
 				C70E8EDE2A3332960029C91C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				C70E8EE52A3332CA0029C91C /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
 				C703CA512A398E1500D95613 /* XCRemoteSwiftPackageReference "GoogleMobileAds" */,
 			);
 			productRefGroup = C7EE4A012A31B6F1006B6139 /* Products */;
@@ -588,8 +578,8 @@
 				CODE_SIGN_ENTITLEMENTS = Proxy/Proxy.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 7HH5ZUB44G;
+				CURRENT_PROJECT_VERSION = 20230706;
+				DEVELOPMENT_TEAM = CAP32C8DTF;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -608,8 +598,8 @@
 					"@executable_path/../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.popularSearch.browsers.fast.test1.Proxy;
+				MARKETING_VERSION = 1.0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.popularSearch.browsers.fast.Proxy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -632,8 +622,8 @@
 				CODE_SIGN_ENTITLEMENTS = Proxy/Proxy.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 7HH5ZUB44G;
+				CURRENT_PROJECT_VERSION = 20230706;
+				DEVELOPMENT_TEAM = CAP32C8DTF;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -652,8 +642,8 @@
 					"@executable_path/../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.popularSearch.browsers.fast.test1.Proxy;
+				MARKETING_VERSION = 1.0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.popularSearch.browsers.fast.Proxy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -791,7 +781,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 20230706;
 				DEVELOPMENT_ASSET_PATHS = "\"PopularBrowser/Resource/Preview Content\"";
-				DEVELOPMENT_TEAM = 7HH5ZUB44G;
+				DEVELOPMENT_TEAM = CAP32C8DTF;
 				ENABLE_PREVIEWS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -814,7 +804,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.popularSearch.browsers.fast.test1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.popularSearch.browsers.fast;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -838,7 +828,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 20230706;
 				DEVELOPMENT_ASSET_PATHS = "\"PopularBrowser/Resource/Preview Content\"";
-				DEVELOPMENT_TEAM = 7HH5ZUB44G;
+				DEVELOPMENT_TEAM = CAP32C8DTF;
 				ENABLE_PREVIEWS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -861,7 +851,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.popularSearch.browsers.fast.test1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.popularSearch.browsers.fast;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -922,14 +912,6 @@
 				minimumVersion = 9.0.0;
 			};
 		};
-		C70E8EE52A3332CA0029C91C /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/facebook/facebook-ios-sdk";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
 		C77684E82A31F563004554E1 /* XCRemoteSwiftPackageReference "SheetKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/fatbobman/SheetKit";
@@ -960,21 +942,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C70E8EDE2A3332960029C91C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseRemoteConfig;
-		};
-		C70E8EE62A3332CA0029C91C /* FacebookAEM */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C70E8EE52A3332CA0029C91C /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
-			productName = FacebookAEM;
-		};
-		C70E8EE82A3332CA0029C91C /* FacebookBasics */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C70E8EE52A3332CA0029C91C /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
-			productName = FacebookBasics;
-		};
-		C70E8EEA2A3332CA0029C91C /* FacebookCore */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C70E8EE52A3332CA0029C91C /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
-			productName = FacebookCore;
 		};
 		C77684E92A31F563004554E1 /* SheetKit */ = {
 			isa = XCSwiftPackageProductDependency;
