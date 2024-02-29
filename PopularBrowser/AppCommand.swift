@@ -117,7 +117,7 @@ struct RemoteConfigCommand: AppCommand {
     func execute(in store: AppStore) {
         // 获取本地配置
         if store.state.ad.config == nil {
-            let path = Bundle.main.path(forResource: "admob", ofType: "json")
+            let path = Bundle.main.path(forResource: AppUtil.isDebug ? "admob" : "admob_release", ofType: "json")
             let url = URL(fileURLWithPath: path!)
             do {
                 let data = try Data(contentsOf: url)
@@ -161,7 +161,7 @@ struct RemoteConfigCommand: AppCommand {
 
 struct DismissCommand: AppCommand {
     func execute(in store: AppStore) {
-        if let topController = UIApplication.shared.windows.filter({$0.isKeyWindow}).first?.rootViewController {
+        if let topController = AppUtil.rootVC {
             if let presentVC = topController.presentedViewController {
                 presentVC.dismiss(animated: true) {
                     topController.dismiss(animated: true)
