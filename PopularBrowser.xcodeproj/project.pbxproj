@@ -7,8 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1EA1186D87D75469BC471D9A /* Pods_Proxy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD5E8E5D9F709F2EA63569A3 /* Pods_Proxy.framework */; };
+		6801C22895D6189ACE7A92FD /* Pods_PopularBrowser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40A09DA978A305F5829542F6 /* Pods_PopularBrowser.framework */; };
 		BFAB7B522B9023BA00BC9609 /* admob_release.json in Resources */ = {isa = PBXBuildFile; fileRef = BFAB7B512B9023BA00BC9609 /* admob_release.json */; };
 		BFAB7B542B90503800BC9609 /* AppUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAB7B532B90503800BC9609 /* AppUtil.swift */; };
+		BFAB7B5B2B9063D600BC9609 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFAB7B5A2B9063D500BC9609 /* NetworkExtension.framework */; };
+		BFAB7B5E2B9063D600BC9609 /* PacketTunnelProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAB7B5D2B9063D600BC9609 /* PacketTunnelProvider.swift */; };
+		BFAB7B632B9063D600BC9609 /* Proxy.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = BFAB7B592B9063D500BC9609 /* Proxy.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		BFAB7B742B90664D00BC9609 /* ShadowsocksConnectivity.m in Sources */ = {isa = PBXBuildFile; fileRef = BFAB7B702B90664D00BC9609 /* ShadowsocksConnectivity.m */; };
+		BFAB7B752B90664D00BC9609 /* Shadowsocks.m in Sources */ = {isa = PBXBuildFile; fileRef = BFAB7B712B90664D00BC9609 /* Shadowsocks.m */; };
+		BFAB7B882B906A7D00BC9609 /* VPNUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAB7B872B906A7D00BC9609 /* VPNUtil.swift */; };
+		BFAB7B8B2B90730A00BC9609 /* VPNModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAB7B8A2B90730A00BC9609 /* VPNModel.swift */; };
+		BFAB7B8C2B90730A00BC9609 /* VPNModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAB7B8A2B90730A00BC9609 /* VPNModel.swift */; };
+		BFAB7B8E2B9074FB00BC9609 /* CacheUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAB7B8D2B9074FB00BC9609 /* CacheUtil.swift */; };
+		BFAB7B8F2B9074FB00BC9609 /* CacheUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAB7B8D2B9074FB00BC9609 /* CacheUtil.swift */; };
+		BFAB7B912B90783400BC9609 /* server.json in Resources */ = {isa = PBXBuildFile; fileRef = BFAB7B902B90783300BC9609 /* server.json */; };
+		BFAB7B942B90885D00BC9609 /* Shadowsocks_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFAB7B922B90885D00BC9609 /* Shadowsocks_iOS.framework */; };
+		BFAB7B982B908CA300BC9609 /* VPNView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAB7B972B908CA300BC9609 /* VPNView.swift */; };
+		BFAB7B9A2B909CCA00BC9609 /* PacketProcessor_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFAB7B932B90885D00BC9609 /* PacketProcessor_iOS.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		BFAB7B9B2B909CCA00BC9609 /* PacketProcessor_iOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BFAB7B932B90885D00BC9609 /* PacketProcessor_iOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BFAB7B9D2B909D9000BC9609 /* PacketProcessor_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFAB7B932B90885D00BC9609 /* PacketProcessor_iOS.framework */; };
+		BFAB7B9E2B909D9000BC9609 /* Shadowsocks_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFAB7B922B90885D00BC9609 /* Shadowsocks_iOS.framework */; };
 		C703CA532A398E1500D95613 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = C703CA522A398E1500D95613 /* GoogleMobileAds */; };
 		C703CA552A398E6100D95613 /* GADUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C703CA542A398E6100D95613 /* GADUtil.swift */; };
 		C703CA572A39912700D95613 /* GADCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = C703CA562A39912700D95613 /* GADCommand.swift */; };
@@ -18,7 +37,6 @@
 		C70E8ED62A3323E60029C91C /* CleanPopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70E8ED52A3323E60029C91C /* CleanPopView.swift */; };
 		C70E8ED82A3323EC0029C91C /* CleanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70E8ED72A3323EC0029C91C /* CleanView.swift */; };
 		C70E8EDA2A332E3C0029C91C /* FirebaseUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70E8ED92A332E3C0029C91C /* FirebaseUtil.swift */; };
-		C70E8EDD2A33322D0029C91C /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C70E8EDC2A33322D0029C91C /* IQKeyboardManagerSwift */; };
 		C70E8EE02A3332970029C91C /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = C70E8EDF2A3332970029C91C /* FirebaseAnalytics */; };
 		C70E8EE22A3332970029C91C /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = C70E8EE12A3332970029C91C /* FirebaseCrashlytics */; };
 		C70E8EE42A3332970029C91C /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = C70E8EE32A3332970029C91C /* FirebaseRemoteConfig */; };
@@ -46,9 +64,67 @@
 		C7EE4A1E2A31C6A2006B6139 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7EE4A1D2A31C6A1006B6139 /* Launch Screen.storyboard */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		BFAB7B612B9063D600BC9609 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C7EE49F82A31B6F1006B6139 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BFAB7B582B9063D500BC9609;
+			remoteInfo = Proxy;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		BFAB7B672B9063D600BC9609 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				BFAB7B632B9063D600BC9609 /* Proxy.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BFAB7B9C2B909CCA00BC9609 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				BFAB7B9B2B909CCA00BC9609 /* PacketProcessor_iOS.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		34EF2094C256793A54BA5CA0 /* Pods-Proxy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Proxy.debug.xcconfig"; path = "Target Support Files/Pods-Proxy/Pods-Proxy.debug.xcconfig"; sourceTree = "<group>"; };
+		40A09DA978A305F5829542F6 /* Pods_PopularBrowser.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PopularBrowser.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6DED45A621B4FD8F1DF56D8F /* Pods-Proxy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Proxy.release.xcconfig"; path = "Target Support Files/Pods-Proxy/Pods-Proxy.release.xcconfig"; sourceTree = "<group>"; };
+		AD5E8E5D9F709F2EA63569A3 /* Pods_Proxy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Proxy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B9F10C7D42C49733FB0F3FB6 /* Pods-PopularBrowser.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PopularBrowser.release.xcconfig"; path = "Target Support Files/Pods-PopularBrowser/Pods-PopularBrowser.release.xcconfig"; sourceTree = "<group>"; };
 		BFAB7B512B9023BA00BC9609 /* admob_release.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = admob_release.json; sourceTree = "<group>"; };
 		BFAB7B532B90503800BC9609 /* AppUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtil.swift; sourceTree = "<group>"; };
+		BFAB7B592B9063D500BC9609 /* Proxy.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Proxy.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		BFAB7B5A2B9063D500BC9609 /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
+		BFAB7B5D2B9063D600BC9609 /* PacketTunnelProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacketTunnelProvider.swift; sourceTree = "<group>"; };
+		BFAB7B5F2B9063D600BC9609 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BFAB7B602B9063D600BC9609 /* Proxy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Proxy.entitlements; sourceTree = "<group>"; };
+		BFAB7B682B90656E00BC9609 /* Proxy-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Proxy-Bridging-Header.h"; sourceTree = "<group>"; };
+		BFAB7B702B90664D00BC9609 /* ShadowsocksConnectivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShadowsocksConnectivity.m; sourceTree = "<group>"; };
+		BFAB7B712B90664D00BC9609 /* Shadowsocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Shadowsocks.m; sourceTree = "<group>"; };
+		BFAB7B722B90664D00BC9609 /* ShadowsocksConnectivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShadowsocksConnectivity.h; sourceTree = "<group>"; };
+		BFAB7B732B90664D00BC9609 /* Shadowsocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shadowsocks.h; sourceTree = "<group>"; };
+		BFAB7B872B906A7D00BC9609 /* VPNUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPNUtil.swift; sourceTree = "<group>"; };
+		BFAB7B8A2B90730A00BC9609 /* VPNModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPNModel.swift; sourceTree = "<group>"; };
+		BFAB7B8D2B9074FB00BC9609 /* CacheUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheUtil.swift; sourceTree = "<group>"; };
+		BFAB7B902B90783300BC9609 /* server.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = server.json; sourceTree = "<group>"; };
+		BFAB7B922B90885D00BC9609 /* Shadowsocks_iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Shadowsocks_iOS.framework; sourceTree = "<group>"; };
+		BFAB7B932B90885D00BC9609 /* PacketProcessor_iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PacketProcessor_iOS.framework; sourceTree = "<group>"; };
+		BFAB7B972B908CA300BC9609 /* VPNView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPNView.swift; sourceTree = "<group>"; };
+		BFAB7B992B90929200BC9609 /* PopularBrowser.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PopularBrowser.entitlements; sourceTree = "<group>"; };
 		C703CA542A398E6100D95613 /* GADUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GADUtil.swift; sourceTree = "<group>"; };
 		C703CA562A39912700D95613 /* GADCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GADCommand.swift; sourceTree = "<group>"; };
 		C703CA582A39922B00D95613 /* NativeADView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeADView.swift; sourceTree = "<group>"; };
@@ -77,9 +153,21 @@
 		C7EE4A192A31C271006B6139 /* LaunchingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchingView.swift; sourceTree = "<group>"; };
 		C7EE4A1B2A31C279006B6139 /* LaunchedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchedView.swift; sourceTree = "<group>"; };
 		C7EE4A1D2A31C6A1006B6139 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		D5BF34D6263B64CB81AC58D6 /* Pods-PopularBrowser.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PopularBrowser.debug.xcconfig"; path = "Target Support Files/Pods-PopularBrowser/Pods-PopularBrowser.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		BFAB7B562B9063D500BC9609 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BFAB7B9D2B909D9000BC9609 /* PacketProcessor_iOS.framework in Frameworks */,
+				BFAB7B9E2B909D9000BC9609 /* Shadowsocks_iOS.framework in Frameworks */,
+				BFAB7B5B2B9063D600BC9609 /* NetworkExtension.framework in Frameworks */,
+				1EA1186D87D75469BC471D9A /* Pods_Proxy.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C7EE49FD2A31B6F1006B6139 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -89,50 +177,85 @@
 				C77684EA2A31F563004554E1 /* SheetKit in Frameworks */,
 				C703CA532A398E1500D95613 /* GoogleMobileAds in Frameworks */,
 				C70E8EE22A3332970029C91C /* FirebaseCrashlytics in Frameworks */,
-				C70E8EDD2A33322D0029C91C /* IQKeyboardManagerSwift in Frameworks */,
 				C70E8EE02A3332970029C91C /* FirebaseAnalytics in Frameworks */,
 				C70E8EE42A3332970029C91C /* FirebaseRemoteConfig in Frameworks */,
 				C70E8EEB2A3332CA0029C91C /* FacebookCore in Frameworks */,
+				BFAB7B942B90885D00BC9609 /* Shadowsocks_iOS.framework in Frameworks */,
+				6801C22895D6189ACE7A92FD /* Pods_PopularBrowser.framework in Frameworks */,
+				BFAB7B9A2B909CCA00BC9609 /* PacketProcessor_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C7EE49F72A31B6F1006B6139 = {
+		768EBC37B0A0A8928E1D4E60 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C7EE4A022A31B6F1006B6139 /* PopularBrowser */,
-				C7EE4A012A31B6F1006B6139 /* Products */,
+				40A09DA978A305F5829542F6 /* Pods_PopularBrowser.framework */,
+				BFAB7B5A2B9063D500BC9609 /* NetworkExtension.framework */,
+				AD5E8E5D9F709F2EA63569A3 /* Pods_Proxy.framework */,
 			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		C7EE4A012A31B6F1006B6139 /* Products */ = {
+		BFAB7B5C2B9063D600BC9609 /* Proxy */ = {
 			isa = PBXGroup;
 			children = (
-				C7EE4A002A31B6F1006B6139 /* PopularBrowser.app */,
+				BFAB7B6F2B90664D00BC9609 /* Shadowsocks */,
+				BFAB7B5D2B9063D600BC9609 /* PacketTunnelProvider.swift */,
+				BFAB7B5F2B9063D600BC9609 /* Info.plist */,
+				BFAB7B602B9063D600BC9609 /* Proxy.entitlements */,
+				BFAB7B682B90656E00BC9609 /* Proxy-Bridging-Header.h */,
 			);
-			name = Products;
+			path = Proxy;
 			sourceTree = "<group>";
 		};
-		C7EE4A022A31B6F1006B6139 /* PopularBrowser */ = {
+		BFAB7B6F2B90664D00BC9609 /* Shadowsocks */ = {
 			isa = PBXGroup;
 			children = (
-				BFAB7B512B9023BA00BC9609 /* admob_release.json */,
-				C703CA5A2A3996F500D95613 /* admob.json */,
-				C7AA9BDB2A56F50700EB3CF8 /* GoogleService-Info.plist */,
-				C7D6908F2A36C6EE0070CC52 /* Info.plist */,
+				BFAB7B702B90664D00BC9609 /* ShadowsocksConnectivity.m */,
+				BFAB7B712B90664D00BC9609 /* Shadowsocks.m */,
+				BFAB7B722B90664D00BC9609 /* ShadowsocksConnectivity.h */,
+				BFAB7B732B90664D00BC9609 /* Shadowsocks.h */,
+			);
+			path = Shadowsocks;
+			sourceTree = "<group>";
+		};
+		BFAB7B7D2B9068D900BC9609 /* Util */ = {
+			isa = PBXGroup;
+			children = (
 				C77684E42A31EFE7004554E1 /* BrowserUtil.swift */,
 				C70E8ED92A332E3C0029C91C /* FirebaseUtil.swift */,
 				C703CA542A398E6100D95613 /* GADUtil.swift */,
 				BFAB7B532B90503800BC9609 /* AppUtil.swift */,
-				C7EE4A112A31BEE0006B6139 /* AppStore.swift */,
-				C7EE4A132A31BEEA006B6139 /* AppState.swift */,
-				C7EE4A152A31BEF8006B6139 /* AppAction.swift */,
-				C7EE4A172A31C0BE006B6139 /* AppCommand.swift */,
-				C703CA562A39912700D95613 /* GADCommand.swift */,
-				C7EE4A032A31B6F1006B6139 /* PopularBrowserApp.swift */,
+				BFAB7B872B906A7D00BC9609 /* VPNUtil.swift */,
+				BFAB7B8D2B9074FB00BC9609 /* CacheUtil.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		BFAB7B7E2B9068EA00BC9609 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				BFAB7B932B90885D00BC9609 /* PacketProcessor_iOS.framework */,
+				BFAB7B922B90885D00BC9609 /* Shadowsocks_iOS.framework */,
+				C7EE4A072A31B6F2006B6139 /* Assets.xcassets */,
+				C7EE4A1D2A31C6A1006B6139 /* Launch Screen.storyboard */,
+				C7EE4A092A31B6F2006B6139 /* Preview Content */,
+				BFAB7B512B9023BA00BC9609 /* admob_release.json */,
+				C703CA5A2A3996F500D95613 /* admob.json */,
+				BFAB7B902B90783300BC9609 /* server.json */,
+				C7AA9BDB2A56F50700EB3CF8 /* GoogleService-Info.plist */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		BFAB7B7F2B90693B00BC9609 /* View */ = {
+			isa = PBXGroup;
+			children = (
 				C7EE4A052A31B6F1006B6139 /* ContentView.swift */,
+				BFAB7B972B908CA300BC9609 /* VPNView.swift */,
 				C7EE4A192A31C271006B6139 /* LaunchingView.swift */,
 				C7EE4A1B2A31C279006B6139 /* LaunchedView.swift */,
 				C70E8ED52A3323E60029C91C /* CleanPopView.swift */,
@@ -144,9 +267,64 @@
 				C77684F12A3312EB004554E1 /* TermsView.swift */,
 				C77684E62A31F2CB004554E1 /* WebView.swift */,
 				C703CA582A39922B00D95613 /* NativeADView.swift */,
-				C7EE4A1D2A31C6A1006B6139 /* Launch Screen.storyboard */,
-				C7EE4A072A31B6F2006B6139 /* Assets.xcassets */,
-				C7EE4A092A31B6F2006B6139 /* Preview Content */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BFAB7B802B90694B00BC9609 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				C7EE4A112A31BEE0006B6139 /* AppStore.swift */,
+				C7EE4A132A31BEEA006B6139 /* AppState.swift */,
+				C7EE4A152A31BEF8006B6139 /* AppAction.swift */,
+				C7EE4A172A31C0BE006B6139 /* AppCommand.swift */,
+				C703CA562A39912700D95613 /* GADCommand.swift */,
+				BFAB7B8A2B90730A00BC9609 /* VPNModel.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		C36CF1E979ADD83BD443118C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D5BF34D6263B64CB81AC58D6 /* Pods-PopularBrowser.debug.xcconfig */,
+				B9F10C7D42C49733FB0F3FB6 /* Pods-PopularBrowser.release.xcconfig */,
+				34EF2094C256793A54BA5CA0 /* Pods-Proxy.debug.xcconfig */,
+				6DED45A621B4FD8F1DF56D8F /* Pods-Proxy.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		C7EE49F72A31B6F1006B6139 = {
+			isa = PBXGroup;
+			children = (
+				C7EE4A022A31B6F1006B6139 /* PopularBrowser */,
+				BFAB7B5C2B9063D600BC9609 /* Proxy */,
+				C7EE4A012A31B6F1006B6139 /* Products */,
+				C36CF1E979ADD83BD443118C /* Pods */,
+				768EBC37B0A0A8928E1D4E60 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		C7EE4A012A31B6F1006B6139 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C7EE4A002A31B6F1006B6139 /* PopularBrowser.app */,
+				BFAB7B592B9063D500BC9609 /* Proxy.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C7EE4A022A31B6F1006B6139 /* PopularBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				BFAB7B992B90929200BC9609 /* PopularBrowser.entitlements */,
+				BFAB7B7E2B9068EA00BC9609 /* Resource */,
+				C7D6908F2A36C6EE0070CC52 /* Info.plist */,
+				BFAB7B7D2B9068D900BC9609 /* Util */,
+				BFAB7B802B90694B00BC9609 /* Data */,
+				C7EE4A032A31B6F1006B6139 /* PopularBrowserApp.swift */,
+				BFAB7B7F2B90693B00BC9609 /* View */,
 			);
 			path = PopularBrowser;
 			sourceTree = "<group>";
@@ -162,22 +340,44 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C7EE49FF2A31B6F1006B6139 /* PopularBrowser */ = {
+		BFAB7B582B9063D500BC9609 /* Proxy */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C7EE4A0E2A31B6F2006B6139 /* Build configuration list for PBXNativeTarget "PopularBrowser" */;
+			buildConfigurationList = BFAB7B642B9063D600BC9609 /* Build configuration list for PBXNativeTarget "Proxy" */;
 			buildPhases = (
-				C7EE49FC2A31B6F1006B6139 /* Sources */,
-				C7EE49FD2A31B6F1006B6139 /* Frameworks */,
-				C7EE49FE2A31B6F1006B6139 /* Resources */,
+				1A1555FCEB3B3AF45FDF68C2 /* [CP] Check Pods Manifest.lock */,
+				BFAB7B552B9063D500BC9609 /* Sources */,
+				BFAB7B562B9063D500BC9609 /* Frameworks */,
+				BFAB7B572B9063D500BC9609 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
+			name = Proxy;
+			productName = Proxy;
+			productReference = BFAB7B592B9063D500BC9609 /* Proxy.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		C7EE49FF2A31B6F1006B6139 /* PopularBrowser */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C7EE4A0E2A31B6F2006B6139 /* Build configuration list for PBXNativeTarget "PopularBrowser" */;
+			buildPhases = (
+				65E2B683C3866C1974CC3CCC /* [CP] Check Pods Manifest.lock */,
+				C7EE49FC2A31B6F1006B6139 /* Sources */,
+				C7EE49FD2A31B6F1006B6139 /* Frameworks */,
+				C7EE49FE2A31B6F1006B6139 /* Resources */,
+				B8DD018222FB2BBA53D0A852 /* [CP] Embed Pods Frameworks */,
+				BFAB7B672B9063D600BC9609 /* Embed Foundation Extensions */,
+				BFAB7B9C2B909CCA00BC9609 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BFAB7B622B9063D600BC9609 /* PBXTargetDependency */,
+			);
 			name = PopularBrowser;
 			packageProductDependencies = (
 				C77684E92A31F563004554E1 /* SheetKit */,
-				C70E8EDC2A33322D0029C91C /* IQKeyboardManagerSwift */,
 				C70E8EDF2A3332970029C91C /* FirebaseAnalytics */,
 				C70E8EE12A3332970029C91C /* FirebaseCrashlytics */,
 				C70E8EE32A3332970029C91C /* FirebaseRemoteConfig */,
@@ -197,9 +397,13 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1420;
+				LastSwiftUpdateCheck = 1520;
 				LastUpgradeCheck = 1420;
 				TargetAttributes = {
+					BFAB7B582B9063D500BC9609 = {
+						CreatedOnToolsVersion = 15.2;
+						LastSwiftMigration = 1520;
+					};
 					C7EE49FF2A31B6F1006B6139 = {
 						CreatedOnToolsVersion = 14.2;
 					};
@@ -216,7 +420,6 @@
 			mainGroup = C7EE49F72A31B6F1006B6139;
 			packageReferences = (
 				C77684E82A31F563004554E1 /* XCRemoteSwiftPackageReference "SheetKit" */,
-				C70E8EDB2A33322D0029C91C /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 				C70E8EDE2A3332960029C91C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				C70E8EE52A3332CA0029C91C /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
 				C703CA512A398E1500D95613 /* XCRemoteSwiftPackageReference "GoogleMobileAds" */,
@@ -226,16 +429,25 @@
 			projectRoot = "";
 			targets = (
 				C7EE49FF2A31B6F1006B6139 /* PopularBrowser */,
+				BFAB7B582B9063D500BC9609 /* Proxy */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		BFAB7B572B9063D500BC9609 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C7EE49FE2A31B6F1006B6139 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				C703CA5B2A3996F600D95613 /* admob.json in Resources */,
+				BFAB7B912B90783400BC9609 /* server.json in Resources */,
 				C7EE4A1E2A31C6A2006B6139 /* Launch Screen.storyboard in Resources */,
 				C7AA9BDC2A56F50700EB3CF8 /* GoogleService-Info.plist in Resources */,
 				C7EE4A0B2A31B6F2006B6139 /* Preview Assets.xcassets in Resources */,
@@ -246,7 +458,83 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1A1555FCEB3B3AF45FDF68C2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Proxy-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		65E2B683C3866C1974CC3CCC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PopularBrowser-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B8DD018222FB2BBA53D0A852 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PopularBrowser/Pods-PopularBrowser-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PopularBrowser/Pods-PopularBrowser-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PopularBrowser/Pods-PopularBrowser-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
+		BFAB7B552B9063D500BC9609 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BFAB7B752B90664D00BC9609 /* Shadowsocks.m in Sources */,
+				BFAB7B5E2B9063D600BC9609 /* PacketTunnelProvider.swift in Sources */,
+				BFAB7B8C2B90730A00BC9609 /* VPNModel.swift in Sources */,
+				BFAB7B742B90664D00BC9609 /* ShadowsocksConnectivity.m in Sources */,
+				BFAB7B8F2B9074FB00BC9609 /* CacheUtil.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C7EE49FC2A31B6F1006B6139 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -254,10 +542,14 @@
 				C70E8ED42A331A3F0029C91C /* ShareView.swift in Sources */,
 				C77684EC2A32F616004554E1 /* TableView.swift in Sources */,
 				C77684F02A3312E5004554E1 /* PrivacyView.swift in Sources */,
+				BFAB7B882B906A7D00BC9609 /* VPNUtil.swift in Sources */,
 				C7EE4A122A31BEE0006B6139 /* AppStore.swift in Sources */,
+				BFAB7B982B908CA300BC9609 /* VPNView.swift in Sources */,
 				C70E8ED82A3323EC0029C91C /* CleanView.swift in Sources */,
+				BFAB7B8B2B90730A00BC9609 /* VPNModel.swift in Sources */,
 				BFAB7B542B90503800BC9609 /* AppUtil.swift in Sources */,
 				C77684E72A31F2CB004554E1 /* WebView.swift in Sources */,
+				BFAB7B8E2B9074FB00BC9609 /* CacheUtil.swift in Sources */,
 				C703CA572A39912700D95613 /* GADCommand.swift in Sources */,
 				C7EE4A182A31C0BE006B6139 /* AppCommand.swift in Sources */,
 				C7EE4A062A31B6F1006B6139 /* ContentView.swift in Sources */,
@@ -278,7 +570,101 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		BFAB7B622B9063D600BC9609 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BFAB7B582B9063D500BC9609 /* Proxy */;
+			targetProxy = BFAB7B612B9063D600BC9609 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		BFAB7B652B9063D600BC9609 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 34EF2094C256793A54BA5CA0 /* Pods-Proxy.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Proxy/Proxy.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7HH5ZUB44G;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/PopularBrowser",
+					"$(PROJECT_DIR)/PopularBrowser/Resource",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Proxy/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Proxy;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.popularSearch.browsers.fast.test1.Proxy;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Proxy/Proxy-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		BFAB7B662B9063D600BC9609 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6DED45A621B4FD8F1DF56D8F /* Pods-Proxy.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Proxy/Proxy.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7HH5ZUB44G;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/PopularBrowser",
+					"$(PROJECT_DIR)/PopularBrowser/Resource",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Proxy/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Proxy;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.popularSearch.browsers.fast.test1.Proxy;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Proxy/Proxy-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
 		C7EE4A0C2A31B6F2006B6139 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -395,15 +781,23 @@
 		};
 		C7EE4A0F2A31B6F2006B6139 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D5BF34D6263B64CB81AC58D6 /* Pods-PopularBrowser.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = PopularBrowser/PopularBrowser.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 20230706;
-				DEVELOPMENT_ASSET_PATHS = "\"PopularBrowser/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"PopularBrowser/Resource/Preview Content\"";
 				DEVELOPMENT_TEAM = 7HH5ZUB44G;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/PopularBrowser",
+					"$(PROJECT_DIR)/PopularBrowser/Resource",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PopularBrowser/Info.plist;
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "Please allow access to your activity tracking to provide personalized push services and reduce interference caused by irrelevant services.";
@@ -420,7 +814,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.popularSearch.browsers.fast.test;
+				PRODUCT_BUNDLE_IDENTIFIER = com.popularSearch.browsers.fast.test1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -434,15 +828,23 @@
 		};
 		C7EE4A102A31B6F2006B6139 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B9F10C7D42C49733FB0F3FB6 /* Pods-PopularBrowser.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = PopularBrowser/PopularBrowser.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 20230706;
-				DEVELOPMENT_ASSET_PATHS = "\"PopularBrowser/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"PopularBrowser/Resource/Preview Content\"";
 				DEVELOPMENT_TEAM = 7HH5ZUB44G;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/PopularBrowser",
+					"$(PROJECT_DIR)/PopularBrowser/Resource",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PopularBrowser/Info.plist;
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "Please allow access to your activity tracking to provide personalized push services and reduce interference caused by irrelevant services.";
@@ -459,7 +861,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.popularSearch.browsers.fast.test;
+				PRODUCT_BUNDLE_IDENTIFIER = com.popularSearch.browsers.fast.test1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -474,6 +876,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		BFAB7B642B9063D600BC9609 /* Build configuration list for PBXNativeTarget "Proxy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BFAB7B652B9063D600BC9609 /* Debug */,
+				BFAB7B662B9063D600BC9609 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		C7EE49FB2A31B6F1006B6139 /* Build configuration list for PBXProject "PopularBrowser" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -500,14 +911,6 @@
 			repositoryURL = "https://github.com/quanghits/GoogleMobileAds";
 			requirement = {
 				branch = main;
-				kind = branch;
-			};
-		};
-		C70E8EDB2A33322D0029C91C /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
-			requirement = {
-				branch = master;
 				kind = branch;
 			};
 		};
@@ -542,11 +945,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C703CA512A398E1500D95613 /* XCRemoteSwiftPackageReference "GoogleMobileAds" */;
 			productName = GoogleMobileAds;
-		};
-		C70E8EDC2A33322D0029C91C /* IQKeyboardManagerSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C70E8EDB2A33322D0029C91C /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
-			productName = IQKeyboardManagerSwift;
 		};
 		C70E8EDF2A3332970029C91C /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;

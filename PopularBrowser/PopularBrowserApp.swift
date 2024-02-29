@@ -31,6 +31,17 @@ struct PopularBrowserApp: App {
                 application,
                 didFinishLaunchingWithOptions: launchOptions
             )
+            VPNUtil.shared.load()
+            VPNUtil.shared.prepareForLoading {
+                switch VPNUtil.shared.managerState {
+                case .ready:
+//                    self.onStateChangedTo(state: VPNUtil.shared.vpnState)
+                    break
+                default:
+                    break
+                }
+                debugPrint("[VPN MANAGER] prepareForLoading manager state: \(VPNUtil.shared.managerState), VPN state: \(VPNUtil.shared.vpnState)")
+            }
             return true
         }
               
