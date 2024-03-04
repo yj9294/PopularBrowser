@@ -34,7 +34,7 @@ class CacheUtil {
             self.password = password
             return password
         }
-        return "K49qpWT_sU8ML1+m"
+        return "t3Gx8Kql1pLBhEya"
     }
     func savePassword(_ psw: String) {
         self.password = psw

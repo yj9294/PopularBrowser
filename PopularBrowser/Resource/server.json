@@ -1,10 +1,17 @@
 [
     {
         "country": "America",
-        "city": "Chicago",
+        "city": "Dallas",
         "icon": "country_america",
-        "ip": "195.88.24.218",
-        "port": "1543",
+        "ip": "50.116.23.72",
+        "port": "1032",
+        "weights": 1
+    },{
+        "country": "America",
+        "city": "Miami",
+        "icon": "country_america",
+        "ip": "172.233.164.6",
+        "port": "1032",
         "weights": 1
     }
 ]
