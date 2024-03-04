@@ -8,10 +8,12 @@
 import SwiftUI
 import FBSDKCoreKit
 import Firebase
+import BackgroundTasks
 
 @main
 struct PopularBrowserApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+//    @Environment(\.scenePhase) private var scenePhase
     init() {
         UITabBar.appearance().isHidden = true
         FirebaseApp.configure()
@@ -20,6 +22,21 @@ struct PopularBrowserApp: App {
         WindowGroup {
             ContentView().environmentObject(AppStore())
         }
+//        .onChange(of: scenePhase, perform: { newValue in
+//            switch newValue {
+//            case .background:
+//                scheduleAppRefresh()
+//            default:
+//                break
+//            }
+//        }).backgroundTask(.appRefresh("com.yourapp.backgroundTask")) { _ in
+//            debugPrint("-------------------")
+//        }
+    }
+    
+    func scheduleAppRefresh() {
+        let request = BGAppRefreshTaskRequest(identifier: "com.yourapp.backgroundTask")
+        try? BGTaskScheduler.shared.submit(request)
     }
     
     class AppDelegate: NSObject, UIApplicationDelegate {
@@ -32,30 +49,11 @@ struct PopularBrowserApp: App {
                 didFinishLaunchingWithOptions: launchOptions
             )
             VPNUtil.shared.load()
-            VPNUtil.shared.prepareForLoading {
-                switch VPNUtil.shared.managerState {
-                case .ready:
-//                    self.onStateChangedTo(state: VPNUtil.shared.vpnState)
-                    break
-                default:
-                    break
-                }
-                debugPrint("[VPN MANAGER] prepareForLoading manager state: \(VPNUtil.shared.managerState), VPN state: \(VPNUtil.shared.vpnState)")
-            }
+
             return true
         }
-              
-        func application(
-            _ app: UIApplication,
-            open url: URL,
-            options: [UIApplication.OpenURLOptionsKey : Any] = [:]
-        ) -> Bool {
-            ApplicationDelegate.shared.application(
-                app,
-                open: url,
-                sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
-                annotation: options[UIApplication.OpenURLOptionsKey.annotation]
-            )
-        }
+        
     }
+    
+    
 }

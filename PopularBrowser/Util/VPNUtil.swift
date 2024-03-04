@@ -25,13 +25,19 @@ enum VPNConnectState {
 
 class VPNUtil: NSObject {
 
-    enum VPNState {
+    enum VPNState: String {
         case idle
         case connecting
         case connected
         case disconnecting
         case disconnected
         case error
+        var title: String {
+            if self != .idle, self != .error, self != .disconnected {
+                return self.rawValue.capitalized
+            }
+            return "Connect"
+        }
     }
 
     enum NEVPNManagerState {

@@ -39,70 +39,117 @@ struct LaunchedView: View {
     var body: some View {
         GeometryReader { _ in
             NavigationView {
-                VStack{
-                    ProgressView(value: progress, total: 1.0).accentColor(Color("#FA44B2")).opacity(isLoading ? 1.0 : 0.0)
-                    HStack{
-                        TextField("Seaech or enter address", text: $store.state.launched.text).padding(.vertical, 18).padding(.leading, 20)
-                        Button(action: search) {
-                            Image(isLoading ? "search_stop" : "search").padding(.trailing, 20)
-                        }
-                    }.background(RoundedRectangle(cornerRadius: 28).stroke(Color("#8A8A8A"), lineWidth: 1)).padding(.horizontal, 24)
-                    VStack(spacing: 10){
-                        if isNavigation {
-                            NavigationLink {
-                                VPNView().navigationTitle("VPN").navigationBarTitleDisplayMode(.inline)
-                            } label: {
-                                Image("vpn_title")
-                            }.padding(.vertical, 35)
-                            LazyVGrid(columns: columns, spacing: 20){
-                                ForEach(AppState.LaunchedState.Index.allCases, id: \.self) { index in
-                                    Button(action: {
-                                        searchIndex(index)
-                                    }, label: {
-                                        VStack(spacing: 12){
-                                            Image(index.icon)
-                                            Text(index.title)
-                                                .foregroundColor(Color("#333333"))
-                                                .font(.system(size: 13.0))
-                                        }
-                                    })
-                                }
-                            }.padding(.horizontal, 16).padding(.top, 20)
-                            if !isTabShow {
-                                HStack{
-                                    NativeADView(model: store.state.root.adModel)
-                                }.padding(.horizontal, 16).frame(height: 120)
+                ZStack{
+                    // 首页
+                    VStack{
+                        
+                        // 搜索框 界面
+                        ProgressView(value: progress, total: 1.0).accentColor(Color("#FA44B2")).opacity(isLoading ? 1.0 : 0.0)
+                        HStack{
+                            TextField("Seaech or enter address", text: $store.state.launched.text).padding(.vertical, 18).padding(.leading, 20)
+                            Button(action: search) {
+                                Image(isLoading ? "search_stop" : "search").padding(.trailing, 20)
                             }
-                        } else if !isTabShow {
-                            WebView(webView: store.state.browser.browser.webView)
+                        }.background(RoundedRectangle(cornerRadius: 28).stroke(Color("#8A8A8A"), lineWidth: 1)).padding(.horizontal, 24)
+                        
+                        // 浏览器界面
+                        VStack(spacing: 10){
+                            if isNavigation {
+                                Button {
+                                    store.dispatch(.homeUpdatePushVPNView(true))
+                                } label: {
+                                    Image("vpn_title")
+                                }.padding(.vertical, 35)
+                                LazyVGrid(columns: columns, spacing: 20){
+                                    ForEach(AppState.LaunchedState.Index.allCases, id: \.self) { index in
+                                        Button(action: {
+                                            searchIndex(index)
+                                        }, label: {
+                                            VStack(spacing: 12){
+                                                Image(index.icon)
+                                                Text(index.title)
+                                                    .foregroundColor(Color("#333333"))
+                                                    .font(.system(size: 13.0))
+                                            }
+                                        })
+                                    }
+                                }.padding(.horizontal, 16).padding(.top, 20)
+                                if !isTabShow {
+                                    HStack{
+                                        NativeADView(model: store.state.root.adModel)
+                                    }.padding(.horizontal, 16).frame(height: 120)
+                                }
+                            } else if !isTabShow {
+                                WebView(webView: store.state.browser.browser.webView)
+                            }
+                        }
+                        Spacer()
+                        
+                        // 底部 按钮
+                        HStack{
+                            Button(action: goBack) {
+                                Image(canGoBack ? "left" : "left_1")
+                            }
+                            Spacer()
+                            Button(action: goForword) {
+                                Image(canGoForword ? "right" : "right_1")
+                            }
+                            Spacer()
+                            Button(action: clean) {
+                                Image("clean")
+                            }
+                            Spacer()
+                            Button(action: tab) {
+                                ZStack {
+                                    Image("tab")
+                                    Text("\(store.state.browser.browsers.count)").font(.system(size: 11, weight: .bold)).padding(.trailing, 6).padding(.top, 5)
+                                }
+                            }.foregroundColor(Color("#333333"))
+                            Spacer()
+                            Button(action: setting) {
+                                Image("setting")
+                            }
+                        }.padding(.horizontal, 20).frame(height: 60)
+                    }.background(Color("#F2F3F4").ignoresSafeArea()).onAppear{viewDidAppear()}
+                    
+                    // vpn 引导界面
+                    if store.state.launched.isShowGuide {
+                        GuideView {
+                            store.dispatch(.homeUpdateShowGuide(false))
+                            store.dispatch(.homeUpdatePushVPNView(true))
+                            store.dispatch(.vpnConnect)
+                            store.dispatch(.updateVPNMutaConnect(true))
+                            store.dispatch(.event(.vpnGuideOK))
+                        } skip: {
+                            store.dispatch(.homeUpdateShowGuide(false))
+                            store.dispatch(.event(.vpnGuideSkip))
+                        }.onAppear{
+                            store.dispatch(.event(.vpnGuide))
                         }
                     }
-                    Spacer()
-                    HStack{
-                        Button(action: goBack) {
-                            Image(canGoBack ? "left" : "left_1")
-                        }
-                        Spacer()
-                        Button(action: goForword) {
-                            Image(canGoForword ? "right" : "right_1")
-                        }
-                        Spacer()
-                        Button(action: clean) {
-                            Image("clean")
-                        }
-                        Spacer()
-                        Button(action: tab) {
-                            ZStack {
-                                Image("tab")
-                                Text("\(store.state.browser.browsers.count)").font(.system(size: 11, weight: .bold)).padding(.trailing, 6).padding(.top, 5)
+                    
+                    // 进入 vpn 界面
+                    if store.state.launched.pushVPNView {
+                        NavigationLink(isActive: $store.state.launched.pushVPNView) {
+                            VPNView().navigationTitle("VPN").navigationBarTitleDisplayMode(.inline).navigationBarBackButtonHidden().toolbar {
+                                ToolbarItem(placement: .navigationBarLeading) {
+                                    if store.state.vpn.state == .connecting || store.state.vpn.state == .disconnecting {
+                                        Image("back")
+                                    } else {
+                                        Button {
+                                            store.dispatch(.homeUpdatePushVPNView(false))
+                                            store.dispatch(.event(.vpnBack))
+                                        } label: {
+                                            Image("back")
+                                        }
+                                    }
+                                }
                             }
-                        }.foregroundColor(Color("#333333"))
-                        Spacer()
-                        Button(action: setting) {
-                            Image("setting")
+                        } label: {
+                            EmptyView()
                         }
-                    }.padding(.horizontal, 20).frame(height: 60)
-                }.background(Color("#F2F3F4").ignoresSafeArea()).onAppear{viewDidAppear()}
+                    }
+                }
             }
         }
     }
@@ -115,6 +162,7 @@ extension LaunchedView {
         store.dispatch(.event(.homeShow))
         ATTrackingManager.requestTrackingAuthorization { _ in
         }
+        store.dispatch(.rootRequestIP)
     }
     func search() {
         store.dispatch(.hideKeyboard)

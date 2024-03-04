@@ -19,6 +19,16 @@ class AppStore: ObservableObject {
         UITabBar.appearance().isHidden = true
         dispatch(.remoteConfig)
         dispatch(.adLimitRefresh)
+        dispatch(.rootRequestIP)
+        
+        // 冷启动都弹出引导
+        dispatch(.homeUpdateShowGuide(true))
+        
+        // vpn 初始化
+        dispatch(.vpnInit)
+        
+        // 冷启动
+        dispatch(.rootUpdateColdVPN(true))
     }
     func dispatch(_ action: AppAction) {
         debugPrint("[ACTION]: \(action)")
@@ -36,11 +46,33 @@ extension AppStore{
         var appState = state
         var appCommand: AppCommand? = nil
         switch action {
+        case .rootUpdateTime(let time):
+            appState.root.time = time
+        case .rootRequestIP:
+            appCommand = RequestIPCommand()
         case .rootSelection(let index):
             if index == .launching {
                 appState.root.progress = 0.0
             }
             appState.root.selection = index
+        case .rootUpdateIPError(let isShow):
+            appState.root.showCNError = isShow
+            if !isShow {
+                exit(0)
+            }
+        case .rootUpdateBackground(let background):
+            appState.root.enterbackground = background
+            if background {
+                appCommand = BackgroundCommand()
+            }
+        case .rootUpdateColdVPN(let cold):
+            appState.root.coldVPN = cold
+            
+        case .homeUpdateShowGuide(let isShow):
+            appState.launched.showGuide = isShow
+        case .homeUpdatePushVPNView(let isPush):
+            appState.launched.pushVPNView = isPush
+            
         case .browser:
             appCommand = BrowserCommand()
         case .hideKeyboard:
@@ -95,6 +127,53 @@ extension AppStore{
             appState.root.adModel = model
         case .dismiss:
             appCommand = DismissCommand()
+            
+        case .vpnInit:
+            appCommand = VPNInitCommand()
+        case .vpnConnect:
+            appCommand = VPNConnectCommand()
+        case .vpnDisconnect:
+            appCommand = VPNConnectCommand(true)
+        case .updateVPNPermission(let isAlert):
+            appState.vpn.permissonAlert = isAlert
+        case .updateVPNStatus(let status):
+            appState.vpn.state = status
+            if status == .error {
+                appState.vpn.alertMessage = "Try it agin."
+                appState.vpn.isAlert = true
+            }
+            if status == .disconnected {
+                appState.vpn.country = nil
+            }
+            if status == .connected {
+                appCommand = VPNResultConnectCommand()
+            }
+            if status == .disconnecting {
+                appState.vpn.isMutaDisconnect = true
+            }
+            if status == .disconnected, appState.vpn.isMutaDisconnect {
+                appCommand = VPNResultDisconnectCommand()
+            }
+        case .updateVPNCountry(let country):
+            appState.vpn.country = country
+        case .updateAlertMessage(let message):
+            appState.vpn.alertMessage = message
+            appState.vpn.isAlert = true
+        case .dismissAlert:
+            appState.vpn.isAlert = false
+        case .vpnUpdatePushResult(let isPush):
+            appState.vpn.isPushResult = isPush
+        case .updateVPNMutaConnect(let isMutaConnect):
+            appState.vpn.isMutaConnect = isMutaConnect
+        case .updateVPNMutaDisconnect(let isMutaConnect):
+            appState.vpn.isMutaDisconnect = isMutaConnect
+        case .vpnUpdateConnectedDate(let date):
+            appState.vpn.date = date
+             
+            
+        case .resultUpdate(let isConnected):
+            appState.result.isConnected = isConnected
+
         }
         return (appState, appCommand)
     }

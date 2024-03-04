@@ -13,7 +13,14 @@ struct ContentView: View {
         TabView(selection: $store.state.root.selection) {
             LaunchingView(launched: launched).tag(AppState.RootState.Index.launching)
             LaunchedView().tag(AppState.RootState.Index.launched)
-        }.onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
+        }.fullScreenCover(isPresented: $store.state.root.showCNError, content: {
+            Text("The laws and policies of Chinese Mainland do not support the use of VPN").padding(.horizontal, 60).multilineTextAlignment(.center).onAppear{
+                Task{ @MainActor in
+                    try await Task.sleep(nanoseconds:3_000_000_000)
+                    store.dispatch(.rootUpdateIPError(false))
+                }
+            }
+        }).onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
             willEnterForeground()
         }.onReceive(NotificationCenter.default.publisher(for: UIApplication.didEnterBackgroundNotification)) { _ in
             didEnterBackground()
@@ -31,14 +38,24 @@ extension ContentView {
     }
     
     func willEnterForeground() {
-        store.dispatch(.dismiss)
-        store.dispatch(.rootSelection(.launching))
-        store.dispatch(.event(.openHot))
+        // vpn权限进入后台不走热启动
+        if !store.state.vpn.isPermissonAlert {
+            store.dispatch(.dismiss)
+            store.dispatch(.rootSelection(.launching))
+            store.dispatch(.event(.openHot))
+        }
+        store.dispatch(.rootUpdateBackground(false))
+        store.dispatch(.rootUpdateTime(-1))
     }
     
     func didEnterBackground() {
-        store.dispatch(.dismiss)
-        store.dispatch(.rootSelection(.launching))
+        // vpn权限进入后台不走热启动
+        if !store.state.vpn.isPermissonAlert {
+            store.dispatch(.dismiss)
+            store.dispatch(.rootSelection(.launching))
+        }
+        store.dispatch(.rootUpdateBackground(true))
+        store.dispatch(.rootUpdateTime(600))
     }
     
     func receiveAD(_ noti: Notification) {

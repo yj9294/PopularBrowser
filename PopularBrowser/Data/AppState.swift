@@ -13,21 +13,47 @@ struct AppState {
     var browser = BrowserState()
     var firebase = FirebaseState()
     var ad = ADState()
+    var vpn = VPNState()
+    var result = ResultState()
 }
 
 extension AppState {
     struct RootState {
+        // 判定 中国 IP 弹窗
+        var showCNError: Bool = false
+        
+        // 进入后台用于阻塞连接vpn操作
+        var enterbackground = false
+        
         var adModel: NativeViewModel = .None
         enum Index{
             case launching, launched
         }
         var selection: Index = .launching
         var progress: Double = 0.0
+        
+        // 倒计时 10分钟关闭vpn
+        var time: Int = -1
+        
+        // 冷启动进入vpn界面
+        @UserDefault(key: "cold.vpn")
+        var coldVPN: Bool?
     }
 }
 
 extension AppState {
     struct LaunchedState {
+        
+        // 引导标识
+        @UserDefault(key: "guide")
+        var showGuide: Bool?
+        var isShowGuide: Bool {
+            showGuide ?? true
+        }
+        
+        // 进入 vpn 界面
+        var pushVPNView: Bool = false
+        
         var text: String = ""
         var isLoading: Bool = false
         var canGoBack: Bool = false
@@ -92,11 +118,54 @@ extension AppState {
 }
 
 extension AppState {
+    
+    struct VPNState {
+        
+        // vpn 状态
+        var state: VPNUtil.VPNState = .idle
+    
+        // VPN 连接国家
+        @UserDefault(key: "vpn.country")
+        var country: VPNCountryModel?
+        var serverTitle: String {
+            country?.title ?? "Smart Server "
+        }
+        
+        // vpn 权限弹窗标识
+        @UserDefault(key: "vpn.permission")
+        var permissonAlert: Bool?
+        var isPermissonAlert: Bool {
+            return permissonAlert ?? false
+        }
+        
+        // 提示
+        var alertMessage: String = ""
+        var isAlert: Bool = false
+        
+        // push result
+        var isPushResult: Bool = false
+        
+        // 手动连接
+        var isMutaConnect = false
+        var isMutaDisconnect = false
+        
+        // 链接时长
+        var date = Date()
+    }
+}
+
+extension AppState {
+    struct ResultState {
+        var isConnected = true
+    }
+}
+
+extension AppState {
     struct FirebaseState {
         var item: FirebaseItem = .default
         enum Property: String {
             /// 設備
-            case local = "lightBro_borth"
+            case local = "pobr_borth"
             
             var first: Bool {
                 switch self {
@@ -117,21 +186,35 @@ extension AppState {
                 }
             }
             
-            case open = "lightBro_lun"
-            case openCold = "lightBro_clod"
-            case openHot = "lightBro_hot"
-            case homeShow = "lightBro_impress"
-            case homeClick = "lightBro_nav"
-            case homeSearch = "lightBro_search"
-            case homeClean = "lightBro_clean"
-            case cleanAnimationCompletion = "lightBro_cleanDone"
-            case cleanAlertShow = "lightBro_cleanToast"
-            case tabShow = "lightBro_showTab"
-            case webNew = "lightBro_clickTab"
-            case shareClick = "lightBro_share"
-            case copyClick = "lightBro_copy"
-            case searchBegian = "lightBro_requist"
-            case searchSuccess = "lightBro_load"
+            case open = "pobr_lun"
+            case openCold = "pobr_clod"
+            case openHot = "pobr_hot"
+            case homeShow = "pobr_impress"
+            case homeClick = "pobr_nav"
+            case homeSearch = "pobr_search"
+            case homeClean = "pobr_clean"
+            case cleanAnimationCompletion = "pobr_cleanDone"
+            case cleanAlertShow = "pobr_cleanToast"
+            case tabShow = "pobr_showTab"
+            case webNew = "pobr_clickTab"
+            case shareClick = "pobr_share"
+            case copyClick = "pobr_copy"
+            case searchBegian = "pobr_requist"
+            case searchSuccess = "pobr_load"
+            
+            case coldVPN = "pobr_1"
+            case vpnBack = "pobr_homeback"
+            case vpnConnect = "pobr_link"
+            case vpnConnected = "pobr_link2"
+            case vpnConnect1 = "pobr_link0"
+            case vpnPermission = "pobr_pm"
+            case vpnPermissionAgree = "pobr_pm2"
+            case vpnResultConnected = "pobr_re1"
+            case vpnResultDisconnected = "pobr_re2"
+            case vpnConnectedDate = "pobr_disLink"
+            case vpnGuide = "pobr_pop"
+            case vpnGuideSkip = "pobr_pop0"
+            case vpnGuideOK = "pobr_pop1"
         }
     }
 }

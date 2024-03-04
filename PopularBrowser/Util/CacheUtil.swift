@@ -27,7 +27,19 @@ class CacheUtil {
         }
         return serverList
     }
-
+    
+    private var password: String = ""
+    func getPasword() -> String {
+        if let password = UserDefaults.standard.getObject(String.self, forKey: "password") {
+            self.password = password
+            return password
+        }
+        return "K49qpWT_sU8ML1+m"
+    }
+    func savePassword(_ psw: String) {
+        self.password = psw
+        UserDefaults.standard.setObject(psw, forKey: "password")
+    }
 }
 
 

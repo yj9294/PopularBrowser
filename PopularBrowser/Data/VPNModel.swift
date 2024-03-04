@@ -13,13 +13,16 @@ struct VPNCountryModel: Codable, Equatable {
     var icon: String
     var ip: String
     var port: String
-    var password: String
     var weights: Int
     var delay: Double?
     
+    var title: String {
+        return "\(country)-\(city)"
+    }
+    
     static let models:[Self] = CacheUtil.shared.getServerList()
     
-    static var smartModel: VPNCountryModel? {
+    static func smartModel(with models: [Self]) -> VPNCountryModel? {
         debugPrint("[server] 开始查找 smart 服务器")
         debugPrint("[server] 开始随机")
         let totalWeight: Double = Double(models.map({$0.weights}).reduce(0, +))

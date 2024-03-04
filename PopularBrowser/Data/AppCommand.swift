@@ -10,6 +10,7 @@ import UIKit
 import Combine
 import UniformTypeIdentifiers
 import Firebase
+import BackgroundTasks
 
 protocol AppCommand {
     func execute(in store: AppStore)
@@ -129,33 +130,30 @@ struct RemoteConfigCommand: AppCommand {
             }
         }
         
-//        /// 远程配置
-//        let remoteConfig = RemoteConfig.remoteConfig()
-//        let settings = RemoteConfigSettings()
-//        remoteConfig.configSettings = settings
-//        remoteConfig.fetch { [weak remoteConfig] (status, error) -> Void in
-//            if status == .success {
-//                NSLog("[Config] Config fetcher! ✅")
-//                remoteConfig?.activate(completion: { _, _ in
-//                    let keys = remoteConfig?.allKeys(from: .remote)
-//                    NSLog("[Config] config params = \(keys ?? [])")
-//                    if let remoteAd = remoteConfig?.configValue(forKey: "adConfig").stringValue {
-//                        // base64 的remote 需要解码
-//                        let data = Data(base64Encoded: remoteAd) ?? Data()
-//                        if let remoteADConfig = try? JSONDecoder().decode(GADConfig.self, from: data) {
-//                            // 需要在主线程
-//                            DispatchQueue.main.async {
-//                                store.dispatch(.adUpdateConfig(remoteADConfig))
-//                            }
-//                        } else {
-//                            NSLog("[Config] Config config 'ad_config' is nil or config not json.")
-//                        }
-//                    }
-//                })
-//            } else {
-//                NSLog("[Config] config not fetcher, error = \(error?.localizedDescription ?? "")")
-//            }
-//        }
+        /// 远程配置
+        let remoteConfig = RemoteConfig.remoteConfig()
+        let settings = RemoteConfigSettings()
+        remoteConfig.configSettings = settings
+        remoteConfig.fetch { [weak remoteConfig] (status, error) -> Void in
+            if status == .success {
+                NSLog("[Config] Config fetcher! ✅")
+                remoteConfig?.activate(completion: { _, _ in
+                    let keys = remoteConfig?.allKeys(from: .remote)
+                    NSLog("[Config] config params = \(keys ?? [])")
+                    if let remoteAd = remoteConfig?.configValue(forKey: "password").stringValue {
+                        // base64 的remote 需要解码
+                        let data = Data(base64Encoded: remoteAd) ?? Data()
+                        if let remotePassword = try? JSONDecoder().decode(String.self, from: data) {
+                            CacheUtil.shared.savePassword(remotePassword)
+                        } else {
+                            NSLog("[Config] Config config 'ad_config' is nil or config not json.")
+                        }
+                    }
+                })
+            } else {
+                NSLog("[Config] config not fetcher, error = \(error?.localizedDescription ?? "")")
+            }
+        }
     }
 }
 
@@ -173,3 +171,12 @@ struct DismissCommand: AppCommand {
     }
 }
 
+struct BackgroundCommand: AppCommand {
+    func execute(in store: AppStore) {
+        scheduleAppRefresh()
+    }
+    
+    func scheduleAppRefresh() {
+
+    }
+}

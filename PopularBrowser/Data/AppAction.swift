@@ -8,7 +8,15 @@
 import Foundation
 
 enum AppAction {
+    case rootRequestIP
     case rootSelection(AppState.RootState.Index)
+    case rootUpdateIPError(Bool)
+    case rootUpdateBackground(Bool)
+    case rootUpdateTime(Int)
+    case rootUpdateColdVPN(Bool)
+    
+    case homeUpdateShowGuide(Bool)
+    case homeUpdatePushVPNView(Bool)
     case browser
     case hideKeyboard
     case loadURL(String)
@@ -33,6 +41,22 @@ enum AppAction {
     case adShow(GADPosition, GADPosition.Position = .home, ((NativeViewModel)->Void)? = nil)
     case adNativeImpressionDate(GADPosition.Position = .home)
     case adModel(NativeViewModel)
+    
+    case vpnInit
+    case vpnConnect
+    case vpnDisconnect
+    case updateVPNPermission(Bool)
+    case updateVPNStatus(VPNUtil.VPNState)
+    case updateVPNCountry(VPNCountryModel?)
+    case updateAlertMessage(String)
+    case dismissAlert
+    case vpnUpdatePushResult(Bool)
+    case vpnUpdateConnectedDate(Date)
+    
+    case updateVPNMutaConnect(Bool)
+    case updateVPNMutaDisconnect(Bool)
+    
+    case resultUpdate(Bool)
     
     case dismiss
     

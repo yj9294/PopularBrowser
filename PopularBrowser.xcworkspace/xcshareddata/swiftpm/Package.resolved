@@ -118,6 +118,15 @@
       }
     },
     {
+      "identity" : "reachability.swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ashleymills/Reachability.swift",
+      "state" : {
+        "branch" : "master",
+        "revision" : "c01127cb51f591045696128effe43c16840d08bf"
+      }
+    },
+    {
       "identity" : "sheetkit",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/fatbobman/SheetKit",
