@@ -8,6 +8,7 @@
 import Foundation
 import Foundation
 import SwiftUI
+import SnapKit
 import GoogleMobileAds
 
 class NativeViewModel: NSObject {
@@ -21,6 +22,10 @@ class NativeViewModel: NSObject {
     
     static var None:NativeViewModel {
         NativeViewModel(view: UINativeAdView())
+    }
+    
+    static var BigNone: NativeViewModel {
+        NativeViewModel(view: UINativeAdView(.big))
     }
 }
 
@@ -39,10 +44,14 @@ struct NativeADView: UIViewRepresentable {
 }
 
 class UINativeAdView: GADNativeAdView {
+    
+    enum Style {
+        case small, big
+    }
 
-    init(){
+    init(_ style: Style = .small){
         super.init(frame: UIScreen.main.bounds)
-        setupUI()
+        setupUI(style)
         refreshUI(ad: nil)
     }
     
@@ -75,7 +84,7 @@ class UINativeAdView: GADNativeAdView {
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14.0, weight: .medium)
-        label.textColor = .white
+        label.textColor = UIColor(named: "#525050")
         label.numberOfLines = 1
         label.textAlignment = .left
         return label
@@ -84,7 +93,7 @@ class UINativeAdView: GADNativeAdView {
     lazy var subTitleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 11.0)
-        label.textColor = .white
+        label.textColor = UIColor(named: "#ACACAC")
         label.numberOfLines = 1
         label.textAlignment = .left
         return label
@@ -96,74 +105,144 @@ class UINativeAdView: GADNativeAdView {
         label.setTitleColor(UIColor.white, for: .normal)
         label.layer.cornerRadius = 20
         label.layer.masksToBounds = true
+        label.backgroundColor = UIColor(named: "#F953A0")
         return label
+    }()
+    
+    lazy var bigView: GADMediaView = {
+        let bigView = GADMediaView()
+        return bigView
     }()
 }
 
 extension UINativeAdView {
-    func setupUI() {
+    func setupUI(_ style: Style) {
         self.layer.cornerRadius = 8
         self.layer.masksToBounds = true
         
-        addSubview(placeholderView)
-        placeholderView.frame = self.bounds
-        
-        
-        addSubview(iconImageView)
-        iconImageView.frame = CGRectMake(14, 14, 44, 44)
-        
-        
-        addSubview(titleLabel)
-        let width = self.bounds.size.width - iconImageView.frame.maxX - 8 - 23 - 16
-        titleLabel.frame = CGRectMake(iconImageView.frame.maxX + 8, 18, width, 15)
+        if style == .small {
+            placeholderView.image = UIImage(named: "ad_placeholder")
+            addSubview(placeholderView)
+            placeholderView.snp.makeConstraints { make in
+                make.top.left.right.bottom.equalToSuperview()
+            }
+            
+            
+            addSubview(iconImageView)
+            iconImageView.snp.makeConstraints { make in
+                make.top.equalToSuperview().offset(14)
+                make.left.equalToSuperview().offset(14)
+                make.width.height.equalTo(44)
+            }
+            
+            
+            addSubview(titleLabel)
+            titleLabel.snp.makeConstraints { make in
+                make.top.equalToSuperview().offset(18)
+                make.left.equalTo(iconImageView.snp.right).offset(10)
+            }
 
-        
-        addSubview(adView)
-        adView.frame = CGRectMake(titleLabel.frame.maxX + 8, 18, 23, 14)
-        
-        addSubview(subTitleLabel)
-        let w = self.bounds.size.width - iconImageView.frame.maxX - 8 - 16
-        subTitleLabel.frame = CGRectMake(titleLabel.frame.minX, titleLabel.frame.maxY + 8, w, 14)
+            
+            addSubview(adView)
+            adView.snp.makeConstraints { make in
+                make.centerY.equalTo(titleLabel)
+                make.left.equalTo(titleLabel.snp.right).offset(8)
+                make.right.equalToSuperview().offset(-14)
+                make.width.equalTo(23)
+                make.height.equalTo(14)
+            }
+            
+            addSubview(subTitleLabel)
+            subTitleLabel.snp.makeConstraints { make in
+                make.top.equalTo(titleLabel.snp.bottom).offset(8)
+                make.left.equalTo(titleLabel)
+                make.right.equalToSuperview().offset(-14)
+            }
 
+            
+            addSubview(installLabel)
+            installLabel.snp.makeConstraints { make in
+                make.top.equalTo(iconImageView.snp.bottom).offset(10)
+                make.left.equalToSuperview().offset(14)
+                make.right.equalToSuperview().offset(-14)
+                make.height.equalTo(36)
+            }
+        } else {
+            placeholderView.image = UIImage(named: "ad_placeholder_1")
+            addSubview(placeholderView)
+            placeholderView.snp.makeConstraints { make in
+                make.top.left.right.bottom.equalToSuperview()
+            }
+            
+            addSubview(bigView)
+            bigView.snp.makeConstraints { make in
+                make.top.equalToSuperview().offset(12)
+                make.left.equalToSuperview().offset(12)
+                make.right.equalToSuperview().offset(-12)
+                make.height.equalTo(156)
+            }
+            
+            adView.image = UIImage(named: "ad_tag_1")
+            addSubview(adView)
+            adView.snp.makeConstraints { make in
+                make.top.left.equalTo(bigView)
+            }
+            
+            addSubview(iconImageView)
+            iconImageView.snp.makeConstraints { make in
+                make.top.equalTo(bigView.snp.bottom).offset(8)
+                make.left.equalToSuperview().offset(12)
+                make.width.height.equalTo(32)
+            }
+            
+            addSubview(titleLabel)
+            titleLabel.snp.makeConstraints { make in
+                make.top.equalTo(bigView.snp.bottom).offset(8)
+                make.left.equalTo(iconImageView.snp.right).offset(8)
+                make.right.equalToSuperview().offset(-8)
+            }
+            
+            subTitleLabel.numberOfLines = 1
+            addSubview(subTitleLabel)
+            subTitleLabel.snp.makeConstraints { make in
+                make.top.equalTo(titleLabel.snp.bottom).offset(3)
+                make.left.right.equalTo(titleLabel)
+            }
+            
+            addSubview(installLabel)
+            installLabel.snp.makeConstraints { make in
+                make.top.equalTo(iconImageView.snp.bottom).offset(8)
+                make.left.equalToSuperview().offset(8)
+                make.right.equalToSuperview().offset(-8)
+                make.height.equalTo(36)
+            }
+        }
         
-        addSubview(installLabel)
-        let x = self.bounds.width - 14 - 14
-        installLabel.frame = CGRectMake(14, iconImageView.frame.maxY + 10, x, 36)
-        
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        setupUI()
     }
     
     func refreshUI(ad: GADNativeAd? = nil) {
         self.nativeAd = ad
-        placeholderView.image = UIImage(named: "ad_placeholder")
-        let bgColor = UIColor(named: "#FFF1EE")
-        self.backgroundColor = ad == nil ? .clear : bgColor
-        self.adView.image = UIImage(named: "ad_tag")
-        self.installLabel.setTitleColor(.white, for: .normal)
-        self.installLabel.backgroundColor = UIColor(named: "#F953A0")
-        self.subTitleLabel.textColor = UIColor(named: "#ACACAC")
-        self.titleLabel.textColor = UIColor(named: "#525050")
+        guard let ad = self.nativeAd  else {
+            self.placeholderView.isHidden = false
+            self.hiddenSubviews(hidden: true)
+            return
+        }
+        
+        self.placeholderView.isHidden = true
+        self.hiddenSubviews(hidden: false)
         
         self.iconView = self.iconImageView
         self.headlineView = self.titleLabel
         self.bodyView = self.subTitleLabel
         self.callToActionView = self.installLabel
-        self.installLabel.setTitle(ad?.callToAction, for: .normal)
-        self.iconImageView.image = ad?.icon?.image
-        self.titleLabel.text = ad?.headline
-        self.subTitleLabel.text = ad?.body
+        self.mediaView = self.bigView
         
-        self.hiddenSubviews(hidden: self.nativeAd == nil)
+        self.installLabel.setTitle(ad.callToAction, for: .normal)
+        self.iconImageView.image = ad.icon?.image
+        self.titleLabel.text = ad.headline
+        self.subTitleLabel.text = ad.body
+        self.bigView.mediaContent = ad.mediaContent
         
-        if ad == nil {
-            self.placeholderView.isHidden = false
-        } else {
-            self.placeholderView.isHidden = true
-        }
     }
     
     func hiddenSubviews(hidden: Bool) {

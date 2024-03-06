@@ -74,7 +74,7 @@ struct LaunchedView: View {
                                         })
                                     }
                                 }.padding(.horizontal, 16).padding(.top, 20)
-                                if !isTabShow {
+                                if !isTabShow, !store.state.launched.isShowGuide, !store.state.launched.pushVPNView {
                                     HStack{
                                         NativeADView(model: store.state.root.adModel)
                                     }.padding(.horizontal, 16).frame(height: 120)
@@ -123,8 +123,12 @@ struct LaunchedView: View {
                         } skip: {
                             store.dispatch(.homeUpdateShowGuide(false))
                             store.dispatch(.event(.vpnGuideSkip))
+                            loadAndShowHomeNativeAD()
                         }.onAppear{
                             store.dispatch(.event(.vpnGuide))
+                            store.dispatch(.rootUpdateLoadPostion(.vpnHome))
+                            store.dispatch(.adLoad(.vpnHome, .vpnHome))
+                            store.dispatch(.adLoad(.vpnConnect))
                         }
                     }
                     
@@ -137,7 +141,11 @@ struct LaunchedView: View {
                                         Image("back")
                                     } else {
                                         Button {
-                                            store.dispatch(.homeUpdatePushVPNView(false))
+                                            store.dispatch(.adLoad(.vpnBack))
+                                            store.dispatch(.adShow(.vpnBack) { _ in
+                                                store.dispatch(.adDisappear(.vpnHome))
+                                                store.dispatch(.homeUpdatePushVPNView(false))
+                                            })
                                             store.dispatch(.event(.vpnBack))
                                         } label: {
                                             Image("back")
@@ -157,13 +165,21 @@ struct LaunchedView: View {
 
 extension LaunchedView {
     func viewDidAppear() {
-        store.dispatch(.adDisappear(.native))
-        store.dispatch(.adLoad(.native, .home))
-        store.dispatch(.event(.homeShow))
+        if !store.state.launched.isShowGuide, !store.state.launched.pushVPNView {
+            loadAndShowHomeNativeAD()
+        }
         ATTrackingManager.requestTrackingAuthorization { _ in
         }
         store.dispatch(.rootRequestIP)
     }
+    
+    func loadAndShowHomeNativeAD() {
+        store.dispatch(.rootUpdateLoadPostion(.native))
+        store.dispatch(.adDisappear(.native))
+        store.dispatch(.adLoad(.native, .home))
+        store.dispatch(.event(.homeShow))
+    }
+    
     func search() {
         store.dispatch(.hideKeyboard)
         if isLoading {

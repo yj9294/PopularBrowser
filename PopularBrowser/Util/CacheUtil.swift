@@ -9,6 +9,18 @@ import Foundation
 
 class CacheUtil {
     static let shared = CacheUtil()
+    
+    @UserDefault(key: "uuid")
+    private var uuid: String?
+    func getUUID() -> String {
+        if let uuid = uuid {
+            return uuid
+        } else {
+            let uuid = UUID().uuidString
+            self.uuid = uuid
+            return uuid
+        }
+    }
 }
 
 

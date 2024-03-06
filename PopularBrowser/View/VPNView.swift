@@ -13,15 +13,22 @@ struct VPNView: View {
     
     var body: some View {
         ZStack{
-            VStack(spacing: 35){
-                Text(store.state.vpn.serverTitle).multilineTextAlignment(.center).font(.system(size: 16)).foregroundStyle(.linearGradient(colors: [Color("#F3A640"), Color("#FA44B2")], startPoint: .leading, endPoint: .trailing)).padding(.vertical, 22)
-                VPNStausButton(status: store.state.vpn.state) {
-                    store.dispatch(.updateVPNMutaConnect(true))
-                    store.dispatch(.vpnConnect)
-                } disconnect: {
-                    store.dispatch(.vpnDisconnect)
+            VStack(spacing: 10){
+                ScrollView(showsIndicators: false){
+                    VStack (spacing: 35){
+                        Text(store.state.vpn.serverTitle).multilineTextAlignment(.center).font(.system(size: 16)).foregroundStyle(.linearGradient(colors: [Color("#F3A640"), Color("#FA44B2")], startPoint: .leading, endPoint: .trailing)).padding(.vertical, 22)
+                        VPNStausButton(status: store.state.vpn.state) {
+                            store.dispatch(.updateVPNMutaConnect(true))
+                            store.dispatch(.vpnConnect)
+                        } disconnect: {
+                            store.dispatch(.vpnDisconnect)
+                        }
+                        Spacer()
+                    }
                 }
-                Spacer()
+                HStack{
+                    NativeADView(model: store.state.vpn.ad)
+                }.padding(.horizontal, 16).frame(height: 264).padding(.bottom, 20)
             }
             
             // 弹窗
@@ -35,29 +42,37 @@ struct VPNView: View {
                     }
                 }
             }
-            
-            // push result
-            if store.state.vpn.isPushResult {
-                NavigationLink(isActive: $store.state.vpn.isPushResult) {
-                    VPNConnectResultView().toolbar {
-                        ToolbarItem(placement: .navigationBarLeading) {
-                            Button {
+        }.fullScreenCover(isPresented: $store.state.vpn.isPushResult, content: {
+            NavigationView {
+                VPNConnectResultView().toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Button {
+                            store.dispatch(.adLoad(.vpnBack))
+                            store.dispatch(.adShow(.interstitial) { _ in
                                 store.dispatch(.vpnUpdatePushResult(false))
-                            } label: {
-                                Image("back")
-                            }
+                                loadAndShowVPNAD()
+                            })
+                        } label: {
+                            Image("back")
                         }
                     }
-                } label: {
-                    EmptyView()
                 }
             }
-        }.onAppear{
+        }).onAppear{
             if store.state.root.coldVPN == true {
 //                store.dispatch(.rootUpdateColdVPN(false))
                 store.dispatch(.event(.coldVPN))
             }
+            loadAndShowVPNAD()
+            store.dispatch(.adLoad(.vpnBack))
         }
+    }
+    
+    
+    func loadAndShowVPNAD() {
+        store.dispatch(.rootUpdateLoadPostion(.vpnHome))
+        store.dispatch(.adDisappear(.vpnHome))
+        store.dispatch(.adLoad(.vpnHome, .vpnHome))
     }
     
     struct AlertView: View {
@@ -77,6 +92,7 @@ struct VPNView: View {
     }
     
     struct VPNStausButton: View{
+        @EnvironmentObject var store: AppStore
         @State private var rotation: Double = 0.0
         let status: VPNUtil.VPNState
         let connect: ()->Void
@@ -116,6 +132,9 @@ struct VPNView: View {
                                     }
                             }
                             Spacer()
+                        }.onAppear{
+                            store.dispatch(.adLoad(.vpnConnect))
+                            store.dispatch(.adLoad(.vpnBack))
                         }
                     } else if status == .connected {
                         HStack{

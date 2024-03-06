@@ -114,6 +114,38 @@ struct BrowserDeleteItem: AppCommand {
     }
 }
 
+struct LaunchCommand: AppCommand {
+    func execute(in store: AppStore) {
+        if store.state.root.progress > 0.0 {
+            store.state.root.duration = 12.789
+            store.state.root.progress = 0.0
+            return
+        }
+        store.state.root.duration = 12.789
+        store.state.root.progress = 0.0
+        let token = SubscriptionToken()
+        Timer.publish(every: 0.01, on: .main, in: .common).autoconnect().sink { _ in
+            let progress = store.state.root.progress + 0.01 / store.state.root.duration
+            if progress > 1.0 {
+                token.unseal()
+                store.state.root.progress = 1.0
+                store.dispatch(.adShow(.interstitial) { _ in
+                    if store.state.root.progress == 1.0 {
+                        store.state.root.selection = .launched
+                    }
+                })
+            } else {
+                store.state.root.progress = progress
+            }
+            if progress > 0.3, store.state.ad.isLoaded(.interstitial) {
+                store.state.root.duration = 0.1
+            }
+        }.seal(in: token)
+        store.dispatch(.adLoad(.interstitial))
+        store.dispatch(.adLoad(.native))
+    }
+}
+
 struct RemoteConfigCommand: AppCommand {
     func execute(in store: AppStore) {
         // 获取本地配置
@@ -167,18 +199,18 @@ struct RemoteConfigCommand: AppCommand {
                         }
                     }
                     
-                    if let remoteAd = remoteConfig?.configValue(forKey: "adConfig").stringValue {
-                        // base64 的remote 需要解码
-                        let data = Data(base64Encoded: remoteAd) ?? Data()
-                        if let adConfig = try? JSONDecoder().decode(GADConfig.self, from: data) {
-                            NSLog("[Config]  adConfig = \(adConfig )")
-                            DispatchQueue.main.async {
-                                store.dispatch(.adUpdateConfig(adConfig))
-                            }
-                        } else {
-                            NSLog("[Config] Config config 'adConfig' is nil or config not json.")
-                        }
-                    }
+//                    if let remoteAd = remoteConfig?.configValue(forKey: "adConfig").stringValue {
+//                        // base64 的remote 需要解码
+//                        let data = Data(base64Encoded: remoteAd) ?? Data()
+//                        if let adConfig = try? JSONDecoder().decode(GADConfig.self, from: data) {
+//                            NSLog("[Config]  adConfig = \(adConfig )")
+//                            DispatchQueue.main.async {
+//                                store.dispatch(.adUpdateConfig(adConfig))
+//                            }
+//                        } else {
+//                            NSLog("[Config] Config config 'adConfig' is nil or config not json.")
+//                        }
+//                    }
                 })
             } else {
                 NSLog("[Config] config not fetcher, error = \(error?.localizedDescription ?? "")")

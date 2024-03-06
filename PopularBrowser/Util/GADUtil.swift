@@ -79,11 +79,30 @@ struct GADLimit: Codable {
 }
 
 enum GADPosition: String, CaseIterable {
-    case native, interstitial
+    case native, interstitial, vpnHome, vpnResult, vpnConnect, vpnBack
     
     enum Position {
-        case home, tab
+        case home, tab, vpnHome, vpnResult
     }
+    
+    var isInterstitial: Bool {
+        switch self {
+        case .interstitial, .vpnConnect, .vpnBack:
+            return true
+        default:
+            return false
+        }
+    }
+    
+    var isNative: Bool {
+        switch self {
+        case .native, .vpnHome, .vpnResult:
+            return true
+        default:
+            return false
+        }
+    }
+
 }
 
 class ADLoadModel: NSObject {
@@ -101,7 +120,7 @@ class ADLoadModel: NSObject {
     var displayArray: [ADBaseModel] = []
     
     var isLoaded: Bool {
-        return loadedArray.count > 0
+        return loadedArray.count > 0 || (loadedArray.isEmpty && loadingArray.isEmpty && displayArray.isEmpty)
     }
     
     var isDisplay: Bool {
@@ -177,9 +196,9 @@ extension ADLoadModel {
         
         isPreloadingAd = true
         var ad: ADBaseModel? = nil
-        if position == .native {
+        if position.isNative {
             ad = NativeADModel(model: array[preloadIndex])
-        } else if position == .interstitial {
+        } else if position.isInterstitial {
             ad = InterstitialADModel(model: array[preloadIndex])
         }
         ad?.position = position
@@ -354,7 +373,7 @@ extension NativeADModel {
 
 extension NativeADModel: GADAdLoaderDelegate {
     func adLoader(_ adLoader: GADAdLoader, didFailToReceiveAdWithError error: Error) {
-        NSLog("[AD] (\(position.rawValue)) load ad FAILED for id \(model?.theAdID ?? "invalid id")")
+        NSLog("[AD] (\(position.rawValue)) load ad FAILED for id \(model?.theAdID ?? "invalid id") err:\(error.localizedDescription)")
         loadedHandler?(false, error.localizedDescription)
     }
 }

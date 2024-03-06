@@ -76,6 +76,10 @@ struct GADDisappearCommand: AppCommand {
         
         if position == .native {
             store.dispatch(.adModel(.None))
+        } else if position == .vpnHome {
+            store.dispatch(.updateVPNADModel(.BigNone))
+        } else if position == .vpnResult {
+            store.dispatch(.updateVPNResultADModel(.BigNone))
         }
     }
 }
@@ -115,11 +119,11 @@ struct GADLoadCommand: AppCommand {
         }
         if let ad = ads.first {
             // 插屏直接一步加载
-            if position == .interstitial {
+            if position.isInterstitial {
                 ad.beginAddWaterFall(callback: { isSuccess in
                     self.completion?(.None)
                 }, in: store)
-            } else if position == .native{
+            } else if position.isNative{
                 // 原生广告需要同步显示
                 ad.beginAddWaterFall(callback: { isSuccess in
                     if isSuccess {
@@ -127,6 +131,8 @@ struct GADLoadCommand: AppCommand {
                     }
                 }, in: store)
             }
+        } else {
+            debugPrint("[AD] \(position) no config.")
         }
     }
 }
@@ -153,14 +159,16 @@ struct GADShowCommand: AppCommand {
         let loadAD = store.state.ad.ads.filter {
             $0.position == position
         }.first
-        switch position {
-        case .interstitial:
+        
+        if position.isInterstitial {
             /// 有廣告
             if let ad = loadAD?.loadedArray.first as? InterstitialADModel, !store.state.ad.isLimited(in: store) {
                 ad.impressionHandler = {
                     store.dispatch(.adUpdateLimit(.show))
                     store.dispatch(.adAppear(position))
-                    store.dispatch(.adLoad(position))
+                    if position != .vpnBack {
+                        store.dispatch(.adLoad(position))
+                    }
                 }
                 ad.clickHandler = {
                     if !store.state.ad.isLimited(in: store) {
@@ -180,8 +188,7 @@ struct GADShowCommand: AppCommand {
             } else {
                 completion?(.None)
             }
-            
-        case .native:
+        } else if position.isNative {
             if let ad = loadAD?.loadedArray.first as? NativeADModel, !store.state.ad.isLimited(in: store) {
                 /// 预加载回来数据 当时已经有显示数据了
                 if loadAD?.isDisplay == true {
@@ -202,12 +209,18 @@ struct GADShowCommand: AppCommand {
                 if let date = store.state.ad.impressionDate[p], Date().timeIntervalSince1970 - date.timeIntervalSince1970  < 10 {
                     NSLog("[ad] 刷新或数据加载间隔 10s postion: \(p)")
                     store.dispatch(.adModel(.None))
+                    store.dispatch(.updateVPNADModel(.BigNone))
+                    store.dispatch(.updateVPNResultADModel(.BigNone))
                     completion?(.None)
                     NotificationCenter.default.post(name: .nativeAdLoadCompletion, object: NativeViewModel.None)
                     return
                 }
                 
-                let adViewModel = NativeViewModel(ad:ad, view: UINativeAdView())
+                var style: UINativeAdView.Style = .small
+                if position == .vpnResult || position == .vpnHome {
+                    style = .big
+                }
+                let adViewModel = NativeViewModel(ad:ad, view: UINativeAdView(style))
                 completion?(adViewModel)
                 /// 异步加载 回调是nil的情况使用通知
                 NotificationCenter.default.post(name: .nativeAdLoadCompletion, object: adViewModel)
@@ -218,6 +231,8 @@ struct GADShowCommand: AppCommand {
                 }
                 completion?(.None)
                 store.dispatch(.adModel(.None))
+                store.dispatch(.updateVPNADModel(.BigNone))
+                store.dispatch(.updateVPNResultADModel(.BigNone))
             }
         }
     }

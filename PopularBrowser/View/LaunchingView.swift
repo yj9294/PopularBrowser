@@ -12,7 +12,6 @@ struct LaunchingView: View {
     var progress: Double {
         store.state.root.progress
     }
-    var launched: (()->Void)? = nil
     var body: some View {
         VStack{
             VStack(spacing: 16.0){
@@ -25,34 +24,7 @@ struct LaunchingView: View {
             }.padding(.top, 150)
             Spacer()
             ProgressView(value: progress, total: 1.0).accentColor(Color.white).padding(.horizontal, 90).padding(.bottom, 32)
-        }.background(Image("launch_bg").resizable().ignoresSafeArea()).onAppear{
-            if progress == 0.0 {
-                viewDidAppear()
-            }
-        }
-    }
-}
-
-extension LaunchingView {
-    func viewDidAppear() {
-        var duration = 12.789
-        let token = SubscriptionToken()
-        Timer.publish(every: 0.01, on: .main, in: .common).autoconnect().sink { _ in
-            let progress = self.progress + 0.01 / duration
-            if progress > 1.0 {
-                token.unseal()
-                store.dispatch(.adShow(.interstitial) { _ in
-                    self.launched?()
-                })
-            } else {
-                store.state.root.progress = progress
-            }
-            if progress > 0.3, store.state.ad.isLoaded(.interstitial) {
-                duration = 0.1
-            }
-        }.seal(in: token)
-        store.dispatch(.adLoad(.interstitial))
-        store.dispatch(.adLoad(.native))
+        }.background(Image("launch_bg").resizable().ignoresSafeArea())
     }
 }
 

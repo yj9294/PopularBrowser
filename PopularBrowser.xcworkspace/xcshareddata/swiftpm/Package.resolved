@@ -91,6 +91,15 @@
       }
     },
     {
+      "identity" : "ios_sdk",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/adjust/ios_sdk.git",
+      "state" : {
+        "branch" : "master",
+        "revision" : "cd05aecfcb9af2f5c5f23cac162974e94eab10d4"
+      }
+    },
+    {
       "identity" : "leveldb",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/firebase/leveldb.git",
@@ -133,6 +142,15 @@
       "state" : {
         "branch" : "main",
         "revision" : "5e6daa49103de3b41e22814e976d32ac883bd552"
+      }
+    },
+    {
+      "identity" : "snapkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SnapKit/SnapKit.git",
+      "state" : {
+        "revision" : "2842e6e84e82eb9a8dac0100ca90d9444b0307f4",
+        "version" : "5.7.1"
       }
     },
     {

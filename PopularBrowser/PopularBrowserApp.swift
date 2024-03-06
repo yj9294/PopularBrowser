@@ -22,16 +22,6 @@ struct PopularBrowserApp: App {
         WindowGroup {
             ContentView().environmentObject(AppStore())
         }
-//        .onChange(of: scenePhase, perform: { newValue in
-//            switch newValue {
-//            case .background:
-//                scheduleAppRefresh()
-//            default:
-//                break
-//            }
-//        }).backgroundTask(.appRefresh("com.yourapp.backgroundTask")) { _ in
-//            debugPrint("-------------------")
-//        }
     }
     
     func scheduleAppRefresh() {

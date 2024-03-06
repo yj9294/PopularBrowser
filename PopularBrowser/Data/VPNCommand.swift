@@ -8,6 +8,7 @@
 import Foundation
 import Reachability
 import BackgroundTasks
+import Adjust
 
 struct VPNInitCommand: AppCommand {
     func execute(in store: AppStore) {
@@ -21,12 +22,6 @@ struct VPNInitCommand: AppCommand {
             }
             debugPrint("[VPN MANAGER] prepareForLoading manager state: \(VPNUtil.shared.managerState), VPN state: \(VPNUtil.shared.vpnState)")
         }
-        
-//        // MARK: Registering Launch Handlers for Tasks
-//        BGTaskScheduler.shared.register(forTaskWithIdentifier: "com.yourapp.backgroundTask", using: nil) { task in
-//            // Downcast the parameter to an app refresh task as this identifier is used for a refresh request.
-//            self.handleBackgroundTask(task: task as! BGAppRefreshTask)
-//        }
     }
     
     func handleBackgroundTask(task: BGAppRefreshTask) {
@@ -34,6 +29,15 @@ struct VPNInitCommand: AppCommand {
         print("Background Task Fired")
         // 任务完成时设置任务状态
         task.setTaskCompleted(success: true)
+    }
+}
+
+struct ADjustInitCommand: AppCommand {
+    func execute(in store: AppStore) {
+        let config = ADJConfig(appToken: "", environment: ADJEnvironmentProduction)
+        config?.delayStart = 5.5
+        Adjust.addSessionPartnerParameter("customer_user_id", value: CacheUtil.shared.getUUID())
+        Adjust.appDidLaunch(config)
     }
 }
 
@@ -228,10 +232,14 @@ struct VPNResultConnectCommand: AppCommand {
             store.dispatch(.updateVPNMutaConnect(false))
             store.dispatch(.updateVPNMutaDisconnect(false))
             
-            store.dispatch(.resultUpdate(true))
-            store.dispatch(.vpnUpdatePushResult(true))
-            store.dispatch(.event(.vpnConnected, ["rot": store.state.vpn.country?.ip ?? ""]))
+            store.dispatch(.adLoad(.vpnConnect))
+            store.dispatch(.adShow(.vpnConnect) {_ in
+                store.dispatch(.resultUpdate(true))
+                store.dispatch(.vpnUpdatePushResult(true))
+            })
+
             store.dispatch(.vpnUpdateConnectedDate(Date()))
+            store.dispatch(.event(.vpnConnected, ["rot": store.state.vpn.country?.ip ?? ""]))
             store.dispatch(.event(.vpnResultConnected))
         }
     }
@@ -244,8 +252,14 @@ struct VPNResultDisconnectCommand: AppCommand {
             store.dispatch(.updateVPNMutaConnect(false))
             store.dispatch(.updateVPNMutaDisconnect(false))
             
-            store.dispatch(.resultUpdate(false))
-            store.dispatch(.vpnUpdatePushResult(true))
+            store.dispatch(.adLoad(.vpnConnect))
+            store.dispatch(.adShow(.vpnConnect) {_ in
+                store.dispatch(.resultUpdate(false))
+                store.dispatch(.vpnUpdatePushResult(true))
+            })
+            
+
+            
             store.dispatch(.event(.vpnResultDisconnected))
             store.dispatch(.event(.vpnConnectedDate, ["duration": "\(ceil(Date().timeIntervalSince1970 - store.state.vpn.date.timeIntervalSince1970))"]))
         }

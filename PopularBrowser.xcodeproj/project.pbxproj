@@ -19,6 +19,12 @@
 		36A08B942B985F1500F394F4 /* AdServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36A08B932B985F1500F394F4 /* AdServices.framework */; };
 		36A08B962B985F2400F394F4 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36A08B952B985F2300F394F4 /* StoreKit.framework */; };
 		36A08B982B985F4100F394F4 /* AppTrackingTransparency.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36A08B972B985F4100F394F4 /* AppTrackingTransparency.framework */; };
+		36A08B9B2B98635A00F394F4 /* Adjust in Frameworks */ = {isa = PBXBuildFile; productRef = 36A08B9A2B98635A00F394F4 /* Adjust */; };
+		36A08B9D2B98635A00F394F4 /* Criteo in Frameworks */ = {isa = PBXBuildFile; productRef = 36A08B9C2B98635A00F394F4 /* Criteo */; };
+		36A08B9F2B98635A00F394F4 /* Sociomantic in Frameworks */ = {isa = PBXBuildFile; productRef = 36A08B9E2B98635A00F394F4 /* Sociomantic */; };
+		36A08BA12B98635A00F394F4 /* Trademob in Frameworks */ = {isa = PBXBuildFile; productRef = 36A08BA02B98635A00F394F4 /* Trademob */; };
+		36A08BA32B98635B00F394F4 /* WebBridge in Frameworks */ = {isa = PBXBuildFile; productRef = 36A08BA22B98635B00F394F4 /* WebBridge */; };
+		36A08BA62B986A0700F394F4 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 36A08BA52B986A0700F394F4 /* SnapKit */; };
 		6801C22895D6189ACE7A92FD /* Pods_PopularBrowser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40A09DA978A305F5829542F6 /* Pods_PopularBrowser.framework */; };
 		BFAB7B522B9023BA00BC9609 /* admob_release.json in Resources */ = {isa = PBXBuildFile; fileRef = BFAB7B512B9023BA00BC9609 /* admob_release.json */; };
 		BFAB7B542B90503800BC9609 /* AppUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAB7B532B90503800BC9609 /* AppUtil.swift */; };
@@ -192,15 +198,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36A08BA32B98635B00F394F4 /* WebBridge in Frameworks */,
 				C77684EA2A31F563004554E1 /* SheetKit in Frameworks */,
 				C703CA532A398E1500D95613 /* GoogleMobileAds in Frameworks */,
+				36A08BA12B98635A00F394F4 /* Trademob in Frameworks */,
 				36A08B982B985F4100F394F4 /* AppTrackingTransparency.framework in Frameworks */,
 				C70E8EE22A3332970029C91C /* FirebaseCrashlytics in Frameworks */,
+				36A08B9F2B98635A00F394F4 /* Sociomantic in Frameworks */,
 				C70E8EE02A3332970029C91C /* FirebaseAnalytics in Frameworks */,
+				36A08BA62B986A0700F394F4 /* SnapKit in Frameworks */,
 				368EF7B52B91D3C800E48E63 /* Reachability in Frameworks */,
 				36A08B942B985F1500F394F4 /* AdServices.framework in Frameworks */,
+				36A08B9B2B98635A00F394F4 /* Adjust in Frameworks */,
 				C70E8EE42A3332970029C91C /* FirebaseRemoteConfig in Frameworks */,
 				36A08B922B985EFF00F394F4 /* AdSupport.framework in Frameworks */,
+				36A08B9D2B98635A00F394F4 /* Criteo in Frameworks */,
 				BFAB7B942B90885D00BC9609 /* Shadowsocks_iOS.framework in Frameworks */,
 				36A08B962B985F2400F394F4 /* StoreKit.framework in Frameworks */,
 				6801C22895D6189ACE7A92FD /* Pods_PopularBrowser.framework in Frameworks */,
@@ -417,6 +429,12 @@
 				C70E8EE32A3332970029C91C /* FirebaseRemoteConfig */,
 				C703CA522A398E1500D95613 /* GoogleMobileAds */,
 				368EF7B42B91D3C800E48E63 /* Reachability */,
+				36A08B9A2B98635A00F394F4 /* Adjust */,
+				36A08B9C2B98635A00F394F4 /* Criteo */,
+				36A08B9E2B98635A00F394F4 /* Sociomantic */,
+				36A08BA02B98635A00F394F4 /* Trademob */,
+				36A08BA22B98635B00F394F4 /* WebBridge */,
+				36A08BA52B986A0700F394F4 /* SnapKit */,
 			);
 			productName = PopularBrowser;
 			productReference = C7EE4A002A31B6F1006B6139 /* PopularBrowser.app */;
@@ -456,6 +474,8 @@
 				C70E8EDE2A3332960029C91C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				C703CA512A398E1500D95613 /* XCRemoteSwiftPackageReference "GoogleMobileAds" */,
 				368EF7B32B91D3C800E48E63 /* XCRemoteSwiftPackageReference "Reachability" */,
+				36A08B992B98635A00F394F4 /* XCRemoteSwiftPackageReference "ios_sdk" */,
+				36A08BA42B986A0700F394F4 /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = C7EE4A012A31B6F1006B6139 /* Products */;
 			projectDirPath = "";
@@ -956,6 +976,22 @@
 				kind = branch;
 			};
 		};
+		36A08B992B98635A00F394F4 /* XCRemoteSwiftPackageReference "ios_sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/adjust/ios_sdk.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		36A08BA42B986A0700F394F4 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		C703CA512A398E1500D95613 /* XCRemoteSwiftPackageReference "GoogleMobileAds" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/quanghits/GoogleMobileAds";
@@ -987,6 +1023,36 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 368EF7B32B91D3C800E48E63 /* XCRemoteSwiftPackageReference "Reachability" */;
 			productName = Reachability;
+		};
+		36A08B9A2B98635A00F394F4 /* Adjust */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 36A08B992B98635A00F394F4 /* XCRemoteSwiftPackageReference "ios_sdk" */;
+			productName = Adjust;
+		};
+		36A08B9C2B98635A00F394F4 /* Criteo */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 36A08B992B98635A00F394F4 /* XCRemoteSwiftPackageReference "ios_sdk" */;
+			productName = Criteo;
+		};
+		36A08B9E2B98635A00F394F4 /* Sociomantic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 36A08B992B98635A00F394F4 /* XCRemoteSwiftPackageReference "ios_sdk" */;
+			productName = Sociomantic;
+		};
+		36A08BA02B98635A00F394F4 /* Trademob */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 36A08B992B98635A00F394F4 /* XCRemoteSwiftPackageReference "ios_sdk" */;
+			productName = Trademob;
+		};
+		36A08BA22B98635B00F394F4 /* WebBridge */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 36A08B992B98635A00F394F4 /* XCRemoteSwiftPackageReference "ios_sdk" */;
+			productName = WebBridge;
+		};
+		36A08BA52B986A0700F394F4 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 36A08BA42B986A0700F394F4 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
 		};
 		C703CA522A398E1500D95613 /* GoogleMobileAds */ = {
 			isa = XCSwiftPackageProductDependency;

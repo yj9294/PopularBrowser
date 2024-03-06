@@ -20,12 +20,16 @@ class AppStore: ObservableObject {
         dispatch(.remoteConfig)
         dispatch(.adLimitRefresh)
         dispatch(.rootRequestIP)
+        dispatch(.rootSelection(.launching))
         
         // 冷启动都弹出引导
         dispatch(.homeUpdateShowGuide(true))
         
         // vpn 初始化
         dispatch(.vpnInit)
+        
+        // adjust 初始化
+        dispatch(.adjustInit)
         
         // 冷启动
         dispatch(.rootUpdateColdVPN(true))
@@ -46,13 +50,15 @@ extension AppStore{
         var appState = state
         var appCommand: AppCommand? = nil
         switch action {
+        case .adjustInit:
+            appCommand = ADjustInitCommand()
         case .rootUpdateTime(let time):
             appState.root.time = time
         case .rootRequestIP:
             appCommand = RequestIPCommand()
         case .rootSelection(let index):
             if index == .launching {
-                appState.root.progress = 0.0
+                appCommand = LaunchCommand()
             }
             appState.root.selection = index
         case .rootUpdateIPError(let isShow):
@@ -175,7 +181,13 @@ extension AppStore{
             
         case .resultUpdate(let isConnected):
             appState.result.isConnected = isConnected
-
+            
+        case .updateVPNADModel(let model):
+            appState.vpn.ad = model
+        case .updateVPNResultADModel(let model):
+            appState.result.ad = model
+        case .rootUpdateLoadPostion(let position):
+            appState.root.nativeLoadPosition = position
         }
         return (appState, appCommand)
     }

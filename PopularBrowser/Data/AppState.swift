@@ -31,6 +31,7 @@ extension AppState {
         }
         var selection: Index = .launching
         var progress: Double = 0.0
+        var duration: Double = 13.0
         
         // 倒计时 10分钟关闭vpn
         var time: Int = -1
@@ -38,6 +39,9 @@ extension AppState {
         // 冷启动进入vpn界面
         @UserDefault(key: "cold.vpn")
         var coldVPN: Bool?
+        
+        // 用于判定原生广告加载完成时在那个界面
+        var nativeLoadPosition: GADPosition = .native
     }
 }
 
@@ -121,6 +125,8 @@ extension AppState {
     
     struct VPNState {
         
+        var ad: NativeViewModel = .BigNone
+        
         // vpn 状态
         var state: VPNUtil.VPNState = .idle
     
@@ -159,6 +165,8 @@ extension AppState {
 extension AppState {
     struct ResultState {
         var isConnected = true
+        
+        var ad: NativeViewModel = .BigNone
     }
 }
 

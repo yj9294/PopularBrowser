@@ -5,14 +5,14 @@
                         "key": "interstitial",
                         "value": [{
                                 "theAdPriority": 1,
-                                "theAdID": "ca-app-pub-7347099463759045/9584946984"
+                                "theAdID": "ca-app-pub-3940256099942544/4411468910"
                         }]
                 },
                 {
                         "key": "native",
                         "value": [{
                                 "theAdPriority": 1,
-                                "theAdID": "ca-app-pub-7347099463759045/8743951682"
+                                "theAdID": "ca-app-pub-3940256099942544/3986624511"
                         }]
                 },
                 {
@@ -20,6 +20,34 @@
                         "value": [{
                                 "theAdPriority": 1,
                                 "theAdID":"ca-app-pub-7347099463759045/9584946984"
+                        }]
+                },
+                {
+                        "key": "vpnHome",
+                        "value": [{
+                                "theAdPriority": 1,
+                                "theAdID": "ca-app-pub-3940256099942544/3986624511"
+                        }]
+                },
+                {
+                        "key": "vpnResult",
+                        "value": [{
+                                "theAdPriority": 1,
+                                "theAdID": "ca-app-pub-3940256099942544/3986624511"
+                        }]
+                },
+                {
+                        "key": "vpnConnect",
+                        "value": [{
+                                "theAdPriority": 1,
+                                "theAdID": "ca-app-pub-3940256099942544/4411468910"
+                        }]
+                },
+                {
+                        "key": "vpnBack",
+                        "value": [{
+                                "theAdPriority": 1,
+                                "theAdID": "ca-app-pub-3940256099942544/4411468910"
                         }]
                 }
         ]

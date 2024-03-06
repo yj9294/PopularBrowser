@@ -14,7 +14,7 @@ enum AppAction {
     case rootUpdateBackground(Bool)
     case rootUpdateTime(Int)
     case rootUpdateColdVPN(Bool)
-    
+        
     case homeUpdateShowGuide(Bool)
     case homeUpdatePushVPNView(Bool)
     case browser
@@ -60,5 +60,12 @@ enum AppAction {
     case resultUpdate(Bool)
     
     case dismiss
+    
+    case adjustInit
+    
+    case updateVPNADModel(NativeViewModel)
+    case updateVPNResultADModel(NativeViewModel)
+    
+    case rootUpdateLoadPostion(GADPosition)
     
 }
