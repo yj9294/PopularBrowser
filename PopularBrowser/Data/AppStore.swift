@@ -169,6 +169,8 @@ extension AppStore{
             appState.vpn.isMutaDisconnect = isMutaConnect
         case .vpnUpdateConnectedDate(let date):
             appState.vpn.date = date
+        case .updateVPNCountryList(let list):
+            appState.vpn.countryList = list
              
             
         case .resultUpdate(let isConnected):

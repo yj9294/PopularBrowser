@@ -9,37 +9,6 @@ import Foundation
 
 class CacheUtil {
     static let shared = CacheUtil()
-    private var serverList: [VPNCountryModel] = []
-    func getServerList() -> [VPNCountryModel] {
-        if !serverList.isEmpty {
-            return serverList
-        }
-        if let serverList = UserDefaults.standard.getObject([VPNCountryModel].self, forKey: "vpn.serverce"), !serverList.isEmpty{
-            self.serverList = serverList
-            return serverList
-        }
-        let path = Bundle.main.path(forResource: "server", ofType: "json")
-        let url = URL(fileURLWithPath: path!)
-        if let localData = try? Data(contentsOf: url) {
-            serverList = (try? JSONDecoder().decode([VPNCountryModel].self, from: localData)) ?? []
-            UserDefaults.standard.setObject(serverList, forKey: "vpn.serverce")
-            debugPrint("[VPN] 读取本地数据default server")
-        }
-        return serverList
-    }
-    
-    private var password: String = ""
-    func getPasword() -> String {
-        if let password = UserDefaults.standard.getObject(String.self, forKey: "password") {
-            self.password = password
-            return password
-        }
-        return "t3Gx8Kql1pLBhEya"
-    }
-    func savePassword(_ psw: String) {
-        self.password = psw
-        UserDefaults.standard.setObject(psw, forKey: "password")
-    }
 }
 
 

@@ -94,7 +94,7 @@ struct VPNConnectCommand: AppCommand {
         
         store.dispatch(.event(.vpnConnect))
         
-        pingAllServers(serverList: VPNCountryModel.models) { models in
+        pingAllServers(serverList: store.state.vpn.countryList ?? []) { models in
             if let models = models, !models.isEmpty {
                 // 找出 smart
                 let model = VPNCountryModel.smartModel(with: models)
@@ -210,7 +210,7 @@ struct VPNConnectCommand: AppCommand {
         let host = model.ip
         let port = model.port
         let method = "chacha20-ietf-poly1305"
-        let op = ["host": host,"port": port,"method": method,"password": CacheUtil.shared.getPasword()] as? [String : NSObject]
+        let op = ["host": host,"port": port,"method": method,"password": model.password] as? [String : NSObject]
         VPNUtil.shared.connect(options: op)
         store.dispatch(.event(.vpnConnect1))
     }

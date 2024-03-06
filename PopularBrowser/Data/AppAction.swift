@@ -48,6 +48,7 @@ enum AppAction {
     case updateVPNPermission(Bool)
     case updateVPNStatus(VPNUtil.VPNState)
     case updateVPNCountry(VPNCountryModel?)
+    case updateVPNCountryList([VPNCountryModel]?)
     case updateAlertMessage(String)
     case dismissAlert
     case vpnUpdatePushResult(Bool)

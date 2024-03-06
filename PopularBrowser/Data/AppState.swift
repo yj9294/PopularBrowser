@@ -124,6 +124,8 @@ extension AppState {
         // vpn 状态
         var state: VPNUtil.VPNState = .idle
     
+        @UserDefault(key: "vpn.country.list")
+        var countryList: [VPNCountryModel]?
         // VPN 连接国家
         @UserDefault(key: "vpn.country")
         var country: VPNCountryModel?

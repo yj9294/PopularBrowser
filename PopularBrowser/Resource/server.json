@@ -4,6 +4,7 @@
         "city": "Dallas",
         "icon": "country_america",
         "ip": "50.116.23.72",
+        "password": "t3Gx8Kql1pLBhEya",
         "port": "1032",
         "weights": 1
     },{
@@ -11,6 +12,7 @@
         "city": "Miami",
         "icon": "country_america",
         "ip": "172.233.164.6",
+        "password": "t3Gx8Kql1pLBhEya",
         "port": "1032",
         "weights": 1
     }

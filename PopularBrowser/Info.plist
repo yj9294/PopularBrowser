@@ -9,20 +9,22 @@
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb753663570043604</string>
+				<string>fb1045003153549263</string>
 			</array>
 		</dict>
 	</array>
 	<key>FacebookAdvertiserIDCollectionEnabled</key>
 	<true/>
 	<key>FacebookAppID</key>
-	<string>753663570043604</string>
+	<string>1045003153549263</string>
 	<key>FacebookAutoLogAppEventsEnabled</key>
 	<true/>
 	<key>FacebookClientToken</key>
-	<string>0fcc7b22c5e37ef90ee67b2c910452cd</string>
+	<string>d52636b8ddd625d0812af5c143e998fd</string>
 	<key>FacebookDisplayName</key>
 	<string>PopularBrowser</string>
 	<key>GADApplicationIdentifier</key>

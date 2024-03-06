@@ -130,6 +130,20 @@ struct RemoteConfigCommand: AppCommand {
             }
         }
         
+        // 获取服务器配置
+        if store.state.vpn.countryList == nil {
+            let path = Bundle.main.path(forResource: "server", ofType: "json")
+            let url = URL(fileURLWithPath: path!)
+            do {
+                let data = try Data(contentsOf: url)
+                let config = try JSONDecoder().decode([VPNCountryModel].self, from: data)
+                store.dispatch(.updateVPNCountryList(config))
+                NSLog("[Config] Read local server list config success.")
+            } catch let error {
+                NSLog("[Config] Read local server list config fail.\(error.localizedDescription)")
+            }
+        }
+        
         /// 远程配置
         let remoteConfig = RemoteConfig.remoteConfig()
         let settings = RemoteConfigSettings()
@@ -140,13 +154,29 @@ struct RemoteConfigCommand: AppCommand {
                 remoteConfig?.activate(completion: { _, _ in
                     let keys = remoteConfig?.allKeys(from: .remote)
                     NSLog("[Config] config params = \(keys ?? [])")
-                    if let remoteAd = remoteConfig?.configValue(forKey: "password").stringValue {
+                    if let remoteAd = remoteConfig?.configValue(forKey: "server").stringValue {
                         // base64 的remote 需要解码
                         let data = Data(base64Encoded: remoteAd) ?? Data()
-                        if let remotePassword = try? JSONDecoder().decode(String.self, from: data) {
-                            CacheUtil.shared.savePassword(remotePassword)
+                        if let serverList = try? JSONDecoder().decode([VPNCountryModel].self, from: data) {
+                            NSLog("[Config]  serverlist = \(serverList )")
+                            DispatchQueue.main.async {
+                                store.dispatch(.updateVPNCountryList(serverList))
+                            }
                         } else {
-                            NSLog("[Config] Config config 'ad_config' is nil or config not json.")
+                            NSLog("[Config] Config config 'server' is nil or config not json.")
+                        }
+                    }
+                    
+                    if let remoteAd = remoteConfig?.configValue(forKey: "adConfig").stringValue {
+                        // base64 的remote 需要解码
+                        let data = Data(base64Encoded: remoteAd) ?? Data()
+                        if let adConfig = try? JSONDecoder().decode(GADConfig.self, from: data) {
+                            NSLog("[Config]  adConfig = \(adConfig )")
+                            DispatchQueue.main.async {
+                                store.dispatch(.adUpdateConfig(adConfig))
+                            }
+                        } else {
+                            NSLog("[Config] Config config 'adConfig' is nil or config not json.")
                         }
                     }
                 })

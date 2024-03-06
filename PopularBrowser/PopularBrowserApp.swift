@@ -52,7 +52,6 @@ struct PopularBrowserApp: App {
 
             return true
         }
-        
     }
     
     
