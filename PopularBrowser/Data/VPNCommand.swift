@@ -34,12 +34,12 @@ struct VPNInitCommand: AppCommand {
 
 struct ADjustInitCommand: AppCommand {
     func execute(in store: AppStore) {
-        let config = ADJConfig(appToken: "", environment: ADJEnvironmentProduction)
+        let config = ADJConfig(appToken: "q3xdvchy2t4w", environment: ADJEnvironmentProduction)
         config?.delayStart = 5.5
         Adjust.addSessionPartnerParameter("customer_user_id", value: CacheUtil.shared.getUUID())
         Adjust.appDidLaunch(config)
     }
-}
+} 
 
 class VPNObserver: NSObject, VPNStateChangedObserver {
     func onStateChangedTo(state: VPNUtil.VPNState) {
@@ -232,16 +232,37 @@ struct VPNResultConnectCommand: AppCommand {
             store.dispatch(.updateVPNMutaConnect(false))
             store.dispatch(.updateVPNMutaDisconnect(false))
             
+            store.dispatch(.event(.vpnConnectAD))
             store.dispatch(.adLoad(.vpnConnect))
             store.dispatch(.adShow(.vpnConnect) {_ in
                 store.dispatch(.resultUpdate(true))
                 store.dispatch(.vpnUpdatePushResult(true))
+                loadResultNativeAD(in: store)
             })
 
             store.dispatch(.vpnUpdateConnectedDate(Date()))
             store.dispatch(.event(.vpnConnected, ["rot": store.state.vpn.country?.ip ?? ""]))
             store.dispatch(.event(.vpnResultConnected))
         }
+    }
+    
+    
+    func loadResultNativeAD(in store: AppStore) {
+        if store.state.vpn.state == .connected {
+            store.dispatch(.event(.connectResultAD))
+            if store.state.ad.isLoaded(.vpnResult) {
+                store.dispatch(.event(.connectResultShowAD))
+            }
+        } else if store.state.vpn.state == .disconnected {
+            store.dispatch(.event(.disconnectResultAD))
+            if store.state.ad.isLoaded(.vpnResult) {
+                store.dispatch(.event(.disconnectResultShowAD))
+            }
+        }
+        
+        store.dispatch(.rootUpdateLoadPostion(.vpnResult))
+        store.dispatch(.adDisappear(.vpnResult))
+        store.dispatch(.adLoad(.vpnResult, .vpnResult))
     }
 }
 
@@ -252,16 +273,45 @@ struct VPNResultDisconnectCommand: AppCommand {
             store.dispatch(.updateVPNMutaConnect(false))
             store.dispatch(.updateVPNMutaDisconnect(false))
             
+            store.dispatch(.event(.vpnDisconnectAD))
             store.dispatch(.adLoad(.vpnConnect))
             store.dispatch(.adShow(.vpnConnect) {_ in
                 store.dispatch(.resultUpdate(false))
                 store.dispatch(.vpnUpdatePushResult(true))
+                loadResultNativeAD(in: store)
             })
-            
 
             
             store.dispatch(.event(.vpnResultDisconnected))
             store.dispatch(.event(.vpnConnectedDate, ["duration": "\(ceil(Date().timeIntervalSince1970 - store.state.vpn.date.timeIntervalSince1970))"]))
+        }
+    }
+    
+    func loadResultNativeAD(in store: AppStore) {
+        if store.state.vpn.state == .connected {
+            store.dispatch(.event(.connectResultAD))
+            if store.state.ad.isLoaded(.vpnResult) {
+                store.dispatch(.event(.connectResultShowAD))
+            }
+        } else if store.state.vpn.state == .disconnected {
+            store.dispatch(.event(.disconnectResultAD))
+            if store.state.ad.isLoaded(.vpnResult) {
+                store.dispatch(.event(.disconnectResultShowAD))
+            }
+        }
+        
+        store.dispatch(.rootUpdateLoadPostion(.vpnResult))
+        store.dispatch(.adDisappear(.vpnResult))
+        store.dispatch(.adLoad(.vpnResult, .vpnResult))
+    }
+}
+
+
+struct ConnectingSceneCommand: AppCommand {
+    func execute(in store: AppStore) {
+        store.dispatch(.adLoad(.vpnConnect))
+        if store.state.root.isUserGo {
+            store.dispatch(.adLoad(.vpnBack))
         }
     }
 }

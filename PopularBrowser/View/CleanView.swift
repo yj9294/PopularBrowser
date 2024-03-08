@@ -53,6 +53,7 @@ extension CleanView {
             if progress > 0.3, store.state.ad.isLoaded(.interstitial), store.state.root.selection == .launched {
                 isShowAD = true
                 token.unseal()
+                store.dispatch(.event(.cleanAD))
                 store.dispatch(.adShow(.interstitial){ _ in
                     dismiss()
                 })

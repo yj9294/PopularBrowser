@@ -71,6 +71,10 @@ extension TableView {
     func viewDidAppear(){
         store.dispatch(.event(.tabShow))
         store.dispatch(.adLoad(.native, .tab))
+        store.dispatch(.event(.tabAD))
+        if store.state.ad.isLoaded(.native) {
+            store.dispatch(.event(.tabShowAD))
+        }
     }
     func back() {
         store.dispatch(.adDisappear(.native))

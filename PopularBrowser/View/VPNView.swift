@@ -20,8 +20,10 @@ struct VPNView: View {
                         VPNStausButton(status: store.state.vpn.state) {
                             store.dispatch(.updateVPNMutaConnect(true))
                             store.dispatch(.vpnConnect)
+                            store.dispatch(.loadVPNResultAD)
                         } disconnect: {
                             store.dispatch(.vpnDisconnect)
+                            store.dispatch(.loadVPNResultAD)
                         }
                         Spacer()
                     }
@@ -47,11 +49,17 @@ struct VPNView: View {
                 VPNConnectResultView().toolbar {
                     ToolbarItem(placement: .navigationBarLeading) {
                         Button {
-                            store.dispatch(.adLoad(.vpnBack))
-                            store.dispatch(.adShow(.interstitial) { _ in
+                            if store.state.root.isUserGo {
+                                store.dispatch(.adLoad(.vpnBack))
+                                store.dispatch(.adShow(.vpnBack) { _ in
+                                    store.dispatch(.vpnUpdatePushResult(false))
+                                    loadAndShowVPNAD()
+                                })
+                                store.dispatch(.event(.vpnBackAD))
+                            } else {
                                 store.dispatch(.vpnUpdatePushResult(false))
                                 loadAndShowVPNAD()
-                            })
+                            }
                         } label: {
                             Image("back")
                         }
@@ -60,19 +68,24 @@ struct VPNView: View {
             }
         }).onAppear{
             if store.state.root.coldVPN == true {
-//                store.dispatch(.rootUpdateColdVPN(false))
                 store.dispatch(.event(.coldVPN))
             }
-            loadAndShowVPNAD()
-            store.dispatch(.adLoad(.vpnBack))
         }
     }
     
-    
     func loadAndShowVPNAD() {
+        store.dispatch(.event(.vpnHomeAD))
+        
         store.dispatch(.rootUpdateLoadPostion(.vpnHome))
         store.dispatch(.adDisappear(.vpnHome))
         store.dispatch(.adLoad(.vpnHome, .vpnHome))
+        
+        if store.state.ad.isLoaded(.vpnHome) {
+            store.dispatch(.event(.vpnHomeShowAD))
+        }
+        if store.state.root.isUserGo {
+            store.dispatch(.adLoad(.vpnBack))
+        }
     }
     
     struct AlertView: View {
@@ -132,9 +145,6 @@ struct VPNView: View {
                                     }
                             }
                             Spacer()
-                        }.onAppear{
-                            store.dispatch(.adLoad(.vpnConnect))
-                            store.dispatch(.adLoad(.vpnBack))
                         }
                     } else if status == .connected {
                         HStack{

@@ -34,7 +34,17 @@ struct LaunchedView: View {
         store.state.launched.progress
     }
     
-    @State var isTabShow = false
+    var isTabShow: Bool {
+        store.state.launched.isTabShow
+    }
+    
+    var isGuideShow: Bool {
+        store.state.launched.isShowGuide
+    }
+    
+    var isVPNVShow: Bool {
+        store.state.launched.pushVPNView
+    }
     
     var body: some View {
         GeometryReader { _ in
@@ -74,7 +84,7 @@ struct LaunchedView: View {
                                         })
                                     }
                                 }.padding(.horizontal, 16).padding(.top, 20)
-                                if !isTabShow, !store.state.launched.isShowGuide, !store.state.launched.pushVPNView {
+                                if !isTabShow, !isGuideShow, !isVPNVShow {
                                     HStack{
                                         NativeADView(model: store.state.root.adModel)
                                     }.padding(.horizontal, 16).frame(height: 120)
@@ -113,11 +123,12 @@ struct LaunchedView: View {
                     }.background(Color("#F2F3F4").ignoresSafeArea()).onAppear{viewDidAppear()}
                     
                     // vpn 引导界面
-                    if store.state.launched.isShowGuide {
+                    if isGuideShow {
                         GuideView {
                             store.dispatch(.homeUpdateShowGuide(false))
                             store.dispatch(.homeUpdatePushVPNView(true))
                             store.dispatch(.vpnConnect)
+                            store.dispatch(.loadVPNResultAD)
                             store.dispatch(.updateVPNMutaConnect(true))
                             store.dispatch(.event(.vpnGuideOK))
                         } skip: {
@@ -141,11 +152,17 @@ struct LaunchedView: View {
                                         Image("back")
                                     } else {
                                         Button {
-                                            store.dispatch(.adLoad(.vpnBack))
-                                            store.dispatch(.adShow(.vpnBack) { _ in
+                                            if store.state.root.isUserGo {
+                                                store.dispatch(.adLoad(.vpnBack))
+                                                store.dispatch(.adShow(.vpnBack) { _ in
+                                                    store.dispatch(.adDisappear(.vpnHome))
+                                                    store.dispatch(.homeUpdatePushVPNView(false))
+                                                })
+                                                store.dispatch(.event(.vpnBackAD))
+                                            } else {
                                                 store.dispatch(.adDisappear(.vpnHome))
                                                 store.dispatch(.homeUpdatePushVPNView(false))
-                                            })
+                                            }
                                             store.dispatch(.event(.vpnBack))
                                         } label: {
                                             Image("back")
@@ -165,12 +182,11 @@ struct LaunchedView: View {
 
 extension LaunchedView {
     func viewDidAppear() {
-        if !store.state.launched.isShowGuide, !store.state.launched.pushVPNView {
+        if !isGuideShow, !isVPNVShow, !isTabShow{
             loadAndShowHomeNativeAD()
         }
         ATTrackingManager.requestTrackingAuthorization { _ in
         }
-        store.dispatch(.rootRequestIP)
     }
     
     func loadAndShowHomeNativeAD() {
@@ -178,6 +194,10 @@ extension LaunchedView {
         store.dispatch(.adDisappear(.native))
         store.dispatch(.adLoad(.native, .home))
         store.dispatch(.event(.homeShow))
+        store.dispatch(.event(.homeAD))
+        if store.state.ad.isLoaded(.native) {
+            store.dispatch(.event(.homeShowAD))
+        }
     }
     
     func search() {
@@ -219,12 +239,14 @@ extension LaunchedView {
                 store.dispatch(.clean)
                 store.dispatch(.browser)
                 store.dispatch(.adDisappear(.native))
+                store.state.launched.isCleanShow = true
                 SheetKit().present(with: .fullScreenCover) {
                     CleanView() {
                         loadAD()
                         store.dispatch(.event(.cleanAnimationCompletion))
                         store.dispatch(.event(.cleanAlertShow))
                         self.alerMessage("Cleaned")
+                        store.state.launched.isCleanShow = false
                     }.environmentObject(store)
                 }
             }).clearBackground()
@@ -241,12 +263,12 @@ extension LaunchedView {
     }
     
     func tab() {
-        isTabShow = true
+        store.state.launched.isTabShow = true
         store.dispatch(.adDisappear(.native))
         SheetKit().present(with: .fullScreenCover) {
             TableView(dismissHandle: {
                 loadAD()
-                isTabShow = false
+                store.state.launched.isTabShow = false
             }).environmentObject(store)
         }
     }

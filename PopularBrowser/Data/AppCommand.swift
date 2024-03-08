@@ -129,6 +129,7 @@ struct LaunchCommand: AppCommand {
             if progress > 1.0 {
                 token.unseal()
                 store.state.root.progress = 1.0
+                store.dispatch(.event(.loadingAD))
                 store.dispatch(.adShow(.interstitial) { _ in
                     if store.state.root.progress == 1.0 {
                         store.state.root.selection = .launched
@@ -142,7 +143,9 @@ struct LaunchCommand: AppCommand {
             }
         }.seal(in: token)
         store.dispatch(.adLoad(.interstitial))
-        store.dispatch(.adLoad(.native))
+        store.dispatch(.adLoad(.native, .home))
+        store.dispatch(.requestCloak)
+        store.dispatch(.requestIP)
     }
 }
 
@@ -199,18 +202,18 @@ struct RemoteConfigCommand: AppCommand {
                         }
                     }
                     
-//                    if let remoteAd = remoteConfig?.configValue(forKey: "adConfig").stringValue {
-//                        // base64 的remote 需要解码
-//                        let data = Data(base64Encoded: remoteAd) ?? Data()
-//                        if let adConfig = try? JSONDecoder().decode(GADConfig.self, from: data) {
-//                            NSLog("[Config]  adConfig = \(adConfig )")
-//                            DispatchQueue.main.async {
-//                                store.dispatch(.adUpdateConfig(adConfig))
-//                            }
-//                        } else {
-//                            NSLog("[Config] Config config 'adConfig' is nil or config not json.")
-//                        }
-//                    }
+                    if let remoteAd = remoteConfig?.configValue(forKey: "adConfig").stringValue {
+                        // base64 的remote 需要解码
+                        let data = Data(base64Encoded: remoteAd) ?? Data()
+                        if let adConfig = try? JSONDecoder().decode(GADConfig.self, from: data) {
+                            NSLog("[Config]  adConfig = \(adConfig )")
+                            DispatchQueue.main.async {
+                                store.dispatch(.adUpdateConfig(adConfig))
+                            }
+                        } else {
+                            NSLog("[Config] Config config 'adConfig' is nil or config not json.")
+                        }
+                    }
                 })
             } else {
                 NSLog("[Config] config not fetcher, error = \(error?.localizedDescription ?? "")")

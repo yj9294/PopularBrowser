@@ -8,12 +8,12 @@
 import Foundation
 
 enum AppAction {
-    case rootRequestIP
     case rootSelection(AppState.RootState.Index)
     case rootUpdateIPError(Bool)
     case rootUpdateBackground(Bool)
     case rootUpdateTime(Int)
     case rootUpdateColdVPN(Bool)
+    case rootUpdateUserGo(Bool)
         
     case homeUpdateShowGuide(Bool)
     case homeUpdatePushVPNView(Bool)
@@ -67,5 +67,10 @@ enum AppAction {
     case updateVPNResultADModel(NativeViewModel)
     
     case rootUpdateLoadPostion(GADPosition)
+    
+    case requestCloak
+    case requestIP
+    
+    case loadVPNResultAD
     
 }

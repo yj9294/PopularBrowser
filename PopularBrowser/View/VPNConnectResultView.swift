@@ -26,11 +26,7 @@ struct VPNConnectResultView: View {
             HStack{
                 NativeADView(model: store.state.result.ad)
             }.padding(.horizontal, 16).frame(height: 264).padding(.bottom, 20)
-        }.navigationBarBackButtonHidden().onAppear{
-            store.dispatch(.rootUpdateLoadPostion(.vpnResult))
-            store.dispatch(.adDisappear(.vpnResult))
-            store.dispatch(.adLoad(.vpnResult, .vpnResult))
-        }
+        }.navigationBarBackButtonHidden()
     }
 }
 

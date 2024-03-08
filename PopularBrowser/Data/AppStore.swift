@@ -19,7 +19,6 @@ class AppStore: ObservableObject {
         UITabBar.appearance().isHidden = true
         dispatch(.remoteConfig)
         dispatch(.adLimitRefresh)
-        dispatch(.rootRequestIP)
         dispatch(.rootSelection(.launching))
         
         // 冷启动都弹出引导
@@ -33,6 +32,7 @@ class AppStore: ObservableObject {
         
         // 冷启动
         dispatch(.rootUpdateColdVPN(true))
+
     }
     func dispatch(_ action: AppAction) {
         debugPrint("[ACTION]: \(action)")
@@ -54,7 +54,7 @@ extension AppStore{
             appCommand = ADjustInitCommand()
         case .rootUpdateTime(let time):
             appState.root.time = time
-        case .rootRequestIP:
+        case .requestIP:
             appCommand = RequestIPCommand()
         case .rootSelection(let index):
             if index == .launching {
@@ -73,11 +73,16 @@ extension AppStore{
             }
         case .rootUpdateColdVPN(let cold):
             appState.root.coldVPN = cold
+        case .rootUpdateUserGo(let go):
+            appState.root.userGo = go
             
         case .homeUpdateShowGuide(let isShow):
             appState.launched.showGuide = isShow
         case .homeUpdatePushVPNView(let isPush):
             appState.launched.pushVPNView = isPush
+            if isPush {
+                appCommand = NativeADEventCommand(postion: .vpnHome)
+            }
             
         case .browser:
             appCommand = BrowserCommand()
@@ -156,6 +161,10 @@ extension AppStore{
             }
             if status == .disconnecting {
                 appState.vpn.isMutaDisconnect = true
+                appCommand = ConnectingSceneCommand()
+            }
+            if status  == .connecting {
+                appCommand = ConnectingSceneCommand()
             }
             if status == .disconnected, appState.vpn.isMutaDisconnect {
                 appCommand = VPNResultDisconnectCommand()
@@ -169,6 +178,7 @@ extension AppStore{
             appState.vpn.isAlert = false
         case .vpnUpdatePushResult(let isPush):
             appState.vpn.isPushResult = isPush
+            
         case .updateVPNMutaConnect(let isMutaConnect):
             appState.vpn.isMutaConnect = isMutaConnect
         case .updateVPNMutaDisconnect(let isMutaConnect):
@@ -188,6 +198,12 @@ extension AppStore{
             appState.result.ad = model
         case .rootUpdateLoadPostion(let position):
             appState.root.nativeLoadPosition = position
+            
+        case .requestCloak:
+            appCommand = RequestClakCOmmand()
+            
+        case .loadVPNResultAD:
+            appCommand = NativeADEventCommand(postion: .vpnResult)
         }
         return (appState, appCommand)
     }

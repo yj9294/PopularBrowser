@@ -15,6 +15,7 @@
 		368EF7B92B91E18D00E48E63 /* SimplePing.m in Sources */ = {isa = PBXBuildFile; fileRef = 368EF7B82B91E18D00E48E63 /* SimplePing.m */; };
 		368EF7BB2B91E1BC00E48E63 /* VPNPingUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368EF7BA2B91E1BC00E48E63 /* VPNPingUtil.swift */; };
 		368EF7C12B91F12D00E48E63 /* VPNConnectResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368EF7C02B91F12D00E48E63 /* VPNConnectResultView.swift */; };
+		369314F12B99C6E2006FD99D /* EventCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369314F02B99C6E2006FD99D /* EventCommand.swift */; };
 		36A08B922B985EFF00F394F4 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36A08B912B985EFF00F394F4 /* AdSupport.framework */; };
 		36A08B942B985F1500F394F4 /* AdServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36A08B932B985F1500F394F4 /* AdServices.framework */; };
 		36A08B962B985F2400F394F4 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36A08B952B985F2300F394F4 /* StoreKit.framework */; };
@@ -123,6 +124,7 @@
 		368EF7B82B91E18D00E48E63 /* SimplePing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimplePing.m; sourceTree = "<group>"; };
 		368EF7BA2B91E1BC00E48E63 /* VPNPingUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPNPingUtil.swift; sourceTree = "<group>"; };
 		368EF7C02B91F12D00E48E63 /* VPNConnectResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPNConnectResultView.swift; sourceTree = "<group>"; };
+		369314F02B99C6E2006FD99D /* EventCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCommand.swift; sourceTree = "<group>"; };
 		36A08B912B985EFF00F394F4 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		36A08B932B985F1500F394F4 /* AdServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdServices.framework; path = System/Library/Frameworks/AdServices.framework; sourceTree = SDKROOT; };
 		36A08B952B985F2300F394F4 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
@@ -271,7 +273,6 @@
 				C703CA542A398E6100D95613 /* GADUtil.swift */,
 				BFAB7B532B90503800BC9609 /* AppUtil.swift */,
 				BFAB7B872B906A7D00BC9609 /* VPNUtil.swift */,
-				BFAB7B8D2B9074FB00BC9609 /* CacheUtil.swift */,
 				368EF7B62B91E18C00E48E63 /* PopularBrowser-Bridging-Header.h */,
 			);
 			path = Util;
@@ -323,8 +324,10 @@
 				C7EE4A152A31BEF8006B6139 /* AppAction.swift */,
 				C7EE4A172A31C0BE006B6139 /* AppCommand.swift */,
 				368EF7B12B91B75F00E48E63 /* VPNCommand.swift */,
+				BFAB7B8D2B9074FB00BC9609 /* CacheUtil.swift */,
 				368EF7AD2B91A04200E48E63 /* RequestCommand.swift */,
 				C703CA562A39912700D95613 /* GADCommand.swift */,
+				369314F02B99C6E2006FD99D /* EventCommand.swift */,
 				BFAB7B8A2B90730A00BC9609 /* VPNModel.swift */,
 			);
 			path = Data;
@@ -597,6 +600,7 @@
 				C77684F02A3312E5004554E1 /* PrivacyView.swift in Sources */,
 				368EF7B92B91E18D00E48E63 /* SimplePing.m in Sources */,
 				BFAB7B882B906A7D00BC9609 /* VPNUtil.swift in Sources */,
+				369314F12B99C6E2006FD99D /* EventCommand.swift in Sources */,
 				C7EE4A122A31BEE0006B6139 /* AppStore.swift in Sources */,
 				368EF7AE2B91A04200E48E63 /* RequestCommand.swift in Sources */,
 				BFAB7B982B908CA300BC9609 /* VPNView.swift in Sources */,
@@ -849,7 +853,7 @@
 				CODE_SIGN_ENTITLEMENTS = PopularBrowser/PopularBrowser.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20240306;
+				CURRENT_PROJECT_VERSION = 20240307;
 				DEVELOPMENT_ASSET_PATHS = "\"PopularBrowser/Resource/Preview Content\"";
 				DEVELOPMENT_TEAM = CAP32C8DTF;
 				ENABLE_PREVIEWS = YES;
@@ -872,7 +876,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.1;
+				MARKETING_VERSION = 2.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.popularSearch.browsers.fast;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -898,7 +902,7 @@
 				CODE_SIGN_ENTITLEMENTS = PopularBrowser/PopularBrowser.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20240306;
+				CURRENT_PROJECT_VERSION = 20240307;
 				DEVELOPMENT_ASSET_PATHS = "\"PopularBrowser/Resource/Preview Content\"";
 				DEVELOPMENT_TEAM = CAP32C8DTF;
 				ENABLE_PREVIEWS = YES;
@@ -921,7 +925,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.1;
+				MARKETING_VERSION = 2.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.popularSearch.browsers.fast;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

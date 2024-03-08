@@ -164,9 +164,10 @@ struct GADShowCommand: AppCommand {
             /// 有廣告
             if let ad = loadAD?.loadedArray.first as? InterstitialADModel, !store.state.ad.isLimited(in: store) {
                 ad.impressionHandler = {
+                    logEvent(position, in: store)
                     store.dispatch(.adUpdateLimit(.show))
                     store.dispatch(.adAppear(position))
-                    if position != .vpnBack {
+                    if position != .vpnBack || position != .vpnHome {
                         store.dispatch(.adLoad(position))
                     }
                 }
@@ -184,6 +185,7 @@ struct GADShowCommand: AppCommand {
                     completion?(.None)
                     store.dispatch(.adDisappear(position))
                 }
+                logShowEvent(ad.position, in: store)
                 ad.present()
             } else {
                 completion?(.None)
@@ -197,10 +199,13 @@ struct GADShowCommand: AppCommand {
                 ad.nativeAd?.unregisterAdView()
                 ad.nativeAd?.delegate = ad
                 ad.impressionHandler = {
+                    logEvent(position, in: store)
                     store.dispatch(.adNativeImpressionDate(p))
                     store.dispatch(.adUpdateLimit(.show))
                     store.dispatch(.adAppear(position))
-                    store.dispatch(.adLoad(position))
+                    if position != .vpnHome {
+                        store.dispatch(.adLoad(position, p))
+                    }
                 }
                 ad.clickHandler = {
                     store.dispatch(.adUpdateLimit(.click))
@@ -224,6 +229,9 @@ struct GADShowCommand: AppCommand {
                 completion?(adViewModel)
                 /// 异步加载 回调是nil的情况使用通知
                 NotificationCenter.default.post(name: .nativeAdLoadCompletion, object: adViewModel)
+                if position == .vpnHome, store.state.launched.pushVPNView, !store.state.vpn.isPushResult {
+                    store.dispatch(.event(.vpnHomeShowAD))
+                }
             } else {
                 /// 预加载回来数据 当时已经有显示数据了 并且没超过限制
                 if loadAD?.isDisplay == true, !store.state.ad.isLimited(in: store) {
@@ -237,10 +245,58 @@ struct GADShowCommand: AppCommand {
         }
     }
     
+    func logShowEvent(_ position: GADPosition, in store: AppStore) {
+        switch position {
+        case .interstitial:
+            if store.state.launched.isCleanShow {
+                store.dispatch(.event(.cleanShowAD))
+            } else {
+                store.dispatch(.event(.loadingShowAD))
+            }
+        case .vpnConnect:
+            if store.state.vpn.state == .connected {
+                store.dispatch(.event(.vpnConnectShowAD))
+            } else if store.state.vpn.state == .disconnected {
+                store.dispatch(.event(.vpnDisconnectShowAD))
+            }
+        case .vpnBack:
+            store.dispatch(.event(.vpnBackShowAD))
+        default:
+            break
+        }
+    }
     
-    func requestAtt() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            
+    
+    func logEvent(_ position: GADPosition, in store: AppStore) {
+        switch position {
+        case .native:
+            if store.state.launched.isTabShow {
+                store.dispatch(.event(.tabImpresssAD))
+            } else {
+                store.dispatch(.event(.homeImpressAD))
+            }
+        case .interstitial:
+            if store.state.launched.isCleanShow {
+                store.dispatch(.event(.cleanImpressAD))
+            } else {
+                store.dispatch(.event(.loadingImpressAD))
+            }
+        case .vpnHome:
+            store.dispatch(.event(.vpnHomeImpressAD))
+        case .vpnResult:
+            if store.state.result.isConnected {
+                store.dispatch(.event(.connectResultImpressAD))
+            } else {
+                store.dispatch(.event(.disconnectResultImpressAD))
+            }
+        case .vpnConnect:
+            if store.state.vpn.state == .connected {
+                store.dispatch(.event(.vpnConnectImpressAD))
+            } else if store.state.vpn.state == .disconnected{
+                store.dispatch(.event(.vpnDisconnectImpressAD))
+            }
+        case .vpnBack:
+            store.dispatch(.event(.vpnBackImpressAD))
         }
     }
 }

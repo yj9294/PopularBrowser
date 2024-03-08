@@ -5,49 +5,42 @@
                         "key": "interstitial",
                         "value": [{
                                 "theAdPriority": 1,
-                                "theAdID": "ca-app-pub-3940256099942544/4411468910"
+                                "theAdID": "ca-app-pub-7347099463759045/6031611480"
                         }]
                 },
                 {
                         "key": "native",
                         "value": [{
                                 "theAdPriority": 1,
-                                "theAdID": "ca-app-pub-3940256099942544/3986624511"
-                        }]
-                },
-                {
-                        "key": "open",
-                        "value": [{
-                                "theAdPriority": 1,
-                                "theAdID":"ca-app-pub-7347099463759045/9584946984"
+                                "theAdID": "ca-app-pub-7347099463759045/8219571378"
                         }]
                 },
                 {
                         "key": "vpnHome",
                         "value": [{
                                 "theAdPriority": 1,
-                                "theAdID": "ca-app-pub-3940256099942544/3986624511"
+                                "theAdID": "ca-app-pub-7347099463759045/6101314773"
                         }]
                 },
                 {
                         "key": "vpnResult",
                         "value": [{
                                 "theAdPriority": 1,
-                                "theAdID": "ca-app-pub-3940256099942544/3986624511"
+                                "theAdID": "ca-app-pub-7347099463759045/1514615773"
                         }]
                 },
                 {
                         "key": "vpnConnect",
                         "value": [{
                                 "theAdPriority": 1,
-                                "theAdID": "ca-app-pub-3940256099942544/4411468910"
+                                "theAdID": "ca-app-pub-7347099463759045/4724653922"
                         }]
                 },
                 {
                         "key": "vpnBack",
                         "value": [{
                                 "theAdPriority": 1,
-                                "theAdID": "ca-app-pub-3940256099942544/4411468910"
+                                "theAdID": "ca-app-pub-7347099463759045/9989423043"
                         }]
                 }
         ]
