@@ -1,20 +1,44 @@
-[
-    {
-        "country": "America",
-        "city": "Dallas",
-        "icon": "country_america",
-        "ip": "50.116.23.72",
-        "password": "t3Gx8Kql1pLBhEya",
-        "port": "1032",
-        "weights": 1
-    },{
-        "country": "America",
-        "city": "Miami",
-        "icon": "country_america",
-        "ip": "172.233.164.6",
-        "password": "t3Gx8Kql1pLBhEya",
-        "port": "1032",
-        "weights": 1
-    }
-]
+{
+    "culture": [
 
+
+    ],
+    "show": 77,
+    "owner": 23,
+    "across": [
+        {
+            "return": "50.116.23.72",
+            "chair": 1000,
+            "nor": "Chicago",
+            "good": "US",
+            "make": "United States",
+            "select_count": 1,
+            "executive": [
+                {
+                    "sense": 1,
+                    "everything": "t3Gx8Kql1pLBhEya",
+                    "national": "1",
+                    "others": "chacha20-ietf-poly1305",
+                    "either": 4191
+                }
+            ]
+        },
+        {
+            "return": "172.233.164.6",
+            "chair": 1000,
+            "nor": "Chicago",
+            "good": "US",
+            "make": "United States",
+            "select_count": 1,
+            "executive": [
+                {
+                    "sense": 1,
+                    "everything": "t3Gx8Kql1pLBhEya",
+                    "national": "1",
+                    "others": "chacha20-ietf-poly1305",
+                    "either": 4191
+                }
+            ]
+        }
+    ]
+}

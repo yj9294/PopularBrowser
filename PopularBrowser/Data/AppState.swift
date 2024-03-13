@@ -139,15 +139,15 @@ extension AppState {
         
         // vpn 状态
         var state: VPNUtil.VPNState = .idle
-    
-        @UserDefault(key: "vpn.country.list")
-        var countryList: [VPNCountryModel]?
-        // VPN 连接国家
-        @UserDefault(key: "vpn.country")
-        var country: VPNCountryModel?
-        var serverTitle: String {
-            country?.title ?? "Smart Server "
-        }
+        
+        // admin 下发的 serverlist
+        @UserDefault(key: "server.list")
+        var servers: CountryModel?
+        var getServers: CountryModel { servers ?? .default}
+        
+        @UserDefault(key: "server.connect")
+        var country: CountryModel.Country?
+        var getCountry: CountryModel.Country { country ?? .smart}
         
         // vpn 权限弹窗标识
         @UserDefault(key: "vpn.permission")
@@ -166,9 +166,13 @@ extension AppState {
         // 手动连接
         var isMutaConnect = false
         var isMutaDisconnect = false
+        var isAutoConnect = false
         
         // 链接时长
         var date = Date()
+        
+        // 进入 serverlist
+        var isPushServerList: Bool = false
     }
 }
 
@@ -268,6 +272,13 @@ extension AppState {
             case connectResultImpressAD = "pobr_success_8"
             case disconnectResultImpressAD = "pobr_success_9"
             case vpnBackImpressAD = "pobr_success_10"
+            
+            case showCleanGuide = "pobr_clear_pop"
+            case cleanGuideSkip = "pobr_clear_pop0"
+            case cleanGuideOK = "pobr_clear_pop1"
+            
+            case showServerView = "pobr_serverlist"
+            case serverViewBack = "pobr_listBack"
         }
     }
 }

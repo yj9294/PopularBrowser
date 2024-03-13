@@ -20,7 +20,7 @@ struct VPNConnectResultView: View {
             Image(icon).padding(.vertical, 16)
             VStack(spacing: 10){
                 Text(title).font(.system(size: 16)).foregroundColor(Color.black)
-                Text(store.state.vpn.serverTitle).font(.system(size: 13)).foregroundColor(Color("#AFAFAF"))
+                Text(store.state.vpn.getCountry.title).font(.system(size: 13)).foregroundColor(Color("#AFAFAF"))
             }
             Spacer()
             HStack{

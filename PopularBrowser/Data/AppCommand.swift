@@ -166,12 +166,12 @@ struct RemoteConfigCommand: AppCommand {
         }
         
         // 获取服务器配置
-        if store.state.vpn.countryList == nil {
+        if store.state.vpn.servers == nil {
             let path = Bundle.main.path(forResource: "server", ofType: "json")
             let url = URL(fileURLWithPath: path!)
             do {
                 let data = try Data(contentsOf: url)
-                let config = try JSONDecoder().decode([VPNCountryModel].self, from: data)
+                let config = try JSONDecoder().decode(CountryModel.self, from: data)
                 store.dispatch(.updateVPNCountryList(config))
                 NSLog("[Config] Read local server list config success.")
             } catch let error {
@@ -189,18 +189,18 @@ struct RemoteConfigCommand: AppCommand {
                 remoteConfig?.activate(completion: { _, _ in
                     let keys = remoteConfig?.allKeys(from: .remote)
                     NSLog("[Config] config params = \(keys ?? [])")
-                    if let remoteAd = remoteConfig?.configValue(forKey: "server").stringValue {
-                        // base64 的remote 需要解码
-                        let data = Data(base64Encoded: remoteAd) ?? Data()
-                        if let serverList = try? JSONDecoder().decode([VPNCountryModel].self, from: data) {
-                            NSLog("[Config]  serverlist = \(serverList )")
-                            DispatchQueue.main.async {
-                                store.dispatch(.updateVPNCountryList(serverList))
-                            }
-                        } else {
-                            NSLog("[Config] Config config 'server' is nil or config not json.")
-                        }
-                    }
+//                    if let remoteAd = remoteConfig?.configValue(forKey: "server").stringValue {
+//                        // base64 的remote 需要解码
+//                        let data = Data(base64Encoded: remoteAd) ?? Data()
+//                        if let serverList = try? JSONDecoder().decode([VPNCountryModel].self, from: data) {
+//                            NSLog("[Config]  serverlist = \(serverList )")
+//                            DispatchQueue.main.async {
+//                                store.dispatch(.updateVPNCountryList(serverList))
+//                            }
+//                        } else {
+//                            NSLog("[Config] Config config 'server' is nil or config not json.")
+//                        }
+//                    }
                     
                     if let remoteAd = remoteConfig?.configValue(forKey: "adConfig").stringValue {
                         // base64 的remote 需要解码

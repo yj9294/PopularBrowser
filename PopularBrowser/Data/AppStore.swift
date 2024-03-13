@@ -32,7 +32,16 @@ class AppStore: ObservableObject {
         
         // 冷启动
         dispatch(.rootUpdateColdVPN(true))
-
+        
+        // tba install 事件
+        dispatch(.tbaInstall)
+        dispatch(.tbaSession)
+        
+        // tba first open 事件
+        dispatch(.tbaFirstOpen)
+        
+        // 请求 server
+        dispatch(.requestServer)
     }
     func dispatch(_ action: AppAction) {
         debugPrint("[ACTION]: \(action)")
@@ -56,6 +65,8 @@ extension AppStore{
             appState.root.time = time
         case .requestIP:
             appCommand = RequestIPCommand()
+        case .requestServer:
+            appCommand = RequestServersCommand()
         case .rootSelection(let index):
             if index == .launching {
                 appCommand = LaunchCommand()
@@ -109,6 +120,7 @@ extension AppStore{
             appState.browser.browsers = [.navigation]
         case .event(let name, let value):
             appState.firebase.item.log(event: name, params: value)
+            appCommand = RequestEventCommand(name: name.rawValue, value: value)
         case .property(let name):
             appState.firebase.item.log(property: name)
             
@@ -153,14 +165,11 @@ extension AppStore{
                 appState.vpn.alertMessage = "Try it agin."
                 appState.vpn.isAlert = true
             }
-            if status == .disconnected {
-                appState.vpn.country = nil
-            }
             if status == .connected {
+                appState.vpn.isAutoConnect = false
                 appCommand = VPNResultConnectCommand()
             }
             if status == .disconnecting {
-                appState.vpn.isMutaDisconnect = true
                 appCommand = ConnectingSceneCommand()
             }
             if status  == .connecting {
@@ -168,6 +177,8 @@ extension AppStore{
             }
             if status == .disconnected, appState.vpn.isMutaDisconnect {
                 appCommand = VPNResultDisconnectCommand()
+            } else if status == .disconnected, appState.vpn.isAutoConnect {
+                appCommand = VPNConnectCommand()
             }
         case .updateVPNCountry(let country):
             appState.vpn.country = country
@@ -178,15 +189,23 @@ extension AppStore{
             appState.vpn.isAlert = false
         case .vpnUpdatePushResult(let isPush):
             appState.vpn.isPushResult = isPush
+        case .vpnUpdatePushServerView(let isPush):
+            appState.vpn.isPushServerList = isPush
             
         case .updateVPNMutaConnect(let isMutaConnect):
             appState.vpn.isMutaConnect = isMutaConnect
         case .updateVPNMutaDisconnect(let isMutaConnect):
             appState.vpn.isMutaDisconnect = isMutaConnect
+        case .updateVPNAutoConnect(let isAuto):
+            appState.vpn.isAutoConnect = isAuto
         case .vpnUpdateConnectedDate(let date):
             appState.vpn.date = date
         case .updateVPNCountryList(let list):
-            appState.vpn.countryList = list
+            appState.vpn.servers = list
+            if let list = list {
+                appState.vpn.servers?.hCountries = CountryModel.repeatCountry(with: list.hCountries)
+                appState.vpn.servers?.lCountries = CountryModel.repeatCountry(with: list.lCountries)
+            }
              
             
         case .resultUpdate(let isConnected):
@@ -204,6 +223,16 @@ extension AppStore{
             
         case .loadVPNResultAD:
             appCommand = NativeADEventCommand(postion: .vpnResult)
+        case .tbaInstall:
+            appCommand = RequestInstallEventCommand()
+        case .tbaSession:
+            appCommand = RequestSessionEventCommand()
+        case .tbaAd(let model):
+            appCommand = RequestADEventCommand(model)
+        case .fbPurchase(let model):
+            appCommand = FBPurchaseEventCommand(model)
+        case .tbaFirstOpen:
+            appCommand = RequestFirstOpenEventCommand()
         }
         return (appState, appCommand)
     }

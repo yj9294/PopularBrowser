@@ -9,6 +9,7 @@ import SwiftUI
 import SheetKit
 
 struct CleanPopView: View {
+    var cleanHandle: (()->Void)? = nil
     var dismissHandle: (()->Void)? = nil
     var body: some View {
         VStack{
@@ -36,12 +37,14 @@ struct CleanPopView: View {
 extension CleanPopView {
     func certain() {
         SheetKit().dismiss() {
-            self.dismissHandle?()
+            self.cleanHandle?()
         }
     }
     
     func back() {
-        SheetKit().dismiss()
+        SheetKit().dismiss() {
+            self.dismissHandle?()
+        }
     }
 }
 

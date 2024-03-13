@@ -105,9 +105,11 @@ struct LaunchedView: View {
                                 Image(canGoForword ? "right" : "right_1")
                             }
                             Spacer()
-                            Button(action: clean) {
+                            Button(action: {
+                                clean()
+                            }, label: {
                                 Image("clean")
-                            }
+                            })
                             Spacer()
                             Button(action: tab) {
                                 ZStack {
@@ -157,11 +159,17 @@ struct LaunchedView: View {
                                                 store.dispatch(.adShow(.vpnBack) { _ in
                                                     store.dispatch(.adDisappear(.vpnHome))
                                                     store.dispatch(.homeUpdatePushVPNView(false))
+                                                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                                        clean(true)
+                                                        store.dispatch(.event(.showCleanGuide))
+                                                    }
                                                 })
                                                 store.dispatch(.event(.vpnBackAD))
                                             } else {
                                                 store.dispatch(.adDisappear(.vpnHome))
                                                 store.dispatch(.homeUpdatePushVPNView(false))
+                                                clean(true)
+                                                store.dispatch(.event(.showCleanGuide))
                                             }
                                             store.dispatch(.event(.vpnBack))
                                         } label: {
@@ -230,10 +238,10 @@ extension LaunchedView {
         }
     }
     
-    func clean(){
+    func clean(_ isGuide: Bool = false){
         let configuration = SheetKit.BottomSheetConfiguration(  detents: [.large()], largestUndimmedDetentIdentifier: .large, prefersGrabberVisible: true, prefersScrollingExpandsWhenScrolledToEdge: false, prefersEdgeAttachedInCompactHeight: false, widthFollowsPreferredContentSizeWhenEdgeAttached: true, preferredCornerRadius: 10)
         SheetKit().present(with: .customBottomSheet, configuration: configuration) {
-            CleanPopView(dismissHandle: {
+            CleanPopView(cleanHandle: {
                 
                 store.dispatch(.stopLoad)
                 store.dispatch(.clean)
@@ -248,6 +256,13 @@ extension LaunchedView {
                         self.alerMessage("Cleaned")
                         store.state.launched.isCleanShow = false
                     }.environmentObject(store)
+                }
+                if isGuide {
+                    store.dispatch(.event(.cleanGuideOK))
+                }
+            }, dismissHandle: {
+                if isGuide {
+                    store.dispatch(.event(.cleanGuideSkip))
                 }
             }).clearBackground()
         }

@@ -40,6 +40,7 @@ extension ContentView {
         }
         store.dispatch(.rootUpdateBackground(false))
         store.dispatch(.rootUpdateTime(-1))
+        store.dispatch(.tbaSession)
     }
     
     func didEnterBackground() {

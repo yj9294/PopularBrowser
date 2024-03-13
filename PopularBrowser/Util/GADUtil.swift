@@ -47,6 +47,11 @@ class ADBaseModel: NSObject, Identifiable {
     /// 廣告位置
     var position: GADPosition = .interstitial
     
+    // 货币单位
+    var currency: String = "USD"
+    var price: Double = 0.0
+    var network: String = ""
+    
     init(model: ADModel?) {
         super.init()
         self.model = model
@@ -103,6 +108,14 @@ enum GADPosition: String, CaseIterable {
         }
     }
 
+    var type: String {
+        switch self {
+        case .native, .vpnHome, .vpnResult:
+            return "native"
+        case .interstitial, .vpnConnect, .vpnBack:
+            return "interstitial"
+        }
+    }
 }
 
 class ADLoadModel: NSObject {

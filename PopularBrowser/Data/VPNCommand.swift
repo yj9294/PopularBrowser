@@ -22,6 +22,7 @@ struct VPNInitCommand: AppCommand {
             }
             debugPrint("[VPN MANAGER] prepareForLoading manager state: \(VPNUtil.shared.managerState), VPN state: \(VPNUtil.shared.vpnState)")
         }
+        NetworkMonitor.shared.startMonitoring()
     }
     
     func handleBackgroundTask(task: BGAppRefreshTask) {
@@ -54,18 +55,19 @@ class VPNObserver: NSObject, VPNStateChangedObserver {
 
 struct VPNConnectCommand: AppCommand {
     let isDisconnect: Bool
-    init(_ isDisconnect: Bool = false ) {
+    init(_ isDisconnect: Bool = false) {
         self.isDisconnect = isDisconnect
     }
     func execute(in store: AppStore) {
         if !isDisconnect {
-            connect(in: store)
+            connect( in: store)
         } else {
             disconnect(in: store)
         }
     }
     
     func connect(in store: AppStore) {
+        store.dispatch(.updateVPNAutoConnect(false))
         store.dispatch(.updateVPNStatus(.connecting))
         if VPNUtil.shared.managerState == .idle || VPNUtil.shared.managerState == .error {
             store.dispatch(.updateVPNPermission(true))
@@ -98,101 +100,123 @@ struct VPNConnectCommand: AppCommand {
         
         store.dispatch(.event(.vpnConnect))
         
-        pingAllServers(serverList: store.state.vpn.countryList ?? []) { models in
-            if let models = models, !models.isEmpty {
-                // 找出 smart
-                let model = VPNCountryModel.smartModel(with: models)
-                store.dispatch(.updateVPNCountry(model))
-                
-                // 是否进入后台
-                if store.state.root.enterbackground {
-                    store.dispatch(.updateVPNStatus(.disconnected))
-                    return
-                }
-                doConnect(model: model, in: store)
-            } else {
-                store.dispatch(.updateAlertMessage("Try it agin."))
+        if store.state.vpn.getCountry.isSmart {
+            let models = store.state.vpn.getServers.models()
+            let model = CountryModel.smartModel(with: models)
+            store.dispatch(.updateVPNCountry(model))
+            
+            // 是否进入后台
+            if store.state.root.enterbackground {
                 store.dispatch(.updateVPNStatus(.disconnected))
-            }
-        }
-    }
-    
-    func pingAllServers(serverList: [VPNCountryModel], completion: (([VPNCountryModel]?) -> Void)?) {
-        var pingResult = [Int : [Double]]()
-        if serverList.count == 0 {
-            completion?(nil)
-            return
-        }
-        var pingUtilDict = [Int : VPNPingUtil?]()
-
-
-        let group = DispatchGroup()
-        let queue = DispatchQueue.main
-        for (index, server) in serverList.enumerated() {
-            if server.ip.count == 0 {
-                continue
-            }
-            group.enter()
-            queue.async {
-                pingUtilDict[index] = VPNPingUtil.startPing(hostName: server.ip, count: 1, pingCallback: { pingItem in
-                    switch pingItem.status! {
-                        case .start:
-                            pingResult[index] = []
-                            break
-                        case .failToSendPacket:
-                            group.leave()
-                            break
-                        case .receivePacket:
-                            pingResult[index]?.append(pingItem.singleTime!)
-                        case .receiveUnpectedPacket:
-                            break
-                        case .timeout:
-                            pingResult[index]?.append(1000.0)
-                            group.leave()
-                        case .error:
-                            group.leave()
-                        case .finished:
-                            pingUtilDict[index] = nil
-                            group.leave()
-                    }
-                })
-            }
-        }
-        group.notify(queue: DispatchQueue.main) {
-            var pingAvgResult = [Int : Double]()
-            pingResult.forEach {
-                if $0.value.count > 0 {
-                    let sum = $0.value.reduce(0, +)
-                    let avg = Double(sum) / Double($0.value.count)
-                    pingAvgResult[$0.key] = avg
-                }
-            }
-
-            if pingAvgResult.count == 0 {
-                NSLog("[ERROR] ping error")
-                completion?(nil)
                 return
             }
-
-            var serverList = serverList
-
-            pingAvgResult.forEach {
-                serverList[$0.key].delay = $0.value
+            doConnect(model: model, in: store)
+        } else {
+            
+            // 是否进入后台
+            if store.state.root.enterbackground {
+                store.dispatch(.updateVPNStatus(.disconnected))
+                return
             }
-
-            serverList = serverList.filter {
-                return ($0.delay ?? 0) > 0
-            }
-
-            serverList = serverList.sorted(by: { return ($0.delay ?? 0) < ($1.delay ?? 0) })
-
-            serverList.forEach {
-                debugPrint("[IP] \($0.country)-\($0.city)-\($0.ip)-\(String(format: "%.2f", $0.delay ?? 0 ))ms")
-            }
-
-            completion?(serverList)
+            doConnect(model: store.state.vpn.getCountry, in: store)
         }
+
+        
+//        pingAllServers(serverList: store.state.vpn.countryList ?? []) { models in
+//            if let models = models, !models.isEmpty {
+//                // 找出 smart
+//                let model = VPNCountryModel.smartModel(with: models)
+//                store.dispatch(.updateVPNCountry(model))
+//
+//                // 是否进入后台
+//                if store.state.root.enterbackground {
+//                    store.dispatch(.updateVPNStatus(.disconnected))
+//                    return
+//                }
+//                doConnect(model: model, in: store)
+//            } else {
+//                store.dispatch(.updateAlertMessage("Try it agin."))
+//                store.dispatch(.updateVPNStatus(.disconnected))
+//            }
+//        }
     }
+    
+//    func pingAllServers(serverList: [VPNCountryModel], completion: (([VPNCountryModel]?) -> Void)?) {
+//        var pingResult = [Int : [Double]]()
+//        if serverList.count == 0 {
+//            completion?(nil)
+//            return
+//        }
+//        var pingUtilDict = [Int : VPNPingUtil?]()
+//
+//
+//        let group = DispatchGroup()
+//        let queue = DispatchQueue.main
+//        for (index, server) in serverList.enumerated() {
+//            if server.ip.count == 0 {
+//                continue
+//            }
+//            group.enter()
+//            queue.async {
+//                pingUtilDict[index] = VPNPingUtil.startPing(hostName: server.ip, count: 1, pingCallback: { pingItem in
+//                    switch pingItem.status! {
+//                        case .start:
+//                            pingResult[index] = []
+//                            break
+//                        case .failToSendPacket:
+//                            group.leave()
+//                            break
+//                        case .receivePacket:
+//                            pingResult[index]?.append(pingItem.singleTime!)
+//                        case .receiveUnpectedPacket:
+//                            break
+//                        case .timeout:
+//                            pingResult[index]?.append(1000.0)
+//                            group.leave()
+//                        case .error:
+//                            group.leave()
+//                        case .finished:
+//                            pingUtilDict[index] = nil
+//                            group.leave()
+//                    }
+//                })
+//            }
+//        }
+//        group.notify(queue: DispatchQueue.main) {
+//            var pingAvgResult = [Int : Double]()
+//            pingResult.forEach {
+//                if $0.value.count > 0 {
+//                    let sum = $0.value.reduce(0, +)
+//                    let avg = Double(sum) / Double($0.value.count)
+//                    pingAvgResult[$0.key] = avg
+//                }
+//            }
+//
+//            if pingAvgResult.count == 0 {
+//                NSLog("[ERROR] ping error")
+//                completion?(nil)
+//                return
+//            }
+//
+//            var serverList = serverList
+//
+//            pingAvgResult.forEach {
+//                serverList[$0.key].delay = $0.value
+//            }
+//
+//            serverList = serverList.filter {
+//                return ($0.delay ?? 0) > 0
+//            }
+//
+//            serverList = serverList.sorted(by: { return ($0.delay ?? 0) < ($1.delay ?? 0) })
+//
+//            serverList.forEach {
+//                debugPrint("[IP] \($0.country)-\($0.city)-\($0.ip)-\(String(format: "%.2f", $0.delay ?? 0 ))ms")
+//            }
+//
+//            completion?(serverList)
+//        }
+//    }
     
     func connectNetwork(in store: AppStore) -> Bool {
         let reachability = try! Reachability()
@@ -206,15 +230,25 @@ struct VPNConnectCommand: AppCommand {
     }
     
     // 选择好了线路，开始链接中
-    func doConnect(model: VPNCountryModel?, in store: AppStore) {
+    func doConnect(model: CountryModel.Country?, in store: AppStore) {
         guard let model = model else {
-            debugPrint("[CONNECT] no selectServer")
+            debugPrint("[connect] no selectServer")
             return
         }
         let host = model.ip
-        let port = model.port
-        let method = "chacha20-ietf-poly1305"
-        let op = ["host": host,"port": port,"method": method,"password": model.password] as? [String : NSObject]
+        var port = ""
+        var method = ""
+        var password: String = ""
+        if let config = model.config.first {
+            port = "\(config.port)"
+            method = config.method
+            password = config.psw
+        } else {
+            debugPrint("[connect] this ip no config.")
+            return
+        }
+
+        let op = ["host": host,"port": port,"method": method,"password": password] as? [String : NSObject]
         VPNUtil.shared.connect(options: op)
         store.dispatch(.event(.vpnConnect1))
     }

@@ -16,12 +16,13 @@ struct VPNView: View {
             VStack(spacing: 10){
                 ScrollView(showsIndicators: false){
                     VStack (spacing: 35){
-                        Text(store.state.vpn.serverTitle).multilineTextAlignment(.center).font(.system(size: 16)).foregroundStyle(.linearGradient(colors: [Color("#F3A640"), Color("#FA44B2")], startPoint: .leading, endPoint: .trailing)).padding(.vertical, 22)
+                        ServerView()
                         VPNStausButton(status: store.state.vpn.state) {
                             store.dispatch(.updateVPNMutaConnect(true))
                             store.dispatch(.vpnConnect)
                             store.dispatch(.loadVPNResultAD)
                         } disconnect: {
+                            store.dispatch(.updateVPNMutaDisconnect(true))
                             store.dispatch(.vpnDisconnect)
                             store.dispatch(.loadVPNResultAD)
                         }
@@ -44,7 +45,20 @@ struct VPNView: View {
                     }
                 }
             }
-        }.fullScreenCover(isPresented: $store.state.vpn.isPushResult, content: {
+        }.fullScreenCover(isPresented: $store.state.vpn.isPushServerList, content: {
+            NavigationView {
+                ServerListView().toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Button {
+                            store.dispatch(.vpnUpdatePushServerView(false))
+                            store.dispatch(.event(.serverViewBack))
+                        } label: {
+                            Image("back")
+                        }
+                    }
+                }
+            }
+        }).fullScreenCover(isPresented: $store.state.vpn.isPushResult, content: {
             NavigationView {
                 VPNConnectResultView().toolbar {
                     ToolbarItem(placement: .navigationBarLeading) {
@@ -70,6 +84,25 @@ struct VPNView: View {
             if store.state.root.coldVPN == true {
                 store.dispatch(.event(.coldVPN))
             }
+        }
+    }
+    
+    struct ServerView: View {
+        @EnvironmentObject var store: AppStore
+        var body: some View {
+            Button {
+                store.dispatch(.vpnUpdatePushServerView(true))
+                store.dispatch(.event(.showServerView))
+            } label: {
+                HStack{
+                    HStack(spacing: 12){
+                        Image(store.state.vpn.getCountry.image).frame(width: 28, height: 28)
+                        Text(store.state.vpn.getCountry.title).font(.system(size: 14))
+                        Spacer()
+                        Image("arrow_right")
+                    }.padding(.horizontal, 16).padding(.vertical, 8).background(Color("#FFF4F7")).cornerRadius(22)
+                }.padding(.horizontal,  50).padding(.vertical, 12).foregroundColor(Color("#414141"))
+            }.disabled(store.state.vpn.state == .connecting || store.state.vpn.state == .disconnecting)
         }
     }
     

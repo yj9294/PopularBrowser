@@ -163,6 +163,13 @@ struct GADShowCommand: AppCommand {
         if position.isInterstitial {
             /// 有廣告
             if let ad = loadAD?.loadedArray.first as? InterstitialADModel, !store.state.ad.isLimited(in: store) {
+                ad.interstitialAd?.paidEventHandler = { [weak ad] adValue in
+                    ad?.network = ad?.interstitialAd?.responseInfo.loadedAdNetworkResponseInfo?.adNetworkClassName ?? ""
+                    ad?.price = Double(truncating: adValue.value)
+                    ad?.currency = adValue.currencyCode
+                    store.dispatch(.tbaAd(ad))
+                    store.dispatch(.fbPurchase(ad))
+                }
                 ad.impressionHandler = {
                     logEvent(position, in: store)
                     store.dispatch(.adUpdateLimit(.show))
@@ -198,6 +205,13 @@ struct GADShowCommand: AppCommand {
                 }
                 ad.nativeAd?.unregisterAdView()
                 ad.nativeAd?.delegate = ad
+                ad.nativeAd?.paidEventHandler = { [weak ad] adValue in
+                    ad?.network = ad?.nativeAd?.responseInfo.loadedAdNetworkResponseInfo?.adNetworkClassName ?? ""
+                    ad?.price = Double(truncating: adValue.value)
+                    ad?.currency = adValue.currencyCode
+                    store.dispatch(.tbaAd(ad))
+                    store.dispatch(.fbPurchase(ad))
+                }
                 ad.impressionHandler = {
                     logEvent(position, in: store)
                     store.dispatch(.adNativeImpressionDate(p))

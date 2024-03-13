@@ -47,15 +47,17 @@ enum AppAction {
     case vpnDisconnect
     case updateVPNPermission(Bool)
     case updateVPNStatus(VPNUtil.VPNState)
-    case updateVPNCountry(VPNCountryModel?)
-    case updateVPNCountryList([VPNCountryModel]?)
+    case updateVPNCountry(CountryModel.Country?)
+    case updateVPNCountryList(CountryModel?)
     case updateAlertMessage(String)
     case dismissAlert
     case vpnUpdatePushResult(Bool)
     case vpnUpdateConnectedDate(Date)
+    case vpnUpdatePushServerView(Bool)
     
     case updateVPNMutaConnect(Bool)
     case updateVPNMutaDisconnect(Bool)
+    case updateVPNAutoConnect(Bool)
     
     case resultUpdate(Bool)
     
@@ -70,7 +72,14 @@ enum AppAction {
     
     case requestCloak
     case requestIP
+    case requestServer
     
     case loadVPNResultAD
     
+    // tab
+    case tbaInstall
+    case tbaSession
+    case tbaAd(ADBaseModel?)
+    case fbPurchase(ADBaseModel?)
+    case tbaFirstOpen
 }
