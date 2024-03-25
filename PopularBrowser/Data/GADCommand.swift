@@ -167,6 +167,7 @@ struct GADShowCommand: AppCommand {
                     ad?.network = ad?.interstitialAd?.responseInfo.loadedAdNetworkResponseInfo?.adNetworkClassName ?? ""
                     ad?.price = Double(truncating: adValue.value)
                     ad?.currency = adValue.currencyCode
+                    ad?.impressIP = store.state.vpn.state == .connected ? store.state.vpn.getCountry.ip : store.state.root.getCurrentIP
                     store.dispatch(.tbaAd(ad))
                     store.dispatch(.fbPurchase(ad))
                 }
@@ -209,6 +210,7 @@ struct GADShowCommand: AppCommand {
                     ad?.network = ad?.nativeAd?.responseInfo.loadedAdNetworkResponseInfo?.adNetworkClassName ?? ""
                     ad?.price = Double(truncating: adValue.value)
                     ad?.currency = adValue.currencyCode
+                    ad?.impressIP = store.state.vpn.state == .connected ? store.state.vpn.getCountry.ip : store.state.root.getCurrentIP
                     store.dispatch(.tbaAd(ad))
                     store.dispatch(.fbPurchase(ad))
                 }

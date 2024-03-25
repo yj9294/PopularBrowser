@@ -14,6 +14,7 @@ enum AppAction {
     case rootUpdateTime(Int)
     case rootUpdateColdVPN(Bool)
     case rootUpdateUserGo(Bool)
+    case rootUpdateIP(String)
         
     case homeUpdateShowGuide(Bool)
     case homeUpdatePushVPNView(Bool)

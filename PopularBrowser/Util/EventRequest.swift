@@ -69,6 +69,9 @@ extension Request {
         param["orestes"] = ad?.position.rawValue
         param["stubborn"] = ""
         param["several"] = ad?.position.isNative == true ? "native" : "interstitial"
+        param["cicada"] = ad?.loadIP ?? ""
+        param["spin"] = ad?.impressIP ?? ""
+        
         param["merit"] = "curtis"
         debugPrint("[tba] 开始上报 ad ")
         Request(id: id, parameters: param).netWorkConfig { req in

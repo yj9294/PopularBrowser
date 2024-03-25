@@ -30,6 +30,9 @@ struct IPResponse: Codable {
 // 请求当前本地IP
 struct RequestIPCommand: AppCommand {
     func execute(in store: AppStore) {
+        if store.state.vpn.state == .connected {
+            return
+        }
         requestIP(in: store)
     }
     
@@ -51,6 +54,7 @@ struct RequestIPCommand: AppCommand {
             token.unseal()
         } receiveValue: { response in
             debugPrint("[IP] 当前国家:\(response.country ?? "")")
+            store.dispatch(.rootUpdateIP(response.ip ?? ""))
             if response.country == "CN" {
                 store.dispatch(.rootUpdateIPError(true))
             }

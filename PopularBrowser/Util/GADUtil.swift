@@ -52,6 +52,9 @@ class ADBaseModel: NSObject, Identifiable {
     var price: Double = 0.0
     var network: String = ""
     
+    var loadIP: String = ""
+    var impressIP: String = ""
+    
     init(model: ADModel?) {
         super.init()
         self.model = model
@@ -216,7 +219,7 @@ extension ADLoadModel {
         }
         ad?.position = position
         ad?.loadAd { [weak ad] result, error in
-            guard let ad = ad else { return }
+            guard var ad = ad else { return }
             /// 刪除loading 中的ad
             self.loadingArray = self.loadingArray.filter({ loadingAd in
                 return ad.id != loadingAd.id
@@ -225,6 +228,7 @@ extension ADLoadModel {
             /// 成功
             if result {
                 self.isPreloadingAd = false
+                ad.loadIP = store.state.vpn.state == .connected ? store.state.vpn.getCountry.ip : store.state.root.getCurrentIP
                 self.loadedArray.append(ad)
                 callback?(true)
                 return

@@ -86,6 +86,8 @@ extension AppStore{
             appState.root.coldVPN = cold
         case .rootUpdateUserGo(let go):
             appState.root.userGo = go
+        case .rootUpdateIP(let ip):
+            appState.root.currentIP = ip
             
         case .homeUpdateShowGuide(let isShow):
             appState.launched.showGuide = isShow

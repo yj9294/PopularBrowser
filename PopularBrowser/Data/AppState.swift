@@ -49,6 +49,13 @@ extension AppState {
         
         // 用于判定原生广告加载完成时在那个界面
         var nativeLoadPosition: GADPosition = .native
+        
+        // 当前IP
+        @UserDefault(key: "ip")
+        var currentIP: String?
+        var getCurrentIP: String {
+            return currentIP ?? ""
+        }
     }
 }
 
