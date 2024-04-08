@@ -44,12 +44,7 @@
 		BFAB7B8C2B90730A00BC9609 /* VPNModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAB7B8A2B90730A00BC9609 /* VPNModel.swift */; };
 		BFAB7B8E2B9074FB00BC9609 /* CacheUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAB7B8D2B9074FB00BC9609 /* CacheUtil.swift */; };
 		BFAB7B912B90783400BC9609 /* server.json in Resources */ = {isa = PBXBuildFile; fileRef = BFAB7B902B90783300BC9609 /* server.json */; };
-		BFAB7B942B90885D00BC9609 /* Shadowsocks_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFAB7B922B90885D00BC9609 /* Shadowsocks_iOS.framework */; };
 		BFAB7B982B908CA300BC9609 /* VPNView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAB7B972B908CA300BC9609 /* VPNView.swift */; };
-		BFAB7B9A2B909CCA00BC9609 /* PacketProcessor_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFAB7B932B90885D00BC9609 /* PacketProcessor_iOS.framework */; settings = {ATTRIBUTES = (Required, ); }; };
-		BFAB7B9B2B909CCA00BC9609 /* PacketProcessor_iOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BFAB7B932B90885D00BC9609 /* PacketProcessor_iOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		BFAB7B9D2B909D9000BC9609 /* PacketProcessor_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFAB7B932B90885D00BC9609 /* PacketProcessor_iOS.framework */; };
-		BFAB7B9E2B909D9000BC9609 /* Shadowsocks_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFAB7B922B90885D00BC9609 /* Shadowsocks_iOS.framework */; };
 		C703CA532A398E1500D95613 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = C703CA522A398E1500D95613 /* GoogleMobileAds */; };
 		C703CA552A398E6100D95613 /* GADUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C703CA542A398E6100D95613 /* GADUtil.swift */; };
 		C703CA572A39912700D95613 /* GADCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = C703CA562A39912700D95613 /* GADCommand.swift */; };
@@ -111,7 +106,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				BFAB7B9B2B909CCA00BC9609 /* PacketProcessor_iOS.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -157,8 +151,6 @@
 		BFAB7B8A2B90730A00BC9609 /* VPNModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPNModel.swift; sourceTree = "<group>"; };
 		BFAB7B8D2B9074FB00BC9609 /* CacheUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CacheUtil.swift; path = ../Data/CacheUtil.swift; sourceTree = "<group>"; };
 		BFAB7B902B90783300BC9609 /* server.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = server.json; sourceTree = "<group>"; };
-		BFAB7B922B90885D00BC9609 /* Shadowsocks_iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Shadowsocks_iOS.framework; sourceTree = "<group>"; };
-		BFAB7B932B90885D00BC9609 /* PacketProcessor_iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PacketProcessor_iOS.framework; sourceTree = "<group>"; };
 		BFAB7B972B908CA300BC9609 /* VPNView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPNView.swift; sourceTree = "<group>"; };
 		BFAB7B992B90929200BC9609 /* PopularBrowser.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PopularBrowser.entitlements; sourceTree = "<group>"; };
 		C703CA542A398E6100D95613 /* GADUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GADUtil.swift; sourceTree = "<group>"; };
@@ -197,8 +189,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BFAB7B9D2B909D9000BC9609 /* PacketProcessor_iOS.framework in Frameworks */,
-				BFAB7B9E2B909D9000BC9609 /* Shadowsocks_iOS.framework in Frameworks */,
 				BFAB7B5B2B9063D600BC9609 /* NetworkExtension.framework in Frameworks */,
 				1EA1186D87D75469BC471D9A /* Pods_Proxy.framework in Frameworks */,
 			);
@@ -224,10 +214,8 @@
 				C70E8EE42A3332970029C91C /* FirebaseRemoteConfig in Frameworks */,
 				36A08B922B985EFF00F394F4 /* AdSupport.framework in Frameworks */,
 				36A08B9D2B98635A00F394F4 /* Criteo in Frameworks */,
-				BFAB7B942B90885D00BC9609 /* Shadowsocks_iOS.framework in Frameworks */,
 				36A08B962B985F2400F394F4 /* StoreKit.framework in Frameworks */,
 				6801C22895D6189ACE7A92FD /* Pods_PopularBrowser.framework in Frameworks */,
-				BFAB7B9A2B909CCA00BC9609 /* PacketProcessor_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,8 +282,6 @@
 		BFAB7B7E2B9068EA00BC9609 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				BFAB7B932B90885D00BC9609 /* PacketProcessor_iOS.framework */,
-				BFAB7B922B90885D00BC9609 /* Shadowsocks_iOS.framework */,
 				C7EE4A072A31B6F2006B6139 /* Assets.xcassets */,
 				C7EE4A1D2A31C6A1006B6139 /* Launch Screen.storyboard */,
 				C7EE4A092A31B6F2006B6139 /* Preview Content */,
@@ -669,7 +655,7 @@
 				CODE_SIGN_ENTITLEMENTS = Proxy/Proxy.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20240321;
+				CURRENT_PROJECT_VERSION = 20240408;
 				DEVELOPMENT_TEAM = CAP32C8DTF;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -689,7 +675,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 2.2.1;
+				MARKETING_VERSION = 2.2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.popularSearch.browsers.fast.Proxy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -713,7 +699,7 @@
 				CODE_SIGN_ENTITLEMENTS = Proxy/Proxy.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20240321;
+				CURRENT_PROJECT_VERSION = 20240408;
 				DEVELOPMENT_TEAM = CAP32C8DTF;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -733,7 +719,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 2.2.1;
+				MARKETING_VERSION = 2.2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.popularSearch.browsers.fast.Proxy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -871,7 +857,7 @@
 				CODE_SIGN_ENTITLEMENTS = PopularBrowser/PopularBrowser.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20240321;
+				CURRENT_PROJECT_VERSION = 20240408;
 				DEVELOPMENT_ASSET_PATHS = "\"PopularBrowser/Resource/Preview Content\"";
 				DEVELOPMENT_TEAM = CAP32C8DTF;
 				ENABLE_PREVIEWS = YES;
@@ -894,7 +880,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.2.1;
+				MARKETING_VERSION = 2.2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.popularSearch.browsers.fast;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -920,7 +906,7 @@
 				CODE_SIGN_ENTITLEMENTS = PopularBrowser/PopularBrowser.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20240321;
+				CURRENT_PROJECT_VERSION = 20240408;
 				DEVELOPMENT_ASSET_PATHS = "\"PopularBrowser/Resource/Preview Content\"";
 				DEVELOPMENT_TEAM = CAP32C8DTF;
 				ENABLE_PREVIEWS = YES;
@@ -943,7 +929,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.2.1;
+				MARKETING_VERSION = 2.2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.popularSearch.browsers.fast;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

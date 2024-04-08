@@ -10,14 +10,35 @@ PODS:
     - FBSDKCoreKit_Basics (= 14.1.0)
   - FBSDKCoreKit_Basics (14.1.0)
   - IQKeyboardManager (6.5.17)
+  - PacketProcessor_iOS (0.0.1)
   - ReachabilitySwift (5.0.0)
+  - ShadowSocks-libev-iOS (3.2.5):
+    - ShadowSocks-libev-iOS/c-ares (= 3.2.5)
+    - ShadowSocks-libev-iOS/libbloom (= 3.2.5)
+    - ShadowSocks-libev-iOS/libcork (= 3.2.5)
+    - ShadowSocks-libev-iOS/libev (= 3.2.5)
+    - ShadowSocks-libev-iOS/libipset (= 3.2.5)
+    - ShadowSocks-libev-iOS/mbedtls (= 3.2.5)
+    - ShadowSocks-libev-iOS/pcre (= 3.2.5)
+    - ShadowSocks-libev-iOS/sodium (= 3.2.5)
+  - ShadowSocks-libev-iOS/c-ares (3.2.5)
+  - ShadowSocks-libev-iOS/libbloom (3.2.5)
+  - ShadowSocks-libev-iOS/libcork (3.2.5)
+  - ShadowSocks-libev-iOS/libev (3.2.5)
+  - ShadowSocks-libev-iOS/libipset (3.2.5):
+    - ShadowSocks-libev-iOS/libcork
+  - ShadowSocks-libev-iOS/mbedtls (3.2.5)
+  - ShadowSocks-libev-iOS/pcre (3.2.5)
+  - ShadowSocks-libev-iOS/sodium (3.2.5)
 
 DEPENDENCIES:
   - CocoaAsyncSocket
   - CocoaLumberjack
   - FBSDKCoreKit
   - IQKeyboardManager
+  - PacketProcessor_iOS
   - ReachabilitySwift
+  - ShadowSocks-libev-iOS (from `https://github.com/juvham/ShadowSocks-libev-iOS.git`, tag `master`)
 
 SPEC REPOS:
   trunk:
@@ -27,7 +48,18 @@ SPEC REPOS:
     - FBSDKCoreKit
     - FBSDKCoreKit_Basics
     - IQKeyboardManager
+    - PacketProcessor_iOS
     - ReachabilitySwift
+
+EXTERNAL SOURCES:
+  ShadowSocks-libev-iOS:
+    :git: https://github.com/juvham/ShadowSocks-libev-iOS.git
+    :tag: master
+
+CHECKOUT OPTIONS:
+  ShadowSocks-libev-iOS:
+    :git: https://github.com/juvham/ShadowSocks-libev-iOS.git
+    :tag: master
 
 SPEC CHECKSUMS:
   CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
@@ -36,8 +68,10 @@ SPEC CHECKSUMS:
   FBSDKCoreKit: 24f8bc8d3b5b2a8c5c656a1329492a12e8efa792
   FBSDKCoreKit_Basics: 6e578c9bdc7aa1365dbbbde633c9ebb536bcaa98
   IQKeyboardManager: 904d013844bbae0abe073f015487bfebe5476335
+  PacketProcessor_iOS: de7d72fe740674733f2fcf981efcb5a8bfaaa351
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
+  ShadowSocks-libev-iOS: 14f635962b69527b58af96e139a6b4b63ec4bf25
 
-PODFILE CHECKSUM: 008de017155091e99b710b58cd20ac74e33333a3
+PODFILE CHECKSUM: 629b7aa32602a9c43c0656d861814f59b823a92e
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.15.2

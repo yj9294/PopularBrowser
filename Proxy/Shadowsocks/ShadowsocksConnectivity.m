@@ -7,7 +7,7 @@
 
 #import "ShadowsocksConnectivity.h"
 #include <arpa/inet.h>
-#import <Shadowsocks_iOS/shadowsocks.h>
+#import <ShadowSocks_libev_iOS/ShadowSocks-libev-iOS-umbrella.h>
 #import <CocoaLumberjack/CocoaLumberjack.h>
 
 static const  DDLogLevel ddLogLevel =  DDLogLevelDebug;
