@@ -6,7 +6,7 @@
 //
 
 import NetworkExtension
-import Shadowsocks_iOS
+import ShadowSocks_libev_iOS
 import PacketProcessor_iOS
 import Reachability
 
@@ -77,7 +77,7 @@ extension PacketTunnelProvider {
                 self.connected = true
             }
             
-            TunnelInterface.setIsUdpForwardingEnabled(true)
+//            TunnelInterface.setIsUdpForwardingEnabled(true)
             TunnelInterface.startTun2Socks(kShadowsocksLocalPort)
             
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
