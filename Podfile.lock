@@ -1,17 +1,17 @@
 PODS:
   - CocoaAsyncSocket (7.6.5)
-  - CocoaLumberjack (3.8.4):
-    - CocoaLumberjack/Core (= 3.8.4)
-  - CocoaLumberjack/Core (3.8.4)
-  - FBAEMKit (14.1.0):
-    - FBSDKCoreKit_Basics (= 14.1.0)
-  - FBSDKCoreKit (14.1.0):
-    - FBAEMKit (= 14.1.0)
-    - FBSDKCoreKit_Basics (= 14.1.0)
-  - FBSDKCoreKit_Basics (14.1.0)
-  - IQKeyboardManager (6.5.17)
+  - CocoaLumberjack (3.8.5):
+    - CocoaLumberjack/Core (= 3.8.5)
+  - CocoaLumberjack/Core (3.8.5)
+  - FBAEMKit (17.0.0):
+    - FBSDKCoreKit_Basics (= 17.0.0)
+  - FBSDKCoreKit (17.0.0):
+    - FBAEMKit (= 17.0.0)
+    - FBSDKCoreKit_Basics (= 17.0.0)
+  - FBSDKCoreKit_Basics (17.0.0)
+  - IQKeyboardManager (6.5.18)
   - PacketProcessor_iOS (0.0.1)
-  - ReachabilitySwift (5.0.0)
+  - ReachabilitySwift (5.2.2)
   - ShadowSocks-libev-iOS (3.2.5):
     - ShadowSocks-libev-iOS/c-ares (= 3.2.5)
     - ShadowSocks-libev-iOS/libbloom (= 3.2.5)
@@ -63,15 +63,15 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
-  CocoaLumberjack: df59726690390bb8aaaa585938564ba1c8dbbb44
-  FBAEMKit: a899515e45476027f73aef377b5cffadcd56ca3a
-  FBSDKCoreKit: 24f8bc8d3b5b2a8c5c656a1329492a12e8efa792
-  FBSDKCoreKit_Basics: 6e578c9bdc7aa1365dbbbde633c9ebb536bcaa98
-  IQKeyboardManager: 904d013844bbae0abe073f015487bfebe5476335
+  CocoaLumberjack: 6a459bc897d6d80bd1b8c78482ec7ad05dffc3f0
+  FBAEMKit: 31a20c2d8744d8c57d3a5b7ae4e27b4fdd819193
+  FBSDKCoreKit: dac911b656816f8d0b06e5fa4bac60e89505bb3b
+  FBSDKCoreKit_Basics: 92b7b7458d57091370b0b6cc197578874c3b4b16
+  IQKeyboardManager: 67f92bb29b650c094c40bd11c0545b47bdd25c5b
   PacketProcessor_iOS: de7d72fe740674733f2fcf981efcb5a8bfaaa351
-  ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
+  ReachabilitySwift: 2128f3a8c9107e1ad33574c6e58e8285d460b149
   ShadowSocks-libev-iOS: 14f635962b69527b58af96e139a6b4b63ec4bf25
 
 PODFILE CHECKSUM: 629b7aa32602a9c43c0656d861814f59b823a92e
 
-COCOAPODS: 1.15.2
+COCOAPODS: 1.15.0

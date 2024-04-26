@@ -32,6 +32,7 @@
 		36A08BA32B98635B00F394F4 /* WebBridge in Frameworks */ = {isa = PBXBuildFile; productRef = 36A08BA22B98635B00F394F4 /* WebBridge */; };
 		36A08BA62B986A0700F394F4 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 36A08BA52B986A0700F394F4 /* SnapKit */; };
 		6801C22895D6189ACE7A92FD /* Pods_PopularBrowser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40A09DA978A305F5829542F6 /* Pods_PopularBrowser.framework */; };
+		BFA2AB2D2BDB9A8700AFC98C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BFA2AB2C2BDB9A8700AFC98C /* GoogleService-Info.plist */; };
 		BFAB7B522B9023BA00BC9609 /* admob_release.json in Resources */ = {isa = PBXBuildFile; fileRef = BFAB7B512B9023BA00BC9609 /* admob_release.json */; };
 		BFAB7B542B90503800BC9609 /* AppUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAB7B532B90503800BC9609 /* AppUtil.swift */; };
 		BFAB7B5B2B9063D600BC9609 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFAB7B5A2B9063D500BC9609 /* NetworkExtension.framework */; };
@@ -64,7 +65,6 @@
 		C77684EE2A33077B004554E1 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77684ED2A33077B004554E1 /* SettingView.swift */; };
 		C77684F02A3312E5004554E1 /* PrivacyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77684EF2A3312E5004554E1 /* PrivacyView.swift */; };
 		C77684F22A3312EB004554E1 /* TermsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77684F12A3312EB004554E1 /* TermsView.swift */; };
-		C7AA9BDC2A56F50700EB3CF8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C7AA9BDB2A56F50700EB3CF8 /* GoogleService-Info.plist */; };
 		C7EE4A042A31B6F1006B6139 /* PopularBrowserApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EE4A032A31B6F1006B6139 /* PopularBrowserApp.swift */; };
 		C7EE4A062A31B6F1006B6139 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EE4A052A31B6F1006B6139 /* ContentView.swift */; };
 		C7EE4A082A31B6F2006B6139 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7EE4A072A31B6F2006B6139 /* Assets.xcassets */; };
@@ -135,6 +135,7 @@
 		6DED45A621B4FD8F1DF56D8F /* Pods-Proxy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Proxy.release.xcconfig"; path = "Target Support Files/Pods-Proxy/Pods-Proxy.release.xcconfig"; sourceTree = "<group>"; };
 		AD5E8E5D9F709F2EA63569A3 /* Pods_Proxy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Proxy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9F10C7D42C49733FB0F3FB6 /* Pods-PopularBrowser.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PopularBrowser.release.xcconfig"; path = "Target Support Files/Pods-PopularBrowser/Pods-PopularBrowser.release.xcconfig"; sourceTree = "<group>"; };
+		BFA2AB2C2BDB9A8700AFC98C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BFAB7B512B9023BA00BC9609 /* admob_release.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = admob_release.json; sourceTree = "<group>"; };
 		BFAB7B532B90503800BC9609 /* AppUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtil.swift; sourceTree = "<group>"; };
 		BFAB7B592B9063D500BC9609 /* Proxy.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Proxy.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -167,7 +168,6 @@
 		C77684ED2A33077B004554E1 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		C77684EF2A3312E5004554E1 /* PrivacyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyView.swift; sourceTree = "<group>"; };
 		C77684F12A3312EB004554E1 /* TermsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsView.swift; sourceTree = "<group>"; };
-		C7AA9BDB2A56F50700EB3CF8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C7D6908F2A36C6EE0070CC52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C7EE4A002A31B6F1006B6139 /* PopularBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PopularBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7EE4A032A31B6F1006B6139 /* PopularBrowserApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularBrowserApp.swift; sourceTree = "<group>"; };
@@ -288,7 +288,7 @@
 				BFAB7B512B9023BA00BC9609 /* admob_release.json */,
 				C703CA5A2A3996F500D95613 /* admob.json */,
 				BFAB7B902B90783300BC9609 /* server.json */,
-				C7AA9BDB2A56F50700EB3CF8 /* GoogleService-Info.plist */,
+				BFA2AB2C2BDB9A8700AFC98C /* GoogleService-Info.plist */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -506,10 +506,10 @@
 				C703CA5B2A3996F600D95613 /* admob.json in Resources */,
 				BFAB7B912B90783400BC9609 /* server.json in Resources */,
 				C7EE4A1E2A31C6A2006B6139 /* Launch Screen.storyboard in Resources */,
-				C7AA9BDC2A56F50700EB3CF8 /* GoogleService-Info.plist in Resources */,
 				C7EE4A0B2A31B6F2006B6139 /* Preview Assets.xcassets in Resources */,
 				C7EE4A082A31B6F2006B6139 /* Assets.xcassets in Resources */,
 				BFAB7B522B9023BA00BC9609 /* admob_release.json in Resources */,
+				BFA2AB2D2BDB9A8700AFC98C /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -654,9 +654,9 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Proxy/Proxy.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 20240408;
-				DEVELOPMENT_TEAM = CAP32C8DTF;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -678,6 +678,7 @@
 				MARKETING_VERSION = 2.2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.popularSearch.browsers.fast.Proxy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -698,9 +699,9 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Proxy/Proxy.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 20240408;
-				DEVELOPMENT_TEAM = CAP32C8DTF;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -722,6 +723,7 @@
 				MARKETING_VERSION = 2.2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.popularSearch.browsers.fast.Proxy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -856,10 +858,10 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = PopularBrowser/PopularBrowser.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 20240408;
 				DEVELOPMENT_ASSET_PATHS = "\"PopularBrowser/Resource/Preview Content\"";
-				DEVELOPMENT_TEAM = CAP32C8DTF;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -880,7 +882,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.2.2;
+				MARKETING_VERSION = 2.2.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.popularSearch.browsers.fast;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -905,10 +907,10 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = PopularBrowser/PopularBrowser.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 20240408;
 				DEVELOPMENT_ASSET_PATHS = "\"PopularBrowser/Resource/Preview Content\"";
-				DEVELOPMENT_TEAM = CAP32C8DTF;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -929,7 +931,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.2.2;
+				MARKETING_VERSION = 2.2.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.popularSearch.browsers.fast;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
