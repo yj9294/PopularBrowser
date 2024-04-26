@@ -11,6 +11,8 @@
 		<string>allow-vpn</string>
 	</array>
 	<key>com.apple.security.application-groups</key>
-	<array/>
+	<array>
+		<string>group.com.popularSearch.browsers.fast</string>
+	</array>
 </dict>
 </plist>
