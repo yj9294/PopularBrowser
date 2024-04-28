@@ -182,6 +182,8 @@ struct LaunchedView: View {
                             EmptyView()
                         }
                     }
+                }.onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
+                    ATTrackingManager.requestTrackingAuthorization(completionHandler: { status in })
                 }
             }
         }
@@ -193,8 +195,8 @@ extension LaunchedView {
         if !isGuideShow, !isVPNVShow, !isTabShow{
             loadAndShowHomeNativeAD()
         }
-        ATTrackingManager.requestTrackingAuthorization { _ in
-        }
+//        ATTrackingManager.requestTrackingAuthorization { _ in
+//        }
     }
     
     func loadAndShowHomeNativeAD() {
